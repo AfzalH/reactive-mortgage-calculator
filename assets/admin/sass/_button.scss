@@ -1,0 +1,64 @@
+.srizon {
+  .btn {
+    text-transform: none;
+  }
+  .svg-button-icon {
+    line-height: 97px;
+    padding-right: 10px;
+    svg {
+      width: 40px;
+      height: 40px;
+      color: white;
+      fill: white;
+    }
+  }
+  .copy-text {
+    position: relative;
+    left: 5px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .btn-floating-small {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    i {
+      line-height: 31px;
+      font-size: 1.2rem;
+    }
+  }
+
+  .btn-small {
+    padding: 0 14px;
+    line-height: 30px;
+    height: 30px;
+  }
+  .btn-small + .btn-small {
+    margin-left: 5px;
+  }
+
+  .btn-spin {
+    i {
+      &:hover {
+        animation: spin .5s linear;
+      }
+    }
+  }
+
+  .red-icon {
+    color: color("red", "lighten-2");
+    transition: all .5s ease;
+    &:hover {
+      transition: all .5s ease;
+      color: color("red", "darken-2");
+      text-shadow: 0 0 2px color("red", "lighten-3");
+    }
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(60deg);
+    transform: rotate(60deg);
+  }
+}

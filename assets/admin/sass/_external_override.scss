@@ -1,0 +1,32 @@
+#nano-bar-id {
+  .bar {
+    background-color: red;
+  }
+  z-index: 99999;
+}
+
+.srizon {
+  .card {
+    border: 0;
+    padding: 0;
+  }
+  .tabs {
+    background-color: transparent !important;
+    a {
+      text-transform: none !important;
+      color: color("blue", "base") !important;
+      &:focus {
+        outline: 0 !important;
+        box-shadow: none;
+      }
+      &:hover {
+        color: color("blue", "darken-4") !important;
+        text-decoration: none !important;
+      }
+    }
+
+    .indicator {
+      background-color: color("blue", "base") !important;;
+    }
+  }
+}

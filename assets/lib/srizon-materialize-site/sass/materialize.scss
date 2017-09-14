@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+// Mixins
+@import "../../srizon-materialize/sass/components/mixins";
+@import "../../srizon-materialize/sass/components/color";
+// Variables;
+@import "../../srizon-materialize/sass/components/variables";
+//
+//// Reset
+@import "normalize";
+//
+//// ../../srizon-materialize/sass/components
+@import "../../srizon-materialize/sass/components/global";
+
+.srizon {
+  @import "../../srizon-materialize/sass/components/badges";
+  @import "../../srizon-materialize/sass/components/icons-material-design";
+  @import "../../srizon-materialize/sass/components/grid";
+  @import "../../srizon-materialize/sass/components/navbar";
+  //manually added fonts
+  //@import "../../srizon-materialize/sass/components/roboto";
+}
+
+@import "typography";
+.srizon {
+  @import "../../srizon-materialize/sass/components/transitions";
+  @import "../../srizon-materialize/sass/components/cards";
+  @import "../../srizon-materialize/sass/components/toast";
+  @import "../../srizon-materialize/sass/components/tabs";
+  @import "../../srizon-materialize/sass/components/tooltip";
+  @import "../../srizon-materialize/sass/components/buttons";
+  @import "../../srizon-materialize/sass/components/dropdown";
+  @import "../../srizon-materialize/sass/components/waves";
+  @import "../../srizon-materialize/sass/components/modal";
+  @import "../../srizon-materialize/sass/components/collapsible";
+  @import "../../srizon-materialize/sass/components/chips";
+  @import "../../srizon-materialize/sass/components/materialbox";
+  @import "../../srizon-materialize/sass/components/forms/forms";
+  @import "../../srizon-materialize/sass/components/table_of_contents";
+  @import "../../srizon-materialize/sass/components/sideNav";
+  @import "../../srizon-materialize/sass/components/preloader";
+  @import "../../srizon-materialize/sass/components/slider";
+  @import "../../srizon-materialize/sass/components/carousel";
+  @import "../../srizon-materialize/sass/components/tapTarget";
+  @import "../../srizon-materialize/sass/components/pulse";
+  @import "../../srizon-materialize/sass/components/date_picker/default";
+  @import "../../srizon-materialize/sass/components/date_picker/default.date";
+  @import "../../srizon-materialize/sass/components/date_picker/default.time";
+}
