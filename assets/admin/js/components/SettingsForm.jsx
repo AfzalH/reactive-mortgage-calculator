@@ -41,7 +41,7 @@ class SettingsForm extends React.Component {
                                    label="Property Value" aclass=""/> : null}
                 </div>
 
-                <div className={"col s12 m6 pr50"} id="downpayment-tab">
+                <div className={"col s12 m6 offset-m2 pr50"} id="downpayment-tab">
                     <TextField val={pstate.down_amount_text} onch={hich} name="down_amount_text"
                                label="Down Payment Text" aclass=""/>
                     <SwitchField name="down_amount_is_changeable" val={pstate.down_amount_is_changeable}
@@ -54,23 +54,23 @@ class SettingsForm extends React.Component {
                         <TextField val={pstate.down_amount_fixed_fixed} onch={hich} name="down_amount_fixed_fixed"
                                    label="Down-Payment Amount" aclass=""/> : null}
                     {!pstate.down_amount_percent && pstate.down_amount_is_changeable ?
-                        <TextField val={pstate.down_amount_fixed_min} onch={hich} name="property_value_min"
+                        <TextField val={pstate.down_amount_fixed_min} onch={hich} name="down_amount_fixed_min"
                                    label="Down-Payment Amount - Minimum" aclass=""/> : null}
                     {!pstate.down_amount_percent && pstate.down_amount_is_changeable ?
-                        <TextField val={pstate.down_amount_fixed_max} onch={hich} name="property_value_min"
+                        <TextField val={pstate.down_amount_fixed_max} onch={hich} name="down_amount_fixed_max"
                                    label="Down-Payment Amount - Maximum" aclass=""/> : null}
                     {pstate.down_amount_percent && !pstate.down_amount_is_changeable ?
-                        <TextField val={pstate.down_amount_percent_fixed} onch={hich} name="property_value_min"
+                        <TextField val={pstate.down_amount_percent_fixed} onch={hich} name="down_amount_percent_fixed"
                                    label="Down-Payment Percent" aclass=""/> : null}
                     {pstate.down_amount_percent && pstate.down_amount_is_changeable ?
-                        <TextField val={pstate.down_amount_percent_min} onch={hich} name="property_value_min"
+                        <TextField val={pstate.down_amount_percent_min} onch={hich} name="down_amount_percent_min"
                                    label="Down-Payment Percent - Minimum" aclass=""/> : null}
                     {pstate.down_amount_percent && pstate.down_amount_is_changeable ?
-                        <TextField val={pstate.down_amount_percent_max} onch={hich} name="property_value_min"
+                        <TextField val={pstate.down_amount_percent_max} onch={hich} name="down_amount_percent_max"
                                    label="Down-Payment Percent - Maxium" aclass=""/> : null}
                 </div>
 
-                <div className={"col s12 m6 pr50"} id="interest-tab">
+                <div className={"col s12 m6 offset-m4 pr50"} id="interest-tab">
                     <TextField val={pstate.interest_text} onch={hich} name="interest_text"
                                label="Interest Text" aclass=""/>
                     <SwitchField name="interest_is_changeable" val={pstate.interest_is_changeable}
@@ -86,7 +86,8 @@ class SettingsForm extends React.Component {
                         <TextField val={pstate.interest_fixed} onch={hich} name="interest_fixed"
                                    label="Interest Rate" aclass=""/> : null}
                 </div>
-                <div className={"col s12 m6 pr50"} id="tenure-tab">
+
+                <div className={"col s12 m6 offset-m5 pr50"} id="tenure-tab">
                     <TextField val={pstate.tenure_text} onch={hich} name="tenure_text"
                                label="Tenure Text" aclass=""/>
                     <SwitchField name="tenure_is_changeable" val={pstate.tenure_is_changeable}
@@ -103,7 +104,7 @@ class SettingsForm extends React.Component {
                                    label="Tenure (Year)" aclass=""/> : null}
                 </div>
 
-                <div className={"col s12 m6 pr50"} id="other-tab">
+                <div className={"col s12 m6 offset-m6 pr50"} id="other-tab">
                     <TextField val={pstate.currency} onch={hich} name="currency"
                                label="Currency Symbol" aclass=""/>
                     <p>for dev reference</p>
