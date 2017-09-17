@@ -6,7 +6,7 @@ import AddInstanceForm from '../components/add-new/AddInstanceForm';
 
 // smart component with redux connect
 
-class AddUserAlbumCard extends React.Component {
+class AddInstanceCard extends React.Component {
     render() {
         const {newUserAlbum, cancelUserAlbum, open_form, saveUserAlbum} = this.props;
         return (
@@ -36,11 +36,11 @@ function mapDispatchToProps(dispatch) {
         cancelUserAlbum: ()=> {
             dispatch(cancelUserAlbum())
         },
-        saveUserAlbum: (album)=> {
-            dispatch(saveUserAlbum(album))
+        saveUserAlbum: (data)=> {
+            dispatch(saveUserAlbum(data))
         }
     }
 }
 
 // connect and export
-export default connect(mapStateToProps, mapDispatchToProps)(AddUserAlbumCard);
+export default connect(mapStateToProps, mapDispatchToProps)(AddInstanceCard);

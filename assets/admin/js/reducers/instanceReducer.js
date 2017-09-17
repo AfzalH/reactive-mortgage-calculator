@@ -5,21 +5,19 @@ const initial_state = {
 };
 export default function albumsReducer(state = initial_state, action) {
     switch (action.type) {
-        case 'SRIZON_INSTAGRAM_ALBUMS_RECEIVED':
+        case 'SRIZON_MORTGAGE_ALBUMS_RECEIVED':
             return {...state, initial_load: true, albums: action.payload};
-        case 'SRIZON_INSTAGRAM_ALBUM_DELETEING':
-            return {...state, albums: state.instances.filter(album=>(album.id != action.payload))};
-        case 'SRIZON_INSTAGRAM_ALBUM_DELETED':
+        case 'SRIZON_MORTGAGE_ALBUM_DELETEING':
+            return {...state, albums: state.albums.filter(album=>(album.id != action.payload))};
+        case 'SRIZON_MORTGAGE_ALBUM_DELETED':
             return {...state, albums: action.payload};
-        case 'SRIZON_INSTAGRAM_ALBUM_ADDED':
+        case 'SRIZON_MORTGAGE_ALBUM_ADDED':
             return {...state, albums: [...state.instances, action.payload]};
-        case 'SRIZON_INSTAGRAM_SETTINGS_SAVED_USER_ALBUM':
+        case 'SRIZON_MORTGAGE_SETTINGS_SAVED_USER_ALBUM':
             return {...state, albums: action.payload};
-        case 'SRIZON_INSTAGRAM_SETTINGS_SAVED_HASHTAG_ALBUM':
-            return {...state, albums: action.payload};
-        case 'SRIZON_INSTAGRAM_ALBUM_UPDATING':
+        case 'SRIZON_MORTGAGE_ALBUM_UPDATING':
             return {...state, albums_updating: [...state.instances_updating, action.payload]};
-        case 'SRIZON_INSTAGRAM_ALBUM_UPDATED':
+        case 'SRIZON_MORTGAGE_ALBUM_UPDATED':
             return {
                 ...state,
                 albums_updating: state.instances_updating.filter(id=>(id != action.payload.id)),

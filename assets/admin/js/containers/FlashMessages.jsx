@@ -29,7 +29,7 @@ function mapDispatchToProps(dispatch) {
     return {
         hidemsg: (id)=> {
             dispatch({
-                type: 'SRIZON_INSTAGRAM_MESSAGE_EXPIRED',
+                type: 'SRIZON_MORTGAGE_MESSAGE_EXPIRED',
                 payload: id
             })
         }

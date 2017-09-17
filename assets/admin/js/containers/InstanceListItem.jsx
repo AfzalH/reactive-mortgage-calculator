@@ -1,7 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import UserChip from '../components/album-list/UserChip';
-import HashtagChip from '../components/album-list/HashtagChip';
 import {successCopy, errorCopy} from '../actions/messagesAction'
 import {deleteAlbum} from '../actions/albumsAction';
 import AlbumListItemSettings from './AlbumListItemSettings';
@@ -48,9 +46,6 @@ class AlbumListItem extends React.Component {
                     <div className="card-content">
                         <div className="row center">
                             <span className="card-title">{album.title}</span>
-                            {(album.albumtype == 'user') ?
-                                <UserChip album={album}/> : <HashtagChip album={album}/>
-                            }
                         </div>
                         <div className="row plr0 top20">
                             <div className="col s10 pl0">

@@ -8,6 +8,7 @@ class AddCardForm extends React.Component {
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
     componentDidMount() {
@@ -27,10 +28,18 @@ class AddCardForm extends React.Component {
     }
 
     handleKeyPress(event) {
-        if (event.key === 'Enter' && this.state.username.trim().length > 0) {
+        if (event.key === 'Enter' && this.state.title.trim().length > 0) {
             this.props.saveUserAlbum(this.state);
         }
     }
+
+    handleKeyDown(event) {
+        if (event.keyCode == 27) {
+            console.log('escape');
+            this.props.cancelUserAlbum();
+        }
+    }
+
 
     render() {
         const {cancelUserAlbum, saveUserAlbum} = this.props;
@@ -43,6 +52,7 @@ class AddCardForm extends React.Component {
                                value={this.state.title}
                                onChange={this.handleInputChange}
                                onKeyPress={this.handleKeyPress}
+                               onKeyDown={this.handleKeyDown}
                                ref={(input)=>{this.userTitleInput = input}}
                         />
                         <label htmlFor="title">Instance Title</label>

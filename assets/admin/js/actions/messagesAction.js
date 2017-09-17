@@ -1,6 +1,6 @@
 export function successAlbumSaved() {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Album Saved!',
             type: 'success',
@@ -12,7 +12,7 @@ export function successAlbumSaved() {
 
 export function successAlbumDelete() {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Album Deleted!',
             type: 'success',
@@ -24,7 +24,7 @@ export function successAlbumDelete() {
 
 export function successGlobalSettingsSaved() {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Global Settings Saved! These will be used for new albums unless you override them',
             type: 'success',
@@ -36,7 +36,7 @@ export function successGlobalSettingsSaved() {
 
 export function errorReceived(error) {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: error.response.data.message,
             type: 'error',
@@ -47,7 +47,7 @@ export function errorReceived(error) {
 
 export function errorRequesting(error) {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Error occurred while connecting to server',
             type: 'error',
@@ -58,7 +58,7 @@ export function errorRequesting(error) {
 
 export function successCopy() {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Successfully Copied... Now paste it on a Page or Post',
             type: 'success',
@@ -70,7 +70,7 @@ export function successCopy() {
 
 export function errorCopy() {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Couldn\'t Select and Copy. Try to Select and Copy manually!',
             type: 'error',
@@ -81,7 +81,7 @@ export function errorCopy() {
 }
 export function errorUnknown() {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Something went wrong. Please try again',
             type: 'error',
@@ -93,7 +93,7 @@ export function errorUnknown() {
 
 export function successAlbumUpdated() {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Album updated successfully',
             type: 'success',

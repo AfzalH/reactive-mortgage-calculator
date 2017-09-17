@@ -5,7 +5,7 @@ const initial_state = {
 };
 export default function messagesReducer(state = initial_state, action) {
     switch (action.type) {
-        case 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED':
+        case 'SRIZON_MORTGAGE_MESSAGE_RECEIVED':
             return {
                 ...state,
                 count: state.count + 1,
@@ -18,7 +18,7 @@ export default function messagesReducer(state = initial_state, action) {
                     }],
                 current_id: state.current_id + 1
             };
-        case 'SRIZON_INSTAGRAM_MESSAGE_EXPIRED':
+        case 'SRIZON_MORTGAGE_MESSAGE_EXPIRED':
             return {
                 ...state,
                 count: state.count - 1,

@@ -1,81 +1,25 @@
 <?php
 include_once 'defaults.php';
 include_once 'settings.php';
-/**
- * @param string $username
- * @param string $access_token
- *
- * @return array|bool
- */
-function srizon_mortgage_username_to_id( $username, $access_token ) {
-
-	// try direct
-	$response = wp_remote_get( 'https://www.instagram.com/' . $username . '/?__a=1', [ 'timeout' => 30 ] );
-	if ( $response['response']['code'] == 200 ) {
-		$json = json_decode( $response['body'] );
-
-		return $json->user;
-	} else {
-		// try search
-		$response = wp_remote_get( 'https://api.instagram.com/v1/users/search?q=' . $username . '&access_token=' . $access_token, [ 'timeout' => 30 ] );
-		if ( $response['response']['code'] == 200 ) {
-			$json = json_decode( $response['body'] );
-
-			return $json->data;
-		}
-	}
-
-	return false;
-}
 
 /**
  * @param \WP_REST_Request $req
  */
-function srizon_mortgage_save_user_album( $req ) {
-	$access_token = get_option( 'srizon_mortgage_access_token', false );
-	$json_data    = json_decode( $req->get_body() );
-	$user         = srizon_mortgage_username_to_id( $json_data->username, $access_token );
+function srizon_mortgage_save_instance( $req ) {
+	$json_data = json_decode( $req->get_body() );
+	$title     = $json_data->title;
 
-	//return $user_id;
-	if ( is_array( $user ) ) {
-		if ( count( $user ) ) {
-			$ret['result'] = 'selection';
-			$ret['users']  = $user;
+	$payload            = [ ];
+	$payload['title']   = $title;
+	$payload['options'] = serialize( srizon_mortgage_get_global_settings() );
 
-			return $ret;
-		} else {
-			return new WP_Error( 'user_not_found', 'User Not Found', [ 'status' => 404 ] );
-		}
-	} else {
-		if ( ! $user->id ) {
-			return new WP_Error( 'user_not_found', 'User Not Found', [ 'status' => 404 ] );
-		}
-		if ( trim( $json_data->title ) ) {
-			$title = trim( $json_data->title );
-		} else if ( trim( $user->full_name ) ) {
-			$title = 'Photos of ' . $user->full_name;
-		} else {
-			$title = 'Photos of ' . $user->username;
-		}
+	SrizonMortgageDB::saveInstance( $payload );
 
-		$payload                    = [ ];
-		$payload['title']           = $title;
-		$payload['type']            = 'user';
-		$payload['userid']          = $user->id;
-		$payload['username']        = $user->username;
-		$payload['full_name']       = $user->full_name;
-		$payload['profile_picture'] = $user->profile_pic_url;
-		$payload['hashtag']         = '';
-		$payload['options']         = serialize( srizon_mortgage_get_global_settings() );
+	$ret['result'] = 'saved';
+	$ret['albums'] = srizon_mortgage_get_album_index();
+	$ret['api']    = $payload;
 
-		SrizonMortgageDB::saveInstance( $payload );
-
-		$ret['result'] = 'saved';
-		$ret['albums'] = srizon_mortgage_get_album_index();
-		$ret['api']    = $payload;
-
-		return $ret;
-	}
+	return $ret;
 }
 
 function srizon_mortgage_get_album_index() {
@@ -210,9 +154,9 @@ function srizon_mortgage_sync_album( $req ) {
 }
 
 add_action( 'rest_api_init', function () {
-	register_rest_route( 'srizon-instagram/v1', '/useralbum/', [
+	register_rest_route( 'srizon-instagram/v1', '/instance/', [
 		'methods'             => 'POST',
-		'callback'            => 'srizon_mortgage_save_user_album',
+		'callback'            => 'srizon_mortgage_save_instance',
 		'permission_callback' => 'srizon_mortgage_permission_admin',
 	] );
 

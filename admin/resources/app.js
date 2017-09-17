@@ -2038,9 +2038,6 @@ module.exports = Cancel;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export newHashtagAlbum */
-/* unused harmony export cancelHashtagAlbum */
-/* unused harmony export saveHashtagAlbum */
 /* harmony export (immutable) */ __webpack_exports__["c"] = newUserAlbum;
 /* harmony export (immutable) */ __webpack_exports__["a"] = cancelUserAlbum;
 /* harmony export (immutable) */ __webpack_exports__["d"] = saveUserAlbum;
@@ -2049,76 +2046,35 @@ module.exports = Cancel;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__messagesAction__ = __webpack_require__(63);
 
 
-function newHashtagAlbum() {
-    return {
-        type: 'SRIZON_INSTAGRAM_SETTINGS_NEW_HASHTAG_ALBUM'
-    };
-}
-
-function cancelHashtagAlbum() {
-    return {
-        type: 'SRIZON_INSTAGRAM_SETTINGS_CANCEL_HASHTAG_ALBUM'
-    };
-}
-
-function saveHashtagAlbum(album) {
-    return function (dispatch) {
-        dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_SAVING_HASHTAG_ALBUM' });
-        console.log(album);
-        axios.post(srzinstbase + 'hashtagalbum', {
-            hashtag: album.hashtag,
-            title: album.title
-        }).then(function (response) {
-            if (response.data.result == 'saved') {
-                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["f" /* successAlbumSaved */])());
-                dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_SAVED_HASHTAG_ALBUM', payload: response.data.albums });
-            } else {
-                dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_CANCEL_HASHTAG_ALBUM' });
-            }
-        }).catch(function (error) {
-            if (error.response) {
-                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["b" /* errorReceived */])(error));
-                dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_NEW_HASHTAG_ALBUM' });
-            } else if (error.request) {
-                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["c" /* errorRequesting */])(error));
-                dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_NEW_HASHTAG_ALBUM' });
-            }
-        });
-    };
-}
-
 function newUserAlbum() {
     return {
-        type: 'SRIZON_INSTAGRAM_SETTINGS_NEW_USER_ALBUM'
+        type: 'SRIZON_MORTGAGE_SETTINGS_NEW_USER_ALBUM'
     };
 }
 
 function cancelUserAlbum() {
     return {
-        type: 'SRIZON_INSTAGRAM_SETTINGS_CANCEL_USER_ALBUM'
+        type: 'SRIZON_MORTGAGE_SETTINGS_CANCEL_USER_ALBUM'
     };
 }
 
-function saveUserAlbum(album) {
+function saveUserAlbum(instanceData) {
     return function (dispatch) {
-        dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_SAVING_USER_ALBUM' });
-        axios.post(srzinstbase + 'useralbum', { username: album.username, title: album.title }).then(function (response) {
+        dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVING_INSTANCE' });
+        axios.post(srzinstbase + 'instance', { title: instanceData.title }).then(function (response) {
             if (response.data.result == 'saved') {
                 dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["f" /* successAlbumSaved */])());
-                dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_SAVED_USER_ALBUM', payload: response.data.albums });
-            } else if (response.data.result == 'selection') {
-                dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_TEMP_ALBUM_TITLE', payload: album.title });
-                dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_USER_SELECTION', payload: response.data.users });
+                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVED_USER_ALBUM', payload: response.data.albums });
             } else {
-                dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_CANCEL_USER_ALBUM' });
+                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_CANCEL_USER_ALBUM' });
             }
         }).catch(function (error) {
             if (error.response) {
                 dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["b" /* errorReceived */])(error));
-                dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_NEW_USER_ALBUM' });
+                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_NEW_USER_ALBUM' });
             } else if (error.request) {
                 dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["c" /* errorRequesting */])(error));
-                dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_NEW_USER_ALBUM' });
+                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_NEW_USER_ALBUM' });
             }
         });
     };
@@ -2127,11 +2083,11 @@ function saveUserAlbum(album) {
 function deleteAlbum(id) {
     if (window.confirm('Are you sure?')) {
         return function (dispatch) {
-            dispatch({ type: 'SRIZON_INSTAGRAM_ALBUM_DELETEING', payload: id });
+            dispatch({ type: 'SRIZON_MORTGAGE_ALBUM_DELETEING', payload: id });
             axios.delete(srzinstbase + 'album/' + id).then(function (response) {
                 if (response.data.result == 'deleted') {
                     dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["e" /* successAlbumDelete */])());
-                    dispatch({ type: 'SRIZON_INSTAGRAM_ALBUM_DELETED', payload: response.data.albums });
+                    dispatch({ type: 'SRIZON_MORTGAGE_ALBUM_DELETED', payload: response.data.albums });
                 }
             }).catch(function () {
                 dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["d" /* errorUnknown */])());
@@ -2145,11 +2101,11 @@ function deleteAlbum(id) {
 
 function updateAlbum(id, settings) {
     return function (dispatch) {
-        dispatch({ type: 'SRIZON_INSTAGRAM_ALBUM_UPDATING', payload: id });
+        dispatch({ type: 'SRIZON_MORTGAGE_ALBUM_UPDATING', payload: id });
         axios.post(srzinstbase + 'album-settings', { id: id, settings: settings }).then(function (response) {
             if (response.data.result == 'updated') {
                 dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["g" /* successAlbumUpdated */])());
-                dispatch({ type: 'SRIZON_INSTAGRAM_ALBUM_UPDATED', payload: { id: id, albums: response.data.albums } });
+                dispatch({ type: 'SRIZON_MORTGAGE_ALBUM_UPDATED', payload: { id: id, albums: response.data.albums } });
             }
         }).catch(function () {
             dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["d" /* errorUnknown */])());
@@ -4076,7 +4032,7 @@ function loadSettings() {
     return function (dispatch) {
         axios.get(srzinstbase + 'settings').then(function (response) {
             dispatch({
-                type: 'SRIZON_INSTAGRAM_SETTINGS_RECEIVED',
+                type: 'SRIZON_MORTGAGE_SETTINGS_RECEIVED',
                 payload: response.data
             });
             dispatch(loadAlbums());
@@ -4088,7 +4044,7 @@ function loadAlbums() {
     return function (dispatch) {
         axios.get(srzinstbase + 'album').then(function (response) {
             dispatch({
-                type: 'SRIZON_INSTAGRAM_ALBUMS_RECEIVED',
+                type: 'SRIZON_MORTGAGE_ALBUMS_RECEIVED',
                 payload: response.data
             });
         }).catch(function (error) {
@@ -4103,29 +4059,29 @@ function loadAlbums() {
 
 function toggleSettingsPanel() {
     return {
-        type: 'SRIZON_INSTAGRAM_SETTINGS_TOGGLE_SETTINGS_PANEL'
+        type: 'SRIZON_MORTGAGE_SETTINGS_TOGGLE_SETTINGS_PANEL'
     };
 }
 
 function saveGlobalSettings(settings) {
     return function (dispatch) {
-        dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_SAVING_GLOBAL' });
+        dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVING_GLOBAL' });
         axios.post(srzinstbase + 'save-global-settings', settings).then(function (response) {
             console.log(response.data);
             if (response.data.result == 'saved') {
                 dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["i" /* successGlobalSettingsSaved */])());
-                dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_SAVED_GLOBAL', payload: response.data.data });
+                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVED_GLOBAL', payload: response.data.data });
             } else {
                 dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["d" /* errorUnknown */])());
-                dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_SAVING_ERROR_GLOBAL' });
+                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVING_ERROR_GLOBAL' });
             }
         }).catch(function (error) {
             if (error.response) {
                 dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["b" /* errorReceived */])(error));
-                dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_SAVING_ERROR_GLOBAL' });
+                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVING_ERROR_GLOBAL' });
             } else if (error.request) {
                 dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["c" /* errorRequesting */])(error));
-                dispatch({ type: 'SRIZON_INSTAGRAM_SETTINGS_SAVING_ERROR_GLOBAL' });
+                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVING_ERROR_GLOBAL' });
             }
         });
     };
@@ -4147,7 +4103,7 @@ function saveGlobalSettings(settings) {
 /* harmony export (immutable) */ __webpack_exports__["g"] = successAlbumUpdated;
 function successAlbumSaved() {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Album Saved!',
             type: 'success',
@@ -4159,7 +4115,7 @@ function successAlbumSaved() {
 
 function successAlbumDelete() {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Album Deleted!',
             type: 'success',
@@ -4171,7 +4127,7 @@ function successAlbumDelete() {
 
 function successGlobalSettingsSaved() {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Global Settings Saved! These will be used for new albums unless you override them',
             type: 'success',
@@ -4183,7 +4139,7 @@ function successGlobalSettingsSaved() {
 
 function errorReceived(error) {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: error.response.data.message,
             type: 'error',
@@ -4194,7 +4150,7 @@ function errorReceived(error) {
 
 function errorRequesting(error) {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Error occurred while connecting to server',
             type: 'error',
@@ -4205,7 +4161,7 @@ function errorRequesting(error) {
 
 function successCopy() {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Successfully Copied... Now paste it on a Page or Post',
             type: 'success',
@@ -4217,7 +4173,7 @@ function successCopy() {
 
 function errorCopy() {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Couldn\'t Select and Copy. Try to Select and Copy manually!',
             type: 'error',
@@ -4228,7 +4184,7 @@ function errorCopy() {
 }
 function errorUnknown() {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Something went wrong. Please try again',
             type: 'error',
@@ -4240,7 +4196,7 @@ function errorUnknown() {
 
 function successAlbumUpdated() {
     return {
-        type: 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED',
+        type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
             txt: 'Album updated successfully',
             type: 'success',
@@ -5899,13 +5855,8 @@ var initial_state = {
     init: true,
     user_removing: false,
     open_user_album_form: false,
-    open_hashtag_album_form: false,
-    show_user_selection_prompt: false,
-    users_to_select: false,
-    temp_album_title: '',
     saving_instance_in_progress: false,
     show_settings: false,
-    saving_hashtag_in_progress: false,
     saving_settings_in_progress: false
 };
 function settingsReducer() {
@@ -5913,41 +5864,29 @@ function settingsReducer() {
     var action = arguments[1];
 
     switch (action.type) {
-        case 'SRIZON_INSTAGRAM_SETTINGS_RECEIVED':
+        case 'SRIZON_MORTGAGE_SETTINGS_RECEIVED':
             return _extends({}, state, { init: false, options: action.payload, user_removing: false });
-        case 'SRIZON_INSTAGRAM_SETTINGS_USER_REMOVEING':
+        case 'SRIZON_MORTGAGE_SETTINGS_USER_REMOVEING':
             return _extends({}, state, { user_removing: true });
-        case 'SRIZON_INSTAGRAM_SETTINGS_TOGGLE_SETTINGS_PANEL':
+        case 'SRIZON_MORTGAGE_SETTINGS_TOGGLE_SETTINGS_PANEL':
             return _extends({}, state, { show_settings: !state.show_settings });
-        case 'SRIZON_INSTAGRAM_SETTINGS_NEW_USER_ALBUM':
+        case 'SRIZON_MORTGAGE_SETTINGS_NEW_USER_ALBUM':
             return _extends({}, state, { open_user_album_form: true, saving_instance_in_progress: false });
-        case 'SRIZON_INSTAGRAM_SETTINGS_CANCEL_USER_ALBUM':
+        case 'SRIZON_MORTGAGE_SETTINGS_CANCEL_USER_ALBUM':
             return _extends({}, state, {
                 open_user_album_form: false,
                 saving_instance_in_progress: false,
                 show_user_selection_prompt: false
             });
-        case 'SRIZON_INSTAGRAM_SETTINGS_NEW_HASHTAG_ALBUM':
-            return _extends({}, state, { open_hashtag_album_form: true, saving_hashtag_in_progress: false });
-        case 'SRIZON_INSTAGRAM_SETTINGS_CANCEL_HASHTAG_ALBUM':
-            return _extends({}, state, { open_hashtag_album_form: false, saving_hashtag_in_progress: false });
-        case 'SRIZON_INSTAGRAM_SETTINGS_TEMP_ALBUM_TITLE':
-            return _extends({}, state, { temp_album_title: action.payload });
-        case 'SRIZON_INSTAGRAM_SETTINGS_SAVING_USER_ALBUM':
+        case 'SRIZON_MORTGAGE_SETTINGS_SAVING_INSTANCE':
             return _extends({}, state, { saving_instance_in_progress: true, show_user_selection_prompt: false });
-        case 'SRIZON_INSTAGRAM_SETTINGS_SAVING_HASHTAG_ALBUM':
-            return _extends({}, state, { saving_hashtag_in_progress: true });
-        case 'SRIZON_INSTAGRAM_SETTINGS_SAVED_USER_ALBUM':
+        case 'SRIZON_MORTGAGE_SETTINGS_SAVED_USER_ALBUM':
             return _extends({}, state, { open_user_album_form: false, saving_instance_in_progress: false });
-        case 'SRIZON_INSTAGRAM_SETTINGS_SAVED_HASHTAG_ALBUM':
-            return _extends({}, state, { open_hashtag_album_form: false, saving_hashtag_in_progress: false });
-        case 'SRIZON_INSTAGRAM_SETTINGS_USER_SELECTION':
-            return _extends({}, state, { show_user_selection_prompt: true, users_to_select: action.payload });
-        case 'SRIZON_INSTAGRAM_SETTINGS_SAVING_GLOBAL':
+        case 'SRIZON_MORTGAGE_SETTINGS_SAVING_GLOBAL':
             return _extends({}, state, { saving_settings_in_progress: true });
-        case 'SRIZON_INSTAGRAM_SETTINGS_SAVING_ERROR_GLOBAL':
+        case 'SRIZON_MORTGAGE_SETTINGS_SAVING_ERROR_GLOBAL':
             return _extends({}, state, { saving_settings_in_progress: false });
-        case 'SRIZON_INSTAGRAM_SETTINGS_SAVED_GLOBAL':
+        case 'SRIZON_MORTGAGE_SETTINGS_SAVED_GLOBAL':
             return _extends({}, state, {
                 options: _extends({}, state.options, { global: action.payload }),
                 saving_settings_in_progress: false,
@@ -5978,23 +5917,21 @@ function albumsReducer() {
     var action = arguments[1];
 
     switch (action.type) {
-        case 'SRIZON_INSTAGRAM_ALBUMS_RECEIVED':
+        case 'SRIZON_MORTGAGE_ALBUMS_RECEIVED':
             return _extends({}, state, { initial_load: true, albums: action.payload });
-        case 'SRIZON_INSTAGRAM_ALBUM_DELETEING':
-            return _extends({}, state, { albums: state.instances.filter(function (album) {
+        case 'SRIZON_MORTGAGE_ALBUM_DELETEING':
+            return _extends({}, state, { albums: state.albums.filter(function (album) {
                     return album.id != action.payload;
                 }) });
-        case 'SRIZON_INSTAGRAM_ALBUM_DELETED':
+        case 'SRIZON_MORTGAGE_ALBUM_DELETED':
             return _extends({}, state, { albums: action.payload });
-        case 'SRIZON_INSTAGRAM_ALBUM_ADDED':
+        case 'SRIZON_MORTGAGE_ALBUM_ADDED':
             return _extends({}, state, { albums: [].concat(_toConsumableArray(state.instances), [action.payload]) });
-        case 'SRIZON_INSTAGRAM_SETTINGS_SAVED_USER_ALBUM':
+        case 'SRIZON_MORTGAGE_SETTINGS_SAVED_USER_ALBUM':
             return _extends({}, state, { albums: action.payload });
-        case 'SRIZON_INSTAGRAM_SETTINGS_SAVED_HASHTAG_ALBUM':
-            return _extends({}, state, { albums: action.payload });
-        case 'SRIZON_INSTAGRAM_ALBUM_UPDATING':
+        case 'SRIZON_MORTGAGE_ALBUM_UPDATING':
             return _extends({}, state, { albums_updating: [].concat(_toConsumableArray(state.instances_updating), [action.payload]) });
-        case 'SRIZON_INSTAGRAM_ALBUM_UPDATED':
+        case 'SRIZON_MORTGAGE_ALBUM_UPDATED':
             return _extends({}, state, {
                 albums_updating: state.instances_updating.filter(function (id) {
                     return id != action.payload.id;
@@ -6026,7 +5963,7 @@ function messagesReducer() {
     var action = arguments[1];
 
     switch (action.type) {
-        case 'SRIZON_INSTAGRAM_MESSAGE_RECEIVED':
+        case 'SRIZON_MORTGAGE_MESSAGE_RECEIVED':
             return _extends({}, state, {
                 count: state.count + 1,
                 messages: [].concat(_toConsumableArray(state.messages), [{
@@ -6037,7 +5974,7 @@ function messagesReducer() {
                 }]),
                 current_id: state.current_id + 1
             });
-        case 'SRIZON_INSTAGRAM_MESSAGE_EXPIRED':
+        case 'SRIZON_MORTGAGE_MESSAGE_EXPIRED':
             return _extends({}, state, {
                 count: state.count - 1,
                 messages: state.messages.filter(function (msg) {
@@ -7951,12 +7888,10 @@ function mapDispatchToProps(dispatch) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_album_list_UserChip__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_album_list_HashtagChip__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__actions_messagesAction__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__actions_albumsAction__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__AlbumListItemSettings__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_partials_CircularLoaderRow__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_messagesAction__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions_albumsAction__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AlbumListItemSettings__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_partials_CircularLoaderRow__ = __webpack_require__(25);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7964,8 +7899,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
 
 
 
@@ -8046,8 +7979,7 @@ var AlbumListItem = function (_React$Component) {
                                 'span',
                                 { className: 'card-title' },
                                 album.title
-                            ),
-                            album.albumtype == 'user' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_album_list_UserChip__["a" /* default */], { album: album }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_album_list_HashtagChip__["a" /* default */], { album: album })
+                            )
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
@@ -8085,7 +8017,7 @@ var AlbumListItem = function (_React$Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'row' },
-                            this_album_updating ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_partials_CircularLoaderRow__["a" /* default */], null) : this.state.settings_open ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__AlbumListItemSettings__["a" /* default */], { album: album,
+                            this_album_updating ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_partials_CircularLoaderRow__["a" /* default */], null) : this.state.settings_open ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__AlbumListItemSettings__["a" /* default */], { album: album,
                                 cancelForm: this.toggleSettingsForm.bind(this) }) : null
                         )
                     ),
@@ -8131,13 +8063,13 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         successCopy: function successCopy() {
-            dispatch(Object(__WEBPACK_IMPORTED_MODULE_4__actions_messagesAction__["h" /* successCopy */])());
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_messagesAction__["h" /* successCopy */])());
         },
         errorCopy: function errorCopy() {
-            dispatch(Object(__WEBPACK_IMPORTED_MODULE_4__actions_messagesAction__["a" /* errorCopy */])());
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_messagesAction__["a" /* errorCopy */])());
         },
         deleteAlbum: function deleteAlbum(id) {
-            dispatch(Object(__WEBPACK_IMPORTED_MODULE_5__actions_albumsAction__["b" /* deleteAlbum */])(id));
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_3__actions_albumsAction__["b" /* deleteAlbum */])(id));
         }
     };
 }
@@ -8145,112 +8077,8 @@ function mapDispatchToProps(dispatch) {
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapStateToProps, mapDispatchToProps)(AlbumListItem));
 
 /***/ }),
-/* 125 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-var UserChip = function (_React$Component) {
-    _inherits(UserChip, _React$Component);
-
-    function UserChip() {
-        _classCallCheck(this, UserChip);
-
-        return _possibleConstructorReturn(this, (UserChip.__proto__ || Object.getPrototypeOf(UserChip)).apply(this, arguments));
-    }
-
-    _createClass(UserChip, [{
-        key: "render",
-        value: function render() {
-            var album = this.props.album;
-
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "col s12 chip-col plr0" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "div",
-                    { className: "chip connected-user" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: album.profile_picture, alt: album.username }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "a",
-                        { target: "_blank", href: "https://www.instagram.com/" + album.username },
-                        album.full_name ? album.full_name : album.username
-                    )
-                )
-            );
-        }
-    }]);
-
-    return UserChip;
-}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["a"] = (UserChip);
-
-/***/ }),
-/* 126 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-var HashtagChip = function (_React$Component) {
-    _inherits(HashtagChip, _React$Component);
-
-    function HashtagChip() {
-        _classCallCheck(this, HashtagChip);
-
-        return _possibleConstructorReturn(this, (HashtagChip.__proto__ || Object.getPrototypeOf(HashtagChip)).apply(this, arguments));
-    }
-
-    _createClass(HashtagChip, [{
-        key: "render",
-        value: function render() {
-            var album = this.props.album;
-
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "col s12 chip-col plr0" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "div",
-                    { className: "chip connected-user" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "a",
-                        { target: "_blank", href: "https://www.instagram.com/explore/tags/" + album.hashtag },
-                        "#",
-                        album.hashtag
-                    )
-                )
-            );
-        }
-    }]);
-
-    return HashtagChip;
-}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["a"] = (HashtagChip);
-
-/***/ }),
+/* 125 */,
+/* 126 */,
 /* 127 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8700,16 +8528,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // smart component with redux connect
 
-var AddUserAlbumCard = function (_React$Component) {
-    _inherits(AddUserAlbumCard, _React$Component);
+var AddInstanceCard = function (_React$Component) {
+    _inherits(AddInstanceCard, _React$Component);
 
-    function AddUserAlbumCard() {
-        _classCallCheck(this, AddUserAlbumCard);
+    function AddInstanceCard() {
+        _classCallCheck(this, AddInstanceCard);
 
-        return _possibleConstructorReturn(this, (AddUserAlbumCard.__proto__ || Object.getPrototypeOf(AddUserAlbumCard)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (AddInstanceCard.__proto__ || Object.getPrototypeOf(AddInstanceCard)).apply(this, arguments));
     }
 
-    _createClass(AddUserAlbumCard, [{
+    _createClass(AddInstanceCard, [{
         key: 'render',
         value: function render() {
             var _props = this.props,
@@ -8726,7 +8554,7 @@ var AddUserAlbumCard = function (_React$Component) {
         }
     }]);
 
-    return AddUserAlbumCard;
+    return AddInstanceCard;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 // map state
@@ -8747,14 +8575,14 @@ function mapDispatchToProps(dispatch) {
         cancelUserAlbum: function cancelUserAlbum() {
             dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_albumsAction__["a" /* cancelUserAlbum */])());
         },
-        saveUserAlbum: function saveUserAlbum(album) {
-            dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_albumsAction__["d" /* saveUserAlbum */])(album));
+        saveUserAlbum: function saveUserAlbum(data) {
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_albumsAction__["d" /* saveUserAlbum */])(data));
         }
     };
 }
 
 // connect and export
-/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapStateToProps, mapDispatchToProps)(AddUserAlbumCard));
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapStateToProps, mapDispatchToProps)(AddInstanceCard));
 
 /***/ }),
 /* 134 */
@@ -8862,6 +8690,7 @@ var AddCardForm = function (_React$Component) {
         };
         _this.handleInputChange = _this.handleInputChange.bind(_this);
         _this.handleKeyPress = _this.handleKeyPress.bind(_this);
+        _this.handleKeyDown = _this.handleKeyDown.bind(_this);
         return _this;
     }
 
@@ -8883,8 +8712,16 @@ var AddCardForm = function (_React$Component) {
     }, {
         key: 'handleKeyPress',
         value: function handleKeyPress(event) {
-            if (event.key === 'Enter' && this.state.username.trim().length > 0) {
+            if (event.key === 'Enter' && this.state.title.trim().length > 0) {
                 this.props.saveUserAlbum(this.state);
+            }
+        }
+    }, {
+        key: 'handleKeyDown',
+        value: function handleKeyDown(event) {
+            if (event.keyCode == 27) {
+                console.log('escape');
+                this.props.cancelUserAlbum();
             }
         }
     }, {
@@ -8910,6 +8747,7 @@ var AddCardForm = function (_React$Component) {
                             value: this.state.title,
                             onChange: this.handleInputChange,
                             onKeyPress: this.handleKeyPress,
+                            onKeyDown: this.handleKeyDown,
                             ref: function ref(input) {
                                 _this2.userTitleInput = input;
                             }
@@ -9145,7 +8983,7 @@ function mapDispatchToProps(dispatch) {
     return {
         hidemsg: function hidemsg(id) {
             dispatch({
-                type: 'SRIZON_INSTAGRAM_MESSAGE_EXPIRED',
+                type: 'SRIZON_MORTGAGE_MESSAGE_EXPIRED',
                 payload: id
             });
         }
