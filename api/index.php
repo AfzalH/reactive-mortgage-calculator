@@ -4,5 +4,5 @@ function srizon_mortgage_permission_admin() {
 }
 
 include_once 'admin/settings.php';
-include_once 'admin/albums.php';
+include_once 'admin/instances.php';
 

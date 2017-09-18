@@ -2,12 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import TextField from '../components/form/TextField';
 import SettingsForm from '../components/SettingsForm';
-import {updateAlbum} from '../actions/albumsAction';
+import {updateInstance} from '../actions/instancesAction';
 
 class AlbumListItemSettings extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {...this.props.album.options, title: this.props.album.title};
+        this.state = {...this.props.instance.options, title: this.props.instance.title};
         this.hich = this.hich.bind(this);
     }
 
@@ -32,14 +32,14 @@ class AlbumListItemSettings extends React.Component {
     }
 
     render() {
-        const {album, updateAlbum, cancelForm} = this.props;
+        const {instance, updateAlbum, cancelForm} = this.props;
         return (
             <div className="row bottom0">
                 <div className="col s12 plr0">
                     <div className="row bottom40">
                         <div className="col s6 plr0">
                             <button className="btn btn-small green left"
-                                    onClick={()=>{cancelForm();updateAlbum(album.id,this.state)}}>Save
+                                    onClick={()=>{cancelForm();updateAlbum(instance.id,this.state)}}>Save
                             </button>
                         </div>
                         <div className="col s6 plr0">
@@ -56,7 +56,7 @@ class AlbumListItemSettings extends React.Component {
                     <div className="row top30 bottom0">
                         <div className="col s6 plr0">
                             <button className="btn btn-small green left"
-                                    onClick={()=>{cancelForm();updateAlbum(album.id,this.state)}}>Save
+                                    onClick={()=>{cancelForm();updateAlbum(instance.id,this.state)}}>Save
                             </button>
                         </div>
                         <div className="col s6 plr0">
@@ -72,7 +72,7 @@ class AlbumListItemSettings extends React.Component {
 // map state
 function mapStateToProps(state) {
     return {
-        albums_updating: state.instances.albums_updating
+        instances_updating: state.instances.instances_updating
     }
 }
 
@@ -80,7 +80,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         updateAlbum: (id, settings)=> {
-            dispatch(updateAlbum(id, settings))
+            dispatch(updateInstance(id, settings))
         }
     }
 }

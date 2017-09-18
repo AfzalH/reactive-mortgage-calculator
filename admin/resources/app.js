@@ -2034,87 +2034,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 31 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["c"] = newUserAlbum;
-/* harmony export (immutable) */ __webpack_exports__["a"] = cancelUserAlbum;
-/* harmony export (immutable) */ __webpack_exports__["d"] = saveUserAlbum;
-/* harmony export (immutable) */ __webpack_exports__["b"] = deleteAlbum;
-/* harmony export (immutable) */ __webpack_exports__["e"] = updateAlbum;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__messagesAction__ = __webpack_require__(63);
-
-
-function newUserAlbum() {
-    return {
-        type: 'SRIZON_MORTGAGE_SETTINGS_NEW_USER_ALBUM'
-    };
-}
-
-function cancelUserAlbum() {
-    return {
-        type: 'SRIZON_MORTGAGE_SETTINGS_CANCEL_USER_ALBUM'
-    };
-}
-
-function saveUserAlbum(instanceData) {
-    return function (dispatch) {
-        dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVING_INSTANCE' });
-        axios.post(srzinstbase + 'instance', { title: instanceData.title }).then(function (response) {
-            if (response.data.result == 'saved') {
-                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["f" /* successAlbumSaved */])());
-                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVED_USER_ALBUM', payload: response.data.albums });
-            } else {
-                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_CANCEL_USER_ALBUM' });
-            }
-        }).catch(function (error) {
-            if (error.response) {
-                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["b" /* errorReceived */])(error));
-                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_NEW_USER_ALBUM' });
-            } else if (error.request) {
-                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["c" /* errorRequesting */])(error));
-                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_NEW_USER_ALBUM' });
-            }
-        });
-    };
-}
-
-function deleteAlbum(id) {
-    if (window.confirm('Are you sure?')) {
-        return function (dispatch) {
-            dispatch({ type: 'SRIZON_MORTGAGE_ALBUM_DELETEING', payload: id });
-            axios.delete(srzinstbase + 'album/' + id).then(function (response) {
-                if (response.data.result == 'deleted') {
-                    dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["e" /* successAlbumDelete */])());
-                    dispatch({ type: 'SRIZON_MORTGAGE_ALBUM_DELETED', payload: response.data.albums });
-                }
-            }).catch(function () {
-                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["d" /* errorUnknown */])());
-                dispatch({ type: 'ACTION_CANCELLED' });
-            });
-        };
-    } else {
-        return { type: 'ACTION_CANCELLED' };
-    }
-}
-
-function updateAlbum(id, settings) {
-    return function (dispatch) {
-        dispatch({ type: 'SRIZON_MORTGAGE_ALBUM_UPDATING', payload: id });
-        axios.post(srzinstbase + 'album-settings', { id: id, settings: settings }).then(function (response) {
-            if (response.data.result == 'updated') {
-                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["g" /* successAlbumUpdated */])());
-                dispatch({ type: 'SRIZON_MORTGAGE_ALBUM_UPDATED', payload: { id: id, albums: response.data.albums } });
-            }
-        }).catch(function () {
-            dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["d" /* errorUnknown */])());
-            dispatch({ type: 'ACTION_CANCELLED' });
-        });
-    };
-}
-
-/***/ }),
+/* 31 */,
 /* 32 */,
 /* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -4042,9 +3962,9 @@ function loadSettings() {
 
 function loadAlbums() {
     return function (dispatch) {
-        axios.get(srzinstbase + 'album').then(function (response) {
+        axios.get(srzinstbase + 'instance').then(function (response) {
             dispatch({
-                type: 'SRIZON_MORTGAGE_ALBUMS_RECEIVED',
+                type: 'SRIZON_MORTGAGE_INSTANCES_RECEIVED',
                 payload: response.data
             });
         }).catch(function (error) {
@@ -4069,7 +3989,7 @@ function saveGlobalSettings(settings) {
         axios.post(srzinstbase + 'save-global-settings', settings).then(function (response) {
             console.log(response.data);
             if (response.data.result == 'saved') {
-                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["i" /* successGlobalSettingsSaved */])());
+                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["f" /* successGlobalSettingsSaved */])());
                 dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVED_GLOBAL', payload: response.data.data });
             } else {
                 dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["d" /* errorUnknown */])());
@@ -4092,20 +4012,20 @@ function saveGlobalSettings(settings) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["f"] = successAlbumSaved;
-/* harmony export (immutable) */ __webpack_exports__["e"] = successAlbumDelete;
-/* harmony export (immutable) */ __webpack_exports__["i"] = successGlobalSettingsSaved;
+/* harmony export (immutable) */ __webpack_exports__["h"] = successInstanceSaved;
+/* harmony export (immutable) */ __webpack_exports__["g"] = successInstanceDelete;
+/* harmony export (immutable) */ __webpack_exports__["f"] = successGlobalSettingsSaved;
 /* harmony export (immutable) */ __webpack_exports__["b"] = errorReceived;
 /* harmony export (immutable) */ __webpack_exports__["c"] = errorRequesting;
-/* harmony export (immutable) */ __webpack_exports__["h"] = successCopy;
+/* harmony export (immutable) */ __webpack_exports__["e"] = successCopy;
 /* harmony export (immutable) */ __webpack_exports__["a"] = errorCopy;
 /* harmony export (immutable) */ __webpack_exports__["d"] = errorUnknown;
-/* harmony export (immutable) */ __webpack_exports__["g"] = successAlbumUpdated;
-function successAlbumSaved() {
+/* harmony export (immutable) */ __webpack_exports__["i"] = successInstanceUpdated;
+function successInstanceSaved() {
     return {
         type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
-            txt: 'Album Saved!',
+            txt: 'Instance Saved!',
             type: 'success',
             expire_in: 3
         }
@@ -4113,11 +4033,11 @@ function successAlbumSaved() {
     };
 }
 
-function successAlbumDelete() {
+function successInstanceDelete() {
     return {
         type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
-            txt: 'Album Deleted!',
+            txt: 'Instance Deleted!',
             type: 'success',
             expire_in: 3
         }
@@ -4129,7 +4049,7 @@ function successGlobalSettingsSaved() {
     return {
         type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
-            txt: 'Global Settings Saved! These will be used for new albums unless you override them',
+            txt: 'Global Settings Saved! These will be used for new instances unless you override them',
             type: 'success',
             expire_in: 3
         }
@@ -4194,11 +4114,11 @@ function errorUnknown() {
     };
 }
 
-function successAlbumUpdated() {
+function successInstanceUpdated() {
     return {
         type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
-            txt: 'Album updated successfully',
+            txt: 'Instance updated successfully',
             type: 'success',
             expire_in: 5
         }
@@ -5840,7 +5760,7 @@ render();
 // export default  createStore(combineReducers({
 //     settings: settingsReducer,
 //     messages: messagesReducer,
-//     albums: instanceReducer
+//     instances: instanceReducer
 // }), applyMiddleware(thunk));
 
 /***/ }),
@@ -5853,8 +5773,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var initial_state = {
     init: true,
-    user_removing: false,
-    open_user_album_form: false,
+    open_instance_form: false,
     saving_instance_in_progress: false,
     show_settings: false,
     saving_settings_in_progress: false
@@ -5865,23 +5784,20 @@ function settingsReducer() {
 
     switch (action.type) {
         case 'SRIZON_MORTGAGE_SETTINGS_RECEIVED':
-            return _extends({}, state, { init: false, options: action.payload, user_removing: false });
-        case 'SRIZON_MORTGAGE_SETTINGS_USER_REMOVEING':
-            return _extends({}, state, { user_removing: true });
+            return _extends({}, state, { init: false, options: action.payload });
         case 'SRIZON_MORTGAGE_SETTINGS_TOGGLE_SETTINGS_PANEL':
             return _extends({}, state, { show_settings: !state.show_settings });
-        case 'SRIZON_MORTGAGE_SETTINGS_NEW_USER_ALBUM':
-            return _extends({}, state, { open_user_album_form: true, saving_instance_in_progress: false });
-        case 'SRIZON_MORTGAGE_SETTINGS_CANCEL_USER_ALBUM':
+        case 'SRIZON_MORTGAGE_SETTINGS_NEW_INSTANCE':
+            return _extends({}, state, { open_instance_form: true, saving_instance_in_progress: false });
+        case 'SRIZON_MORTGAGE_SETTINGS_CANCEL_INSTANCE':
             return _extends({}, state, {
-                open_user_album_form: false,
-                saving_instance_in_progress: false,
-                show_user_selection_prompt: false
+                open_instance_form: false,
+                saving_instance_in_progress: false
             });
         case 'SRIZON_MORTGAGE_SETTINGS_SAVING_INSTANCE':
-            return _extends({}, state, { saving_instance_in_progress: true, show_user_selection_prompt: false });
-        case 'SRIZON_MORTGAGE_SETTINGS_SAVED_USER_ALBUM':
-            return _extends({}, state, { open_user_album_form: false, saving_instance_in_progress: false });
+            return _extends({}, state, { saving_instance_in_progress: true });
+        case 'SRIZON_MORTGAGE_SETTINGS_SAVED_INSTANCE':
+            return _extends({}, state, { open_instance_form: false, saving_instance_in_progress: false });
         case 'SRIZON_MORTGAGE_SETTINGS_SAVING_GLOBAL':
             return _extends({}, state, { saving_settings_in_progress: true });
         case 'SRIZON_MORTGAGE_SETTINGS_SAVING_ERROR_GLOBAL':
@@ -5902,41 +5818,46 @@ function settingsReducer() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = albumsReducer;
+/* harmony export (immutable) */ __webpack_exports__["a"] = instanceReducer;
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var initial_state = {
-    albums: [],
-    albums_updating: [],
+    instances: [],
+    instances_updating: [],
+    settings_open: false,
     initial_load: false
 };
-function albumsReducer() {
+function instanceReducer() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initial_state;
     var action = arguments[1];
 
     switch (action.type) {
-        case 'SRIZON_MORTGAGE_ALBUMS_RECEIVED':
-            return _extends({}, state, { initial_load: true, albums: action.payload });
-        case 'SRIZON_MORTGAGE_ALBUM_DELETEING':
-            return _extends({}, state, { albums: state.albums.filter(function (album) {
-                    return album.id != action.payload;
+        case 'SRIZON_MORTGAGE_INSTANCE_SETTINGS_OPEN':
+            return _extends({}, state, { settings_open: action.payload });
+        case 'SRIZON_MORTGAGE_INSTANCE_SETTINGS_CLOSE':
+            return _extends({}, state, { settings_open: false });
+        case 'SRIZON_MORTGAGE_INSTANCES_RECEIVED':
+            return _extends({}, state, { initial_load: true, instances: action.payload });
+        case 'SRIZON_MORTGAGE_INSTANCE_DELETEING':
+            return _extends({}, state, { instances: state.instances.filter(function (instance) {
+                    return instance.id != action.payload;
                 }) });
-        case 'SRIZON_MORTGAGE_ALBUM_DELETED':
-            return _extends({}, state, { albums: action.payload });
-        case 'SRIZON_MORTGAGE_ALBUM_ADDED':
-            return _extends({}, state, { albums: [].concat(_toConsumableArray(state.instances), [action.payload]) });
-        case 'SRIZON_MORTGAGE_SETTINGS_SAVED_USER_ALBUM':
-            return _extends({}, state, { albums: action.payload });
-        case 'SRIZON_MORTGAGE_ALBUM_UPDATING':
-            return _extends({}, state, { albums_updating: [].concat(_toConsumableArray(state.instances_updating), [action.payload]) });
-        case 'SRIZON_MORTGAGE_ALBUM_UPDATED':
+        case 'SRIZON_MORTGAGE_INSTANCE_DELETED':
+            return _extends({}, state, { instances: action.payload });
+        case 'SRIZON_MORTGAGE_INSTANCE_ADDED':
+            return _extends({}, state, { instances: [].concat(_toConsumableArray(state.instances), [action.payload]) });
+        case 'SRIZON_MORTGAGE_SETTINGS_SAVED_INSTANCE':
+            return _extends({}, state, { instances: action.payload, settings_open: false });
+        case 'SRIZON_MORTGAGE_INSTANCE_UPDATING':
+            return _extends({}, state, { instances_updating: [].concat(_toConsumableArray(state.instances_updating), [action.payload]) });
+        case 'SRIZON_MORTGAGE_INSTANCE_UPDATED':
             return _extends({}, state, {
-                albums_updating: state.instances_updating.filter(function (id) {
+                instances_updating: state.instances_updating.filter(function (id) {
                     return id != action.payload.id;
                 }),
-                albums: action.payload.albums
+                instances: action.payload.instances
             });
         default:
             return state;
@@ -7815,7 +7736,7 @@ function mapDispatchToProps(dispatch) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__InstanceListItem__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_partials_CardLoading__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AddInstanceCard__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__actions_albumsAction__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__actions_instancesAction__ = __webpack_require__(228);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_flip_move__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_flip_move___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react_flip_move__);
 
@@ -7830,14 +7751,17 @@ function mapDispatchToProps(dispatch) {
 
 var InstanceList = function InstanceList(_ref) {
     var loaded = _ref.loaded,
-        albums = _ref.albums,
+        instances = _ref.instances,
         saving_instance = _ref.saving_instance,
         cancelUserAlbum = _ref.cancelUserAlbum,
-        saveUserAlbum = _ref.saveUserAlbum;
+        saveUserAlbum = _ref.saveUserAlbum,
+        settings_open = _ref.settings_open;
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'row' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        settings_open ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__InstanceListItem__["a" /* default */], { key: settings_open, instance: instances.find(function (instance) {
+                return instance.id == settings_open;
+            }) }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_6_react_flip_move___default.a,
             { duration: 500, easing: 'ease-out' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -7847,10 +7771,10 @@ var InstanceList = function InstanceList(_ref) {
             ),
             !loaded ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { key: 'static3' },
+                { key: 'static2' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_partials_CardLoading__["a" /* default */], { title: 'Loading Albums' })
-            ) : albums.map(function (album) {
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__InstanceListItem__["a" /* default */], { key: album.id, album: album });
+            ) : instances.map(function (instance) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__InstanceListItem__["a" /* default */], { key: instance.id, instance: instance });
             })
         )
     );
@@ -7861,7 +7785,8 @@ function mapStateToProps(state) {
     return {
         saving_instance: state.settings.saving_instance_in_progress,
         loaded: state.instances.initial_load,
-        albums: state.instances.albums
+        instances: state.instances.instances,
+        settings_open: state.instances.settings_open
     };
 }
 
@@ -7869,10 +7794,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         cancelUserAlbum: function cancelUserAlbum() {
-            dispatch(Object(__WEBPACK_IMPORTED_MODULE_5__actions_albumsAction__["a" /* cancelUserAlbum */])());
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_5__actions_instancesAction__["a" /* cancelInstance */])());
         },
-        saveUserAlbum: function saveUserAlbum(album) {
-            dispatch(Object(__WEBPACK_IMPORTED_MODULE_5__actions_albumsAction__["d" /* saveUserAlbum */])(album));
+        saveUserAlbum: function saveUserAlbum(instance) {
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_5__actions_instancesAction__["d" /* saveInstance */])(instance));
         }
     };
 }
@@ -7889,7 +7814,7 @@ function mapDispatchToProps(dispatch) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_messagesAction__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions_albumsAction__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions_instancesAction__ = __webpack_require__(228);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AlbumListItemSettings__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_partials_CircularLoaderRow__ = __webpack_require__(25);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -7910,25 +7835,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var AlbumListItem = function (_React$Component) {
     _inherits(AlbumListItem, _React$Component);
 
-    function AlbumListItem(props) {
+    function AlbumListItem() {
         _classCallCheck(this, AlbumListItem);
 
-        var _this = _possibleConstructorReturn(this, (AlbumListItem.__proto__ || Object.getPrototypeOf(AlbumListItem)).call(this, props));
-
-        _this.state = {
-            settings_open: false
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (AlbumListItem.__proto__ || Object.getPrototypeOf(AlbumListItem)).apply(this, arguments));
     }
 
     _createClass(AlbumListItem, [{
         key: 'toggleSettingsForm',
         value: function toggleSettingsForm() {
-            this.setState(function (prevState) {
-                return {
-                    settings_open: !prevState.settings_open
-                };
-            });
+            if (this.props.settings_open) {
+                this.props.settingsClose();
+            } else {
+                this.props.settingsOpen(this.props.instance.id);
+            }
         }
     }, {
         key: 'componentDidMount',
@@ -7956,32 +7876,33 @@ var AlbumListItem = function (_React$Component) {
             var _this2 = this;
 
             var _props2 = this.props,
-                albums_updating = _props2.albums_updating,
-                album = _props2.album,
-                deleteAlbum = _props2.deleteAlbum;
+                instances_updating = _props2.instances_updating,
+                instance = _props2.instance,
+                deleteAlbum = _props2.deleteAlbum,
+                settings_open = _props2.settings_open;
 
 
-            var this_album_updating = false;
-            if (albums_updating.indexOf(album.id) != -1) this_album_updating = true;
+            var this_instance_updating = false;
+            if (instances_updating.indexOf(instance.id) != -1) this_instance_updating = true;
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'col s12 l4 m6' },
+                { className: settings_open == instance.id ? "col s12" : "col s12 l4 m6" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { className: this.state.settings_open || this_album_updating ? "card" : "card small" },
+                    { className: settings_open || this_instance_updating ? "card" : "card small" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'card-content' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        !settings_open ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'row center' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'span',
                                 { className: 'card-title' },
-                                album.title
+                                instance.title
                             )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        ) : null,
+                        !settings_open ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'row plr0 top20' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -7991,7 +7912,7 @@ var AlbumListItem = function (_React$Component) {
                                     'div',
                                     { className: 'input-field' },
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'grey-text', id: 'shortcode', type: 'text', name: 'shortcode',
-                                        value: "[srzinst id=" + album.id + "]",
+                                        value: "[srzinst id=" + instance.id + "]",
                                         onChange: function onChange() {},
                                         ref: function ref(input) {
                                             _this2.shortcode = input;
@@ -8009,30 +7930,31 @@ var AlbumListItem = function (_React$Component) {
                                 { className: 'col s2 pl0 input-align' },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'div',
-                                    { className: 'copy-text blue-text text-darken-3', onClick: this.handleCopy.bind(this) },
+                                    { className: 'copy-text blue-text text-darken-3',
+                                        onClick: this.handleCopy.bind(this) },
                                     'Copy'
                                 )
                             )
-                        ),
+                        ) : null,
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'row' },
-                            this_album_updating ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_partials_CircularLoaderRow__["a" /* default */], null) : this.state.settings_open ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__AlbumListItemSettings__["a" /* default */], { album: album,
+                            this_instance_updating ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_partials_CircularLoaderRow__["a" /* default */], null) : settings_open == instance.id ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__AlbumListItemSettings__["a" /* default */], { instance: instance,
                                 cancelForm: this.toggleSettingsForm.bind(this) }) : null
                         )
                     ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    !settings_open ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'card-action' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
                             { className: 'no-transform blue-text', onClick: this.toggleSettingsForm.bind(this) },
-                            this.state.settings_open ? "Hide Settings" : "Show Settings"
+                            settings_open == instance.id ? "Hide Settings" : "Show Settings"
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'a',
                             { className: 'right mlr0', onClick: function onClick() {
-                                    deleteAlbum(album.id);
+                                    deleteAlbum(instance.id);
                                 } },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'i',
@@ -8041,7 +7963,7 @@ var AlbumListItem = function (_React$Component) {
                                 'delete'
                             )
                         )
-                    )
+                    ) : null
                 )
             );
         }
@@ -8055,7 +7977,8 @@ var AlbumListItem = function (_React$Component) {
 
 function mapStateToProps(state) {
     return {
-        albums_updating: state.instances.albums_updating
+        instances_updating: state.instances.instances_updating,
+        settings_open: state.instances.settings_open
     };
 }
 
@@ -8063,13 +7986,19 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         successCopy: function successCopy() {
-            dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_messagesAction__["h" /* successCopy */])());
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_messagesAction__["e" /* successCopy */])());
         },
         errorCopy: function errorCopy() {
             dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_messagesAction__["a" /* errorCopy */])());
         },
         deleteAlbum: function deleteAlbum(id) {
-            dispatch(Object(__WEBPACK_IMPORTED_MODULE_3__actions_albumsAction__["b" /* deleteAlbum */])(id));
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_3__actions_instancesAction__["b" /* deleteInstance */])(id));
+        },
+        settingsOpen: function settingsOpen(id) {
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_3__actions_instancesAction__["f" /* settingsOpen */])(id));
+        },
+        settingsClose: function settingsClose() {
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_3__actions_instancesAction__["e" /* settingsClose */])());
         }
     };
 }
@@ -8088,7 +8017,7 @@ function mapDispatchToProps(dispatch) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_form_TextField__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_SettingsForm__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__actions_albumsAction__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__actions_instancesAction__ = __webpack_require__(228);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -8115,7 +8044,7 @@ var AlbumListItemSettings = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (AlbumListItemSettings.__proto__ || Object.getPrototypeOf(AlbumListItemSettings)).call(this, props));
 
-        _this.state = _extends({}, _this.props.album.options, { title: _this.props.album.title });
+        _this.state = _extends({}, _this.props.instance.options, { title: _this.props.instance.title });
         _this.hich = _this.hich.bind(_this);
         return _this;
     }
@@ -8147,7 +8076,7 @@ var AlbumListItemSettings = function (_React$Component) {
             var _this2 = this;
 
             var _props = this.props,
-                album = _props.album,
+                instance = _props.instance,
                 updateAlbum = _props.updateAlbum,
                 cancelForm = _props.cancelForm;
 
@@ -8167,7 +8096,7 @@ var AlbumListItemSettings = function (_React$Component) {
                                 'button',
                                 { className: 'btn btn-small green left',
                                     onClick: function onClick() {
-                                        cancelForm();updateAlbum(album.id, _this2.state);
+                                        cancelForm();updateAlbum(instance.id, _this2.state);
                                     } },
                                 'Save'
                             )
@@ -8195,7 +8124,7 @@ var AlbumListItemSettings = function (_React$Component) {
                                 'button',
                                 { className: 'btn btn-small green left',
                                     onClick: function onClick() {
-                                        cancelForm();updateAlbum(album.id, _this2.state);
+                                        cancelForm();updateAlbum(instance.id, _this2.state);
                                     } },
                                 'Save'
                             )
@@ -8223,7 +8152,7 @@ var AlbumListItemSettings = function (_React$Component) {
 
 function mapStateToProps(state) {
     return {
-        albums_updating: state.instances.albums_updating
+        instances_updating: state.instances.instances_updating
     };
 }
 
@@ -8231,7 +8160,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         updateAlbum: function updateAlbum(id, settings) {
-            dispatch(Object(__WEBPACK_IMPORTED_MODULE_4__actions_albumsAction__["e" /* updateAlbum */])(id, settings));
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_4__actions_instancesAction__["g" /* updateInstance */])(id, settings));
         }
     };
 }
@@ -8509,7 +8438,7 @@ var CircularLoaderCard = function CircularLoaderCard() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_albumsAction__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_instancesAction__ = __webpack_require__(228);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_add_new_AddInstanceFront__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_add_new_AddInstanceForm__ = __webpack_require__(135);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -8562,7 +8491,7 @@ var AddInstanceCard = function (_React$Component) {
 
 function mapStateToProps(state) {
     return {
-        open_form: state.settings.open_user_album_form
+        open_form: state.settings.open_instance_form
     };
 }
 
@@ -8570,13 +8499,13 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         newUserAlbum: function newUserAlbum() {
-            dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_albumsAction__["c" /* newUserAlbum */])());
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_instancesAction__["c" /* newInstance */])());
         },
         cancelUserAlbum: function cancelUserAlbum() {
-            dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_albumsAction__["a" /* cancelUserAlbum */])());
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_instancesAction__["a" /* cancelInstance */])());
         },
         saveUserAlbum: function saveUserAlbum(data) {
-            dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_albumsAction__["d" /* saveUserAlbum */])(data));
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_instancesAction__["d" /* saveInstance */])(data));
         }
     };
 }
@@ -9104,6 +9033,186 @@ var TempMessage = function (_React$Component) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["c"] = newInstance;
+/* harmony export (immutable) */ __webpack_exports__["a"] = cancelInstance;
+/* harmony export (immutable) */ __webpack_exports__["f"] = settingsOpen;
+/* harmony export (immutable) */ __webpack_exports__["e"] = settingsClose;
+/* harmony export (immutable) */ __webpack_exports__["d"] = saveInstance;
+/* harmony export (immutable) */ __webpack_exports__["b"] = deleteInstance;
+/* harmony export (immutable) */ __webpack_exports__["g"] = updateInstance;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__messagesAction__ = __webpack_require__(63);
+
+
+function newInstance() {
+    return {
+        type: 'SRIZON_MORTGAGE_SETTINGS_NEW_INSTANCE'
+    };
+}
+
+function cancelInstance() {
+    return {
+        type: 'SRIZON_MORTGAGE_SETTINGS_CANCEL_INSTANCE'
+    };
+}
+
+function settingsOpen(id) {
+    return {
+        type: 'SRIZON_MORTGAGE_INSTANCE_SETTINGS_OPEN',
+        payload: id
+    };
+}
+function settingsClose() {
+    return {
+        type: 'SRIZON_MORTGAGE_INSTANCE_SETTINGS_OPEN'
+    };
+}
+
+function saveInstance(instanceData) {
+    return function (dispatch) {
+        dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVING_INSTANCE' });
+        axios.post(srzinstbase + 'instance', { title: instanceData.title }).then(function (response) {
+            if (response.data.result == 'saved') {
+                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["h" /* successInstanceSaved */])());
+                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVED_INSTANCE', payload: response.data.instances });
+            } else {
+                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_CANCEL_INSTANCE' });
+            }
+        }).catch(function (error) {
+            if (error.response) {
+                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["b" /* errorReceived */])(error));
+                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_NEW_INSTANCE' });
+            } else if (error.request) {
+                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["c" /* errorRequesting */])(error));
+                dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_NEW_INSTANCE' });
+            }
+        });
+    };
+}
+
+function deleteInstance(id) {
+    if (window.confirm('Are you sure?')) {
+        return function (dispatch) {
+            dispatch({ type: 'SRIZON_MORTGAGE_INSTANCE_DELETEING', payload: id });
+            axios.delete(srzinstbase + 'instance/' + id).then(function (response) {
+                if (response.data.result == 'deleted') {
+                    dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["g" /* successInstanceDelete */])());
+                    dispatch({ type: 'SRIZON_MORTGAGE_INSTANCE_DELETED', payload: response.data.instances });
+                }
+            }).catch(function () {
+                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["d" /* errorUnknown */])());
+                dispatch({ type: 'ACTION_CANCELLED' });
+            });
+        };
+    } else {
+        return { type: 'ACTION_CANCELLED' };
+    }
+}
+
+function updateInstance(id, settings) {
+    return function (dispatch) {
+        dispatch({ type: 'SRIZON_MORTGAGE_INSTANCE_UPDATING', payload: id });
+        axios.post(srzinstbase + 'instance-settings', { id: id, settings: settings }).then(function (response) {
+            if (response.data.result == 'updated') {
+                dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["i" /* successInstanceUpdated */])());
+                dispatch({ type: 'SRIZON_MORTGAGE_INSTANCE_UPDATED', payload: { id: id, instances: response.data.instances } });
+            }
+        }).catch(function () {
+            dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["d" /* errorUnknown */])());
+            dispatch({ type: 'ACTION_CANCELLED' });
+        });
+    };
+}
 
 /***/ })
 /******/ ]);

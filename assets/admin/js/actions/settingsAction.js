@@ -15,10 +15,10 @@ export function loadSettings() {
 
 export function loadAlbums() {
     return dispatch => {
-        axios.get(srzinstbase + 'album')
+        axios.get(srzinstbase + 'instance')
             .then(response=> {
                 dispatch({
-                    type: 'SRIZON_MORTGAGE_ALBUMS_RECEIVED',
+                    type: 'SRIZON_MORTGAGE_INSTANCES_RECEIVED',
                     payload: response.data
                 })
             })

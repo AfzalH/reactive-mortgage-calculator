@@ -1,9 +1,5 @@
 <?php
 include_once "defaults.php";
-function srizon_mortgage_disconnect_user() {
-	delete_option( 'srizon_mortgage_access_token' );
-	delete_option( 'srizon_mortgage_connected_user' );
-}
 
 function srizon_mortgage_get_settings() {
 	$settings['global'] = srizon_mortgage_get_global_settings();
@@ -41,13 +37,6 @@ add_action( 'rest_api_init', function () {
 		'methods'             => 'GET',
 		'callback'            => 'srizon_mortgage_get_settings',
 		'permission_callback' => 'srizon_mortgage_permission_admin',
-	] );
-
-	register_rest_route( 'srizon-instagram/v1', '/disconnect-user/', [
-		'methods'             => 'GET',
-		'callback'            => 'srizon_mortgage_disconnect_user',
-		'permission_callback' => 'srizon_mortgage_permission_admin',
-
 	] );
 
 	register_rest_route( 'srizon-instagram/v1', '/save-global-settings/', [

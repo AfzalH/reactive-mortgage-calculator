@@ -1,8 +1,8 @@
-export function successAlbumSaved() {
+export function successInstanceSaved() {
     return {
         type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
-            txt: 'Album Saved!',
+            txt: 'Instance Saved!',
             type: 'success',
             expire_in: 3
         }
@@ -10,11 +10,11 @@ export function successAlbumSaved() {
     }
 }
 
-export function successAlbumDelete() {
+export function successInstanceDelete() {
     return {
         type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
-            txt: 'Album Deleted!',
+            txt: 'Instance Deleted!',
             type: 'success',
             expire_in: 3
         }
@@ -26,7 +26,7 @@ export function successGlobalSettingsSaved() {
     return {
         type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
-            txt: 'Global Settings Saved! These will be used for new albums unless you override them',
+            txt: 'Global Settings Saved! These will be used for new instances unless you override them',
             type: 'success',
             expire_in: 3
         }
@@ -91,11 +91,11 @@ export function errorUnknown() {
     }
 }
 
-export function successAlbumUpdated() {
+export function successInstanceUpdated() {
     return {
         type: 'SRIZON_MORTGAGE_MESSAGE_RECEIVED',
         payload: {
-            txt: 'Album updated successfully',
+            txt: 'Instance updated successfully',
             type: 'success',
             expire_in: 5
         }

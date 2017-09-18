@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {newUserAlbum, cancelUserAlbum, saveUserAlbum} from '../actions/albumsAction';
+import {newInstance, cancelInstance, saveInstance} from '../actions/instancesAction';
 import AddInstanceFront from '../components/add-new/AddInstanceFront';
 import AddInstanceForm from '../components/add-new/AddInstanceForm';
 
@@ -23,7 +23,7 @@ class AddInstanceCard extends React.Component {
 // map state
 function mapStateToProps(state) {
     return {
-        open_form: state.settings.open_user_album_form
+        open_form: state.settings.open_instance_form
     }
 }
 
@@ -31,13 +31,13 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         newUserAlbum: ()=> {
-            dispatch(newUserAlbum())
+            dispatch(newInstance())
         },
         cancelUserAlbum: ()=> {
-            dispatch(cancelUserAlbum())
+            dispatch(cancelInstance())
         },
         saveUserAlbum: (data)=> {
-            dispatch(saveUserAlbum(data))
+            dispatch(saveInstance(data))
         }
     }
 }

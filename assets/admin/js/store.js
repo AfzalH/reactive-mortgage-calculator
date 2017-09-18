@@ -19,5 +19,5 @@ export default  createStore(combineReducers({
 // export default  createStore(combineReducers({
 //     settings: settingsReducer,
 //     messages: messagesReducer,
-//     albums: instanceReducer
+//     instances: instanceReducer
 // }), applyMiddleware(thunk));
