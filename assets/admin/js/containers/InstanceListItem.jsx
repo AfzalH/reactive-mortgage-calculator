@@ -50,7 +50,7 @@ class AlbumListItem extends React.Component {
                                 <div className="col s10 pl0">
                                     <div className="input-field">
                                         <input className="grey-text" id="shortcode" type="text" name="shortcode"
-                                               value={"[srzinst id="+instance.id+"]"}
+                                               value={"[srzmort id="+instance.id+"]"}
                                                onChange={()=>{}}
                                                ref={(input)=>{this.shortcode = input}}
                                         />

@@ -2,7 +2,7 @@ import {errorReceived, errorRequesting, successGlobalSettingsSaved, errorUnknown
 
 export function loadSettings() {
     return dispatch => {
-        axios.get(srzinstbase + 'settings')
+        axios.get(srzmortbase + 'settings')
             .then((response)=> {
                 dispatch({
                     type: 'SRIZON_MORTGAGE_SETTINGS_RECEIVED',
@@ -15,7 +15,7 @@ export function loadSettings() {
 
 export function loadAlbums() {
     return dispatch => {
-        axios.get(srzinstbase + 'instance')
+        axios.get(srzmortbase + 'instance')
             .then(response=> {
                 dispatch({
                     type: 'SRIZON_MORTGAGE_INSTANCES_RECEIVED',
@@ -42,7 +42,7 @@ export function toggleSettingsPanel() {
 export function saveGlobalSettings(settings) {
     return dispatch => {
         dispatch({type: 'SRIZON_MORTGAGE_SETTINGS_SAVING_GLOBAL'});
-        axios.post(srzinstbase + 'save-global-settings', settings)
+        axios.post(srzmortbase + 'save-global-settings', settings)
             .then((response)=> {
                 console.log(response.data);
                 if (response.data.result == 'saved') {

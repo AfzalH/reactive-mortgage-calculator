@@ -74,28 +74,28 @@ function srizon_mortgage_update_instance_settings( $req ) {
 
 
 add_action( 'rest_api_init', function () {
-	register_rest_route( 'srizon-instagram/v1', '/instance/', [
+	register_rest_route( 'srizon-mortgage/v1', '/instance/', [
 		'methods'             => 'POST',
 		'callback'            => 'srizon_mortgage_save_instance',
 		'permission_callback' => 'srizon_mortgage_permission_admin',
 	] );
 
-	register_rest_route( 'srizon-instagram/v1', '/instance/', [
+	register_rest_route( 'srizon-mortgage/v1', '/instance/', [
 		'methods'  => 'GET',
 		'callback' => 'srizon_mortgage_get_instance_index',
 	] );
 
-	register_rest_route( 'srizon-instagram/v1', '/instance/(?P<id>[\d]+)', [
+	register_rest_route( 'srizon-mortgage/v1', '/instance/(?P<id>[\d]+)', [
 		'methods'             => 'DELETE',
 		'callback'            => 'srizon_mortgage_delete_instance',
 		'permission_callback' => 'srizon_mortgage_permission_admin',
 	] );
-	register_rest_route( 'srizon-instagram/v1', '/instance/(?P<id>[\d]+)', [
+	register_rest_route( 'srizon-mortgage/v1', '/instance/(?P<id>[\d]+)', [
 		'methods'  => 'GET',
 		'callback' => 'srizon_mortgage_get_instance',
 	] );
 	
-	register_rest_route( 'srizon-instagram/v1', '/instance-settings/', [
+	register_rest_route( 'srizon-mortgage/v1', '/instance-settings/', [
 		'methods'             => 'POST',
 		'callback'            => 'srizon_mortgage_update_instance_settings',
 		'permission_callback' => 'srizon_mortgage_permission_admin',

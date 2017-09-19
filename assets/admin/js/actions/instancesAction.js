@@ -34,7 +34,7 @@ export function settingsClose() {
 export function saveInstance(instanceData) {
     return (dispatch) => {
         dispatch({type: 'SRIZON_MORTGAGE_SETTINGS_SAVING_INSTANCE'});
-        axios.post(srzinstbase + 'instance', {title: instanceData.title})
+        axios.post(srzmortbase + 'instance', {title: instanceData.title})
             .then((response)=> {
                 if (response.data.result == 'saved') {
                     dispatch(successInstanceSaved());
@@ -62,7 +62,7 @@ export function deleteInstance(id) {
     if ((window.confirm('Are you sure?'))) {
         return (dispatch) => {
             dispatch({type: 'SRIZON_MORTGAGE_INSTANCE_DELETEING', payload: id});
-            axios.delete(srzinstbase + 'instance/' + id)
+            axios.delete(srzmortbase + 'instance/' + id)
                 .then((response)=> {
                     if (response.data.result == 'deleted') {
                         dispatch(successInstanceDelete());
@@ -83,7 +83,7 @@ export function deleteInstance(id) {
 export function updateInstance(id, settings) {
     return (dispatch)=> {
         dispatch({type: 'SRIZON_MORTGAGE_INSTANCE_UPDATING', payload: id});
-        axios.post(srzinstbase + 'instance-settings', {id: id, settings: settings})
+        axios.post(srzmortbase + 'instance-settings', {id: id, settings: settings})
             .then((response)=> {
                 if (response.data.result == 'updated') {
                     dispatch(successInstanceUpdated());

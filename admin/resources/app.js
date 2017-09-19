@@ -3950,7 +3950,7 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 
 function loadSettings() {
     return function (dispatch) {
-        axios.get(srzinstbase + 'settings').then(function (response) {
+        axios.get(srzmortbase + 'settings').then(function (response) {
             dispatch({
                 type: 'SRIZON_MORTGAGE_SETTINGS_RECEIVED',
                 payload: response.data
@@ -3962,7 +3962,7 @@ function loadSettings() {
 
 function loadAlbums() {
     return function (dispatch) {
-        axios.get(srzinstbase + 'instance').then(function (response) {
+        axios.get(srzmortbase + 'instance').then(function (response) {
             dispatch({
                 type: 'SRIZON_MORTGAGE_INSTANCES_RECEIVED',
                 payload: response.data
@@ -3986,7 +3986,7 @@ function toggleSettingsPanel() {
 function saveGlobalSettings(settings) {
     return function (dispatch) {
         dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVING_GLOBAL' });
-        axios.post(srzinstbase + 'save-global-settings', settings).then(function (response) {
+        axios.post(srzmortbase + 'save-global-settings', settings).then(function (response) {
             console.log(response.data);
             if (response.data.result == 'saved') {
                 dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["f" /* successGlobalSettingsSaved */])());
@@ -5718,7 +5718,7 @@ window.axios = __webpack_require__(66);
 
 if (wpApiSettings) {
     window.axios.defaults.headers.common['X-WP-Nonce'] = wpApiSettings.nonce;
-    window.srzinstbase = wpApiSettings.root + 'srizon-instagram/v1/';
+    window.srzmortbase = wpApiSettings.root + 'srizon-mortgage/v1/';
 }
 window.store = __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */];
 __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].dispatch(Object(__WEBPACK_IMPORTED_MODULE_5__actions_settingsAction__["a" /* loadSettings */])());
@@ -7912,7 +7912,7 @@ var AlbumListItem = function (_React$Component) {
                                     'div',
                                     { className: 'input-field' },
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'grey-text', id: 'shortcode', type: 'text', name: 'shortcode',
-                                        value: "[srzinst id=" + instance.id + "]",
+                                        value: "[srzmort id=" + instance.id + "]",
                                         onChange: function onChange() {},
                                         ref: function ref(input) {
                                             _this2.shortcode = input;
@@ -9161,7 +9161,7 @@ function settingsClose() {
 function saveInstance(instanceData) {
     return function (dispatch) {
         dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVING_INSTANCE' });
-        axios.post(srzinstbase + 'instance', { title: instanceData.title }).then(function (response) {
+        axios.post(srzmortbase + 'instance', { title: instanceData.title }).then(function (response) {
             if (response.data.result == 'saved') {
                 dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["h" /* successInstanceSaved */])());
                 dispatch({ type: 'SRIZON_MORTGAGE_SETTINGS_SAVED_INSTANCE', payload: response.data.instances });
@@ -9184,7 +9184,7 @@ function deleteInstance(id) {
     if (window.confirm('Are you sure?')) {
         return function (dispatch) {
             dispatch({ type: 'SRIZON_MORTGAGE_INSTANCE_DELETEING', payload: id });
-            axios.delete(srzinstbase + 'instance/' + id).then(function (response) {
+            axios.delete(srzmortbase + 'instance/' + id).then(function (response) {
                 if (response.data.result == 'deleted') {
                     dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["g" /* successInstanceDelete */])());
                     dispatch({ type: 'SRIZON_MORTGAGE_INSTANCE_DELETED', payload: response.data.instances });
@@ -9202,7 +9202,7 @@ function deleteInstance(id) {
 function updateInstance(id, settings) {
     return function (dispatch) {
         dispatch({ type: 'SRIZON_MORTGAGE_INSTANCE_UPDATING', payload: id });
-        axios.post(srzinstbase + 'instance-settings', { id: id, settings: settings }).then(function (response) {
+        axios.post(srzmortbase + 'instance-settings', { id: id, settings: settings }).then(function (response) {
             if (response.data.result == 'updated') {
                 dispatch(Object(__WEBPACK_IMPORTED_MODULE_0__messagesAction__["i" /* successInstanceUpdated */])());
                 dispatch({ type: 'SRIZON_MORTGAGE_INSTANCE_UPDATED', payload: { id: id, instances: response.data.instances } });

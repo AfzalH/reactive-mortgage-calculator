@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import Base from './containers/Base';
 
 const render = () => {
-    var elements = document.querySelectorAll('.srzinst');
+    var elements = document.querySelectorAll('.srzmort');
     Array.prototype.forEach.call(elements, function (el, i) {
         const id = el.getAttribute('data-id');
         ReactDOM.render(
@@ -17,7 +17,7 @@ const render = () => {
         );
     });
 
-    // jQuery('.srzinst').each(function () {
+    // jQuery('.srzmort').each(function () {
     //     const id = jQuery(this).data('id');
     //     ReactDOM.render(
     //         <Provider store={store}>
@@ -34,18 +34,18 @@ window.store = store;
 
 if (wpApiSettings) {
     window.axios.defaults.headers.common['X-WP-Nonce'] = wpApiSettings.nonce;
-    window.srzinstbase = wpApiSettings.root + 'srizon-instagram/v1/';
+    window.srzmortbase = wpApiSettings.root + 'srizon-mortgage/v1/';
 }
-var elements = document.querySelectorAll('.srzinst');
+var elements = document.querySelectorAll('.srzmort');
 Array.prototype.forEach.call(elements, function (el) {
     const id = el.getAttribute('data-id');
-    store.dispatch({type: 'INIT_ALBUMS', id: id});
+    store.dispatch({type: 'INIT_INSTANCES', id: id});
 });
 
-// jQuery('.srzinst').each(function () {
+// jQuery('.srzmort').each(function () {
 //     const id = jQuery(this).data('id');
-//     store.dispatch({type: 'INIT_ALBUMS', id: id});
-//     // axios.get(srzinstbase + 'album/' + id);
+//     store.dispatch({type: 'INIT_INSTANCES', id: id});
+//     // axios.get(srzmortbase + 'instance/' + id);
 // });
 
 store.subscribe(render);

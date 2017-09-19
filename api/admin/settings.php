@@ -33,13 +33,13 @@ function srizon_mortgage_save_global_settings( $req ) {
 
 add_action( 'rest_api_init', function () {
 
-	register_rest_route( 'srizon-instagram/v1', '/settings/', [
+	register_rest_route( 'srizon-mortgage/v1', '/settings/', [
 		'methods'             => 'GET',
 		'callback'            => 'srizon_mortgage_get_settings',
 		'permission_callback' => 'srizon_mortgage_permission_admin',
 	] );
 
-	register_rest_route( 'srizon-instagram/v1', '/save-global-settings/', [
+	register_rest_route( 'srizon-mortgage/v1', '/save-global-settings/', [
 		'methods'             => 'POST',
 		'callback'            => 'srizon_mortgage_save_global_settings',
 		'permission_callback' => 'srizon_mortgage_permission_admin',
