@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { getAlbum } from '../actions/instanceAction';
+import {connect} from 'react-redux';
+import {getAlbum} from '../actions/instanceAction';
 import LayoutSelector from '../components/LayoutSelector';
 import CircularLoaderRow from '../../../admin/js/components/partials/CircularLoaderRow';
 
@@ -8,15 +8,15 @@ import CircularLoaderRow from '../../../admin/js/components/partials/CircularLoa
 
 class Base extends React.Component {
     componentDidMount() {
-        const { id, getAlbum } = this.props;
+        const {id, getAlbum} = this.props;
         getAlbum(id);
     }
 
     render() {
-        const { id, instances } = this.props;
+        const {id, instances} = this.props;
         return (
             (instances[id].options_loaded) ?
-                <LayoutSelector instance={instances[id]} />
+                <LayoutSelector options={instances[id].options.options} id={id}/>
                 :
                 instances[id].error_received ?
                     <div className="red-text">{instances[id].error_received}</div> :

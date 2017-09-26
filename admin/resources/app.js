@@ -5821,7 +5821,7 @@ var render = function render() {
         __WEBPACK_IMPORTED_MODULE_3_react_redux__["a" /* Provider */],
         { store: __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */] },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__containers_Base__["a" /* default */], null)
-    ), document.getElementById('srizon-instagram-admin'));
+    ), document.getElementById('srizon-mortgage-admin'));
 };
 
 window.axios = __webpack_require__(64);

@@ -2,7 +2,7 @@
 /*
 Plugin Name: Reactive Mortgage Calculator
 Plugin URI: https://srizon.com/product/reactive-mortgage-calculator
-Description: This Plugin is designed to show your Instagram photos into your WordPress site. You can also show public photos from other instagram users.
+Description: Responsive and Reactive mortgage calculator that you can customize
 Text Domain: reactive-mortgage-calculator
 Domain Path: /languages
 Version: 1.0

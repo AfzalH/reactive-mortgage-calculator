@@ -5264,7 +5264,7 @@ var Base = function (_React$Component) {
                 id = _props2.id,
                 instances = _props2.instances;
 
-            return instances[id].options_loaded ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_LayoutSelector__["a" /* default */], { instance: instances[id] }) : instances[id].error_received ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            return instances[id].options_loaded ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_LayoutSelector__["a" /* default */], { options: instances[id].options.options, id: id }) : instances[id].error_received ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'red-text' },
                 instances[id].error_received
@@ -5331,6 +5331,8 @@ function getAlbum(id) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -5342,23 +5344,60 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var LayoutSelector = function (_React$Component) {
     _inherits(LayoutSelector, _React$Component);
 
-    function LayoutSelector() {
+    function LayoutSelector(props) {
         _classCallCheck(this, LayoutSelector);
 
-        return _possibleConstructorReturn(this, (LayoutSelector.__proto__ || Object.getPrototypeOf(LayoutSelector)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (LayoutSelector.__proto__ || Object.getPrototypeOf(LayoutSelector)).call(this, props));
+
+        _this.graphid = 'graph' + props.id;
+        return _this;
     }
 
     _createClass(LayoutSelector, [{
+        key: 'componentDidMount2',
+        value: function componentDidMount2() {
+            var interest = [50, 20, 10, 40, 15, 25, 60];
+            var principal = [500, 200, 100, 400, 150, 250, 700];
+            var total = interest.map(function (val, i) {
+                return val + principal[i];
+            });
+            c3.generate({
+                bindto: '#' + this.graphid,
+                data: {
+                    x: 'x',
+                    columns: [['x', 2001, 2002, 2003, 2004, 2005, 2006, 2007], ['principal'].concat(principal), ['interest'].concat(interest), ['total'].concat(_toConsumableArray(total))],
+                    type: 'bar',
+                    types: {
+                        total: 'scatter'
+                    },
+                    groups: [['principal', 'interest']],
+                    order: null
+
+                },
+                axis: {
+                    y: {
+                        label: { // ADD
+                            text: 'Total'
+                        }
+                    }
+
+                }
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var _props = this.props,
-                instance = _props.instance,
-                loadMoreData = _props.loadMoreData;
+            var options = this.props.options;
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 null,
-                'Test'
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: this.graphid }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'pre',
+                    null,
+                    JSON.stringify(options, null, 4)
+                )
             );
         }
     }]);

@@ -11,7 +11,7 @@ const render = () => {
             <Base/>
         </Provider>
         ,
-        document.getElementById('srizon-instagram-admin')
+        document.getElementById('srizon-mortgage-admin')
     );
 };
 

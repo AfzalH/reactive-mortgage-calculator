@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 npm run prod
-mkdir srizon-instagram-album
-cp -R ./admin ./srizon-instagram-album/
-cp -R ./api ./srizon-instagram-album/
-cp -R ./languages ./srizon-instagram-album/
-cp -R ./lib ./srizon-instagram-album/
-cp -R ./site ./srizon-instagram-album/
+mkdir srizon-mortgage-calculator
+cp -R ./admin ./srizon-mortgage-calculator/
+cp -R ./api ./srizon-mortgage-calculator/
+cp -R ./languages ./srizon-mortgage-calculator/
+cp -R ./lib ./srizon-mortgage-calculator/
+cp -R ./site ./srizon-mortgage-calculator/
 
-cp ./readme.txt ./srizon-instagram-album/
-cp ./srizon-instagram-album.php ./srizon-instagram-album/
+cp ./readme.txt ./srizon-mortgage-calculator/
+cp ./srizon-mortgage-calculator.php ./srizon-mortgage-calculator/
 
-zip -r srizon-instagram-album.1.0.zip srizon-instagram-album
+zip -r srizon-mortgage-calculator.1.0.zip srizon-mortgage-calculator
 
-rm -R srizon-instagram-album
+rm -R srizon-mortgage-calculator
