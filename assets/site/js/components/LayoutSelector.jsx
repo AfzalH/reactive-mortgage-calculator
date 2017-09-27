@@ -4,6 +4,7 @@ import DownpaymentInput from './Partials/DownpaymentInput';
 import InterestInput from './Partials/InterestInput';
 import TenureInput from './Partials/TenureInput';
 import LoanPieChart from './LoanPieChart';
+import MonthlyChart from './MonthlyChart';
 
 class LayoutSelector extends React.Component {
     constructor(props) {
@@ -81,47 +82,32 @@ class LayoutSelector extends React.Component {
         return monthly.toFixed(0);
     }
 
-    componentDidMount2() {
-        const interest = [50, 20, 10, 40, 15, 25, 60];
-        const principal = [500, 200, 100, 400, 150, 250, 700];
-        let total = interest.map((val, i)=>(val + principal[i]));
-        c3.generate({
-            bindto: '#' + this.graphid,
-            data: {
-                x: 'x',
-                columns: [
-                    ['x', 2001, 2002, 2003, 2004, 2005, 2006, 2007],
-                    ['principal', ...principal],
-                    ['interest', ...interest],
-                    ['total', ...total],
-                ],
-                type: 'bar',
-                types: {
-                    total: 'scatter'
-                },
-                groups: [
-                    ['principal', 'interest']
-                ],
-                order: null,
-
-            },
-            axis: {
-                y: {
-                    label: {
-                        text: 'Total',
-                    }
-                }
-
-            }
-        });
-    }
-
     render() {
+        const monthly_interest = this.getMonthlyInterest();
         const monthly_installment = this.getMonthlyPayment(this.getMortgageAmount(), this.getTenureInMonth(), this.getMonthlyInterest());
         const mortgage_amount = this.getMortgageAmount();
         const tenure_in_month = this.getTenureInMonth();
         const total_payable = monthly_installment * tenure_in_month;
         const total_interest = total_payable - mortgage_amount;
+
+        let interest_ar = [];
+        let interest = 0;
+        let principal_ar = [];
+        let principal = 0;
+        let balance_ar = [];
+        let balance = mortgage_amount;
+
+        let current_month = tenure_in_month;
+        while (current_month--) {
+            interest = balance * monthly_interest;
+            principal = monthly_installment - interest;
+            balance = balance - principal;
+            if (balance < 0) balance = 0;
+
+            interest_ar.push(interest.toFixed(2));
+            principal_ar.push(principal.toFixed(2));
+            balance_ar.push(balance.toFixed(2));
+        }
         return (
             <div>
                 <div id={this.graphid}></div>
@@ -144,24 +130,24 @@ class LayoutSelector extends React.Component {
                             currency={this.state.currency}
                         />
                     </div>
-                    <div className="col s12 info-row thin">
-                        <div className="first-row">
-                            <div className="col s12 m6 center-align">
-                                <span>Monthly Installment: <strong>{this.state.currency + monthly_installment}</strong></span>
-                            </div>
-                            <div className="col s12 m6 center-align">
-                                <span>Mortgage Amount: <strong>{this.state.currency + mortgage_amount}</strong></span>
-                            </div>
-                        </div>
-                        <div className="last-row">
-                            <div className="col s12 m6 center-align">
-                                <span>Total Payment: <strong>{this.state.currency + total_payable}</strong></span>
-                            </div>
-                            <div className="col s12 m6 center-align">
-                                <span>Interest To Be Payed: <strong>{this.state.currency + total_interest}</strong></span>
-                            </div>
-                        </div>
+                </div>
+                <div className="row info-row">
+                    <div className="col s12 m6 center-align">
+                            <span>Monthly Installment: <strong
+                                className="red-text text-darken-2">{this.state.currency + monthly_installment}</strong></span>
                     </div>
+                    <div className="col s12 m6 center-align">
+                        <span>Mortgage Amount: <strong>{this.state.currency + mortgage_amount}</strong></span>
+                    </div>
+                    <div className="col s12 m6 center-align">
+                        <span>Total Payment: <strong>{this.state.currency + total_payable}</strong></span>
+                    </div>
+                    <div className="col s12 m6 center-align">
+                        <span>Interest To Be Payed: <strong>{this.state.currency + total_interest}</strong></span>
+                    </div>
+                </div>
+                <div className="col s12">
+                    <MonthlyChart principal={principal_ar} interest={interest_ar} balance={balance_ar}/>
                 </div>
                 <pre>{JSON.stringify(this.state, null, 4)}</pre>
             </div>
