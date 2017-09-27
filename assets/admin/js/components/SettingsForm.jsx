@@ -31,6 +31,9 @@ class SettingsForm extends React.Component {
                                  onch={hich} offtext="Fixed" ontext="Variable"
                                  label="Property Value Is" aclass="bottom40"/>
                     {pstate.property_value_is_changeable ?
+                        <TextField val={pstate.property_value} onch={hich} name="property_value"
+                                   label="Property Value - Default" aclass=""/> : null}
+                    {pstate.property_value_is_changeable ?
                         <TextField val={pstate.property_value_min} onch={hich} name="property_value_min"
                                    label="Property Value - Minimum" aclass=""/> : null}
                     {pstate.property_value_is_changeable ?
@@ -42,32 +45,38 @@ class SettingsForm extends React.Component {
                 </div>
 
                 <div className={"col s12 m6 offset-m2 pr50"} id="downpayment-tab">
-                    <TextField val={pstate.down_amount_text} onch={hich} name="down_amount_text"
+                    <TextField val={pstate.downpayment_text} onch={hich} name="downpayment_text"
                                label="Down Payment Text" aclass=""/>
-                    <SwitchField name="down_amount_is_changeable" val={pstate.down_amount_is_changeable}
+                    <SwitchField name="downpayment_is_changeable" val={pstate.downpayment_is_changeable}
                                  onch={hich} offtext="Fixed" ontext="Variable"
                                  label="Down Payment Is" aclass="bottom40"/>
-                    <SwitchField name="down_amount_percent" val={pstate.down_amount_percent}
+                    <SwitchField name="downpayment_is_percent" val={pstate.downpayment_is_percent}
                                  onch={hich} offtext="Total Amount" ontext="Percent"
                                  label="Down Payment In" aclass="bottom40"/>
-                    {!pstate.down_amount_percent && !pstate.down_amount_is_changeable ?
-                        <TextField val={pstate.down_amount_fixed_fixed} onch={hich} name="down_amount_fixed_fixed"
+                    {!pstate.downpayment_is_percent && !pstate.downpayment_is_changeable ?
+                        <TextField val={pstate.downpayment_amount_fixed} onch={hich} name="downpayment_amount_fixed"
                                    label="Down-Payment Amount" aclass=""/> : null}
-                    {!pstate.down_amount_percent && pstate.down_amount_is_changeable ?
-                        <TextField val={pstate.down_amount_fixed_min} onch={hich} name="down_amount_fixed_min"
+                    {!pstate.downpayment_is_percent && pstate.downpayment_is_changeable ?
+                        <TextField val={pstate.downpayment_amount} onch={hich} name="downpayment_amount"
+                                   label="Down-Payment Amount - Default" aclass=""/> : null}
+                    {!pstate.downpayment_is_percent && pstate.downpayment_is_changeable ?
+                        <TextField val={pstate.downpayment_amount_min} onch={hich} name="downpayment_amount_min"
                                    label="Down-Payment Amount - Minimum" aclass=""/> : null}
-                    {!pstate.down_amount_percent && pstate.down_amount_is_changeable ?
-                        <TextField val={pstate.down_amount_fixed_max} onch={hich} name="down_amount_fixed_max"
+                    {!pstate.downpayment_is_percent && pstate.downpayment_is_changeable ?
+                        <TextField val={pstate.downpayment_amount_max} onch={hich} name="downpayment_amount_max"
                                    label="Down-Payment Amount - Maximum" aclass=""/> : null}
-                    {pstate.down_amount_percent && !pstate.down_amount_is_changeable ?
-                        <TextField val={pstate.down_amount_percent_fixed} onch={hich} name="down_amount_percent_fixed"
+                    {pstate.downpayment_is_percent && !pstate.downpayment_is_changeable ?
+                        <TextField val={pstate.downpayment_percent_fixed} onch={hich} name="downpayment_percent_fixed"
                                    label="Down-Payment Percent" aclass=""/> : null}
-                    {pstate.down_amount_percent && pstate.down_amount_is_changeable ?
-                        <TextField val={pstate.down_amount_percent_min} onch={hich} name="down_amount_percent_min"
+                    {pstate.downpayment_is_percent && pstate.downpayment_is_changeable ?
+                        <TextField val={pstate.downpayment_percent} onch={hich} name="downpayment_percent"
+                                   label="Down-Payment Percent - Default" aclass=""/> : null}
+                    {pstate.downpayment_is_percent && pstate.downpayment_is_changeable ?
+                        <TextField val={pstate.downpayment_percent_min} onch={hich} name="downpayment_percent_min"
                                    label="Down-Payment Percent - Minimum" aclass=""/> : null}
-                    {pstate.down_amount_percent && pstate.down_amount_is_changeable ?
-                        <TextField val={pstate.down_amount_percent_max} onch={hich} name="down_amount_percent_max"
-                                   label="Down-Payment Percent - Maxium" aclass=""/> : null}
+                    {pstate.downpayment_is_percent && pstate.downpayment_is_changeable ?
+                        <TextField val={pstate.downpayment_percent_max} onch={hich} name="downpayment_percent_max"
+                                   label="Down-Payment Percent - Maximum" aclass=""/> : null}
                 </div>
 
                 <div className={"col s12 m6 offset-m4 pr50"} id="interest-tab">
@@ -76,6 +85,9 @@ class SettingsForm extends React.Component {
                     <SwitchField name="interest_is_changeable" val={pstate.interest_is_changeable}
                                  onch={hich} offtext="Fixed" ontext="Variable"
                                  label="Interest Rate Is" aclass="bottom40"/>
+                    {pstate.interest_is_changeable ?
+                        <TextField val={pstate.interest} onch={hich} name="interest"
+                                   label="Interest Rate - Default" aclass=""/> : null}
                     {pstate.interest_is_changeable ?
                         <TextField val={pstate.interest_min} onch={hich} name="interest_min"
                                    label="Interest Rate - Mininum" aclass=""/> : null}
@@ -93,6 +105,9 @@ class SettingsForm extends React.Component {
                     <SwitchField name="tenure_is_changeable" val={pstate.tenure_is_changeable}
                                  onch={hich} offtext="Fixed" ontext="Variable"
                                  label="Tenure Is" aclass="bottom40"/>
+                    {pstate.tenure_is_changeable ?
+                        <TextField val={pstate.tenure} onch={hich} name="tenure"
+                                   label="Tenure - Default (Year)" aclass=""/> : null}
                     {pstate.tenure_is_changeable ?
                         <TextField val={pstate.tenure_min} onch={hich} name="tenure_min"
                                    label="Tenure - Mininum (Year)" aclass=""/> : null}

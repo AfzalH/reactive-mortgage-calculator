@@ -1,10 +1,10 @@
 import React from 'react';
 
 // dumb component ... only props and presentation
-const TextField = ({val, onch, name, label, aclass}) => (
+const TextField = ({val, onch, name, label, aclass, disabled}) => (
     <div className={"input-field "+aclass}>
         <input type="text" name={name} value={val}
-               onChange={onch}/>
+               onChange={onch} disabled={disabled}/>
         <label htmlFor={name}>{label}</label>
     </div>
 );

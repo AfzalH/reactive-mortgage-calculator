@@ -1,7 +1,6 @@
 {
     "/admin/resources/app.js": "/admin/resources/app.js",
     "/admin/resources/app.css": "/admin/resources/app.css",
-    "/site/resources/app.css": "/site/resources/app.css",
     "/admin/resources/materialize.css": "/admin/resources/materialize.css",
     "/site/resources/materialize.css": "/site/resources/materialize.css",
     "/site/resources/app.js": "/site/resources/app.js",
@@ -10,5 +9,6 @@
     "/site/resources/c3.min.js": "/site/resources/c3.min.js",
     "/site/resources/react.min.js": "/site/resources/react.min.js",
     "/site/resources/react-dom.min.js": "/site/resources/react-dom.min.js",
-    "/site/resources/materialize.js": "/site/resources/materialize.js"
+    "/site/resources/materialize.js": "/site/resources/materialize.js",
+    "/site/resources/app.css": "/site/resources/app.css"
 }
