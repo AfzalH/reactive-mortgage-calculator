@@ -14,7 +14,8 @@ let mix = require('laravel-mix');
 mix.webpackConfig({
     externals: {
         "react": "React",
-        "react-dom": "ReactDOM"
+        "react-dom": "ReactDOM",
+        "moment": "moment"
     }
 });
 
@@ -27,6 +28,7 @@ mix.react('assets/admin/js/app.jsx', 'admin/resources')
     .copy('assets/lib/c3/d3.min.js', 'site/resources/d3.min.js')
     .copy('assets/lib/c3/c3.min.css', 'site/resources/c3.min.css')
     .copy('assets/lib/c3/c3.min.js', 'site/resources/c3.min.js')
+    .copy('assets/lib/moment/moment.min.js', 'site/resources/moment.min.js')
     .copy('assets/lib/react/react.min.js', 'site/resources/react.min.js')
     .copy('assets/lib/react/react-dom.min.js', 'site/resources/react-dom.min.js')
     .copy('assets/lib/srizon-materialize/js/bin/materialize.min.js', 'site/resources/materialize.js');
