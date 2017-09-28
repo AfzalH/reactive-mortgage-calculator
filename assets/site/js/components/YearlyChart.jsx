@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
-class MonthlyChart extends Component {
+class YearlyChart extends Component {
     componentDidMount() {
-        this.breakdown = c3.generate({
-            bindto: '#breakdown' + this.id,
+        this.breakdown_yearly = c3.generate({
+            bindto: '#breakdown-yearly' + this.id,
             data: {
                 // x: 'x',
                 columns: [
@@ -30,13 +30,13 @@ class MonthlyChart extends Component {
                     value: (value, ratio, id, index) => {
                         return (this.props.currency + d3.format(',')(value));
                     },
-                    title: (value)=> (this.props.months[value])
+                    title: (value)=> (this.props.years[value])
                 }
             },
             axis: {
                 y: {
                     label: {
-                        text: 'Monthly Installment',
+                        text: 'Yearly Breakdown',
                         position: 'outer-middle',
                     },
                     tick: {
@@ -59,7 +59,7 @@ class MonthlyChart extends Component {
                 },
                 x: {
                     tick: {
-                        format: (value)=>(this.props.months[value])
+                        format: (value)=>(this.props.years[value])
                     }
                 }
 
@@ -68,7 +68,7 @@ class MonthlyChart extends Component {
     }
 
     componentDidUpdate() {
-        this.breakdown.load({
+        this.breakdown_yearly.load({
             columns: [
                 ['Principal', ...this.props.principal],
                 ['Interest', ...this.props.interest],
@@ -82,7 +82,7 @@ class MonthlyChart extends Component {
         return (
             <div className="row">
                 <div className="col s12">
-                    <div id={"breakdown"+id}>
+                    <div id={"breakdown-yearly"+id}>
                     </div>
                 </div>
             </div>
@@ -90,4 +90,4 @@ class MonthlyChart extends Component {
     }
 }
 
-export default MonthlyChart;
+export default YearlyChart;

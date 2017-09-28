@@ -5126,17 +5126,18 @@ module.exports = function spread(callback) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["g"] = getPropertyValue;
+/* harmony export (immutable) */ __webpack_exports__["h"] = getPropertyValue;
 /* unused harmony export getDownPaymentAmount */
-/* harmony export (immutable) */ __webpack_exports__["f"] = getMortgageAmount;
-/* harmony export (immutable) */ __webpack_exports__["b"] = getDownpaymentAmountFromPercent;
-/* harmony export (immutable) */ __webpack_exports__["c"] = getDownpaymentPercentFromAmount;
-/* harmony export (immutable) */ __webpack_exports__["h"] = getTenureInMonth;
-/* harmony export (immutable) */ __webpack_exports__["d"] = getMonthlyInterest;
+/* harmony export (immutable) */ __webpack_exports__["g"] = getMortgageAmount;
+/* harmony export (immutable) */ __webpack_exports__["c"] = getDownpaymentAmountFromPercent;
+/* harmony export (immutable) */ __webpack_exports__["d"] = getDownpaymentPercentFromAmount;
+/* harmony export (immutable) */ __webpack_exports__["i"] = getTenureInMonth;
+/* harmony export (immutable) */ __webpack_exports__["e"] = getMonthlyInterest;
 /* unused harmony export getBiWeeklyInterest */
 /* unused harmony export getInterestFraction */
-/* harmony export (immutable) */ __webpack_exports__["e"] = getMonthlyPayment;
+/* harmony export (immutable) */ __webpack_exports__["f"] = getMonthlyPayment;
 /* harmony export (immutable) */ __webpack_exports__["a"] = getBreakDown;
+/* harmony export (immutable) */ __webpack_exports__["b"] = getBreakDownInYear;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 
@@ -5190,8 +5191,7 @@ function getInterestFraction(state) {
 }
 
 function getMonthlyPayment(p, n, i) {
-    var monthly = p * i * Math.pow(1 + i, n) / (Math.pow(1 + i, n) - 1);
-    return monthly.toFixed(0);
+    return p * i * Math.pow(1 + i, n) / (Math.pow(1 + i, n) - 1);
 }
 
 function getBreakDown(state) {
@@ -5208,26 +5208,60 @@ function getBreakDown(state) {
     var balance = mortgage_amount;
     var month_ar = [];
     var month = __WEBPACK_IMPORTED_MODULE_0_moment___default()().add(state.start_month, 'month');
+    var year_ar = [];
 
     var current_month = 0;
     while (current_month < tenure_in_month) {
         interest = balance * monthly_interest;
         principal = monthly_installment - interest;
         balance = balance - principal;
-        if (balance <= 0) balance = 1;
+        if (balance < 0) balance = 0;
         interest_ar.push(interest.toFixed(2));
         principal_ar.push(principal.toFixed(2));
         balance_ar.push(balance.toFixed(2));
         month_ar.push(month.format('MMM-YY'));
+        year_ar.push(month.format('YYYY'));
         current_month = current_month + 1;
         month = month.add(1, 'month');
     }
-    return {
-        interest_ar: interest_ar,
-        principal_ar: principal_ar,
-        balance_ar: balance_ar,
-        month_ar: month_ar
-    };
+    return { interest_ar: interest_ar, principal_ar: principal_ar, balance_ar: balance_ar, month_ar: month_ar, year_ar: year_ar, mortgage_amount: mortgage_amount };
+}
+
+function getBreakDownInYear(breakdown) {
+    var interest_ar = [];
+    var interest = 0;
+    var principal_ar = [];
+    var principal = 0;
+    var balance_ar = [];
+    var balance = parseFloat(breakdown.mortgage_amount);
+    var year_ar = [];
+    var year = parseInt(breakdown.year_ar[0]);
+    var i = 0;
+    var total = breakdown.month_ar.length;
+    console.log(breakdown.interest_ar);
+    while (i < total) {
+        if (year == parseInt(breakdown.year_ar[i])) {
+            interest = interest + parseFloat(breakdown.interest_ar[i]);
+            principal = principal + parseFloat(breakdown.principal_ar[i]);
+            balance = balance - parseFloat(breakdown.principal_ar[i]);
+        } else {
+            year_ar.push(year);
+            interest_ar.push(interest.toFixed(2));
+            principal_ar.push(principal.toFixed(2));
+            balance_ar.push(balance.toFixed(2));
+
+            interest = parseFloat(breakdown.interest_ar[i]);
+            principal = parseFloat(breakdown.principal_ar[i]);
+            balance = balance - parseFloat(breakdown.principal_ar[i]);
+            year = parseInt(breakdown.year_ar[i]);
+        }
+        i = i + 1;
+    }
+    year_ar.push(year);
+    interest_ar.push(interest.toFixed(2));
+    principal_ar.push(principal.toFixed(2));
+    balance_ar.push(balance.toFixed(0));
+    return { interest_ar: interest_ar, principal_ar: principal_ar, balance_ar: balance_ar, year_ar: year_ar };
 }
 
 /***/ }),
@@ -5523,8 +5557,9 @@ function getAlbum(id) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UserInputs__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LoanPieChart__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MonthlyChart__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Partials_InfoRow__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__YearlyChart__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Partials_InfoRow__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__helpers__ = __webpack_require__(88);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -5536,6 +5571,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -5573,13 +5609,15 @@ var LayoutSelector = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var mortgage_amount = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["f" /* getMortgageAmount */])(this.state);
-            var tenure_in_month = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["h" /* getTenureInMonth */])(this.state);
-            var monthly_installment = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["e" /* getMonthlyPayment */])(mortgage_amount, tenure_in_month, Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["d" /* getMonthlyInterest */])(this.state));
+            var mortgage_amount = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["g" /* getMortgageAmount */])(this.state);
+            var tenure_in_month = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["i" /* getTenureInMonth */])(this.state);
+            var monthly_installment = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["f" /* getMonthlyPayment */])(mortgage_amount, tenure_in_month, Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["e" /* getMonthlyInterest */])(this.state));
             var total_payable = monthly_installment * tenure_in_month;
             var total_interest = total_payable - mortgage_amount;
-            var breakdown = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["a" /* getBreakDown */])(this.state);
+            var breakdown = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["a" /* getBreakDown */])(this.state);
+            var breakdown_yearly = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["b" /* getBreakDownInYear */])(breakdown);
             var currency = this.state.currency;
+            console.log(breakdown_yearly);
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
@@ -5597,18 +5635,22 @@ var LayoutSelector = function (_React$Component) {
                         { className: 'col m6 s12' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__LoanPieChart__["a" /* default */], {
                             id: this.props.id,
-                            monthly_installment: monthly_installment,
-                            mortgage_amount: mortgage_amount,
+                            monthly_installment: monthly_installment.toFixed(2),
+                            mortgage_amount: mortgage_amount.toFixed(2),
                             tenure_in_month: tenure_in_month,
                             currency: currency
                         })
                     )
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Partials_InfoRow__["a" /* default */], { currency: currency, monthly_installment: monthly_installment, mortgage_amount: mortgage_amount,
-                    total_payable: total_payable, total_interest: total_interest }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Partials_InfoRow__["a" /* default */], { currency: currency, monthly_installment: monthly_installment.toFixed(2),
+                    mortgage_amount: mortgage_amount.toFixed(2),
+                    total_payable: total_payable.toFixed(2), total_interest: total_interest.toFixed(2) }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__MonthlyChart__["a" /* default */], { principal: breakdown.principal_ar, interest: breakdown.interest_ar,
                     balance: breakdown.balance_ar,
                     currency: currency, months: breakdown.month_ar }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__YearlyChart__["a" /* default */], { principal: breakdown_yearly.principal_ar, interest: breakdown_yearly.interest_ar,
+                    balance: breakdown_yearly.balance_ar,
+                    currency: currency, years: breakdown_yearly.year_ar }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'pre',
                     null,
@@ -5830,15 +5872,15 @@ var DownpaymentInput = function (_Component) {
                 max: form.downpayment_percent_max, name: 'downpayment_percent',
                 onch: onch,
                 label: form.downpayment_text, step: .5,
-                prefix: form.currency + d3.format(',')(Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["b" /* getDownpaymentAmountFromPercent */])(form)) + ' - ',
+                prefix: form.currency + d3.format(',')(Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["c" /* getDownpaymentAmountFromPercent */])(form)) + ' - ',
                 suffix: '%' }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__["a" /* default */], { val: form.downpayment_amount,
-                min: Math.min(form.downpayment_amount_min, Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["g" /* getPropertyValue */])(form)),
-                max: Math.min(form.downpayment_amount_max, Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["g" /* getPropertyValue */])(form)),
+                min: Math.min(form.downpayment_amount_min, Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["h" /* getPropertyValue */])(form)),
+                max: Math.min(form.downpayment_amount_max, Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["h" /* getPropertyValue */])(form)),
                 name: 'downpayment_amount',
                 onch: onch,
                 label: form.downpayment_text, step: 1000,
                 prefix: form.currency,
-                suffix: ' - ' + Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["c" /* getDownpaymentPercentFromAmount */])(form) + '%' }) : form.downpayment_is_percent ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__["a" /* default */], { val: form.downpayment_percent_fixed,
+                suffix: ' - ' + Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["d" /* getDownpaymentPercentFromAmount */])(form) + '%' }) : form.downpayment_is_percent ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__["a" /* default */], { val: form.downpayment_percent_fixed,
                 name: 'downpayment_percent_fixed',
                 onch: onch,
                 label: form.downpayment_text, disabled: true }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__["a" /* default */], { val: form.downpayment_amount_fixed, name: 'downpayment_amount_fixed',
@@ -6043,8 +6085,8 @@ var LoanPieChart = function (_Component) {
                 tenure_in_month = _props.tenure_in_month,
                 currency = _props.currency;
 
-            var total_payable = monthly_installment * tenure_in_month;
-            var total_interest = total_payable - mortgage_amount;
+            var total_payable = (monthly_installment * tenure_in_month).toFixed(2);
+            var total_interest = (total_payable - mortgage_amount).toFixed(2);
             this.piechart = c3.generate({
                 bindto: '#pie' + id,
                 data: {
@@ -6191,10 +6233,6 @@ var MonthlyChart = function (_Component) {
                         padding: { top: 10, bottom: 0 }
                     },
                     x: {
-                        label: {
-                            text: 'Month No.',
-                            position: 'outer-left'
-                        },
                         tick: {
                             format: function format(value) {
                                 return _this2.props.months[value];
@@ -6338,6 +6376,142 @@ var InfoRow = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (InfoRow);
+
+/***/ }),
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var YearlyChart = function (_Component) {
+    _inherits(YearlyChart, _Component);
+
+    function YearlyChart() {
+        _classCallCheck(this, YearlyChart);
+
+        return _possibleConstructorReturn(this, (YearlyChart.__proto__ || Object.getPrototypeOf(YearlyChart)).apply(this, arguments));
+    }
+
+    _createClass(YearlyChart, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            this.breakdown_yearly = c3.generate({
+                bindto: '#breakdown-yearly' + this.id,
+                data: {
+                    // x: 'x',
+                    columns: [
+                    // ['x', 2001, 2002, 2003, 2004, 2005, 2006, 2007],
+                    ['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Balance'].concat(_toConsumableArray(this.props.balance))],
+                    axes: {
+                        Balance: 'y2'
+                    },
+                    type: 'bar',
+                    types: {
+                        Balance: 'spline'
+                    },
+                    groups: [['Principal', 'Interest']],
+                    order: null
+
+                },
+                tooltip: {
+                    format: {
+                        value: function value(_value, ratio, id, index) {
+                            return _this2.props.currency + d3.format(',')(_value);
+                        },
+                        title: function title(value) {
+                            return _this2.props.years[value];
+                        }
+                    }
+                },
+                axis: {
+                    y: {
+                        label: {
+                            text: 'Yearly Breakdown',
+                            position: 'outer-middle'
+                        },
+                        tick: {
+                            format: function format(value) {
+                                return _this2.props.currency + d3.format(',')(value);
+                            }
+                        },
+                        min: 0,
+                        padding: { top: 10, bottom: 0 }
+                    },
+                    y2: {
+                        show: true,
+                        label: {
+                            text: 'Remaining Balance',
+                            position: 'outer-middle'
+                        },
+                        tick: {
+                            format: function format(value) {
+                                return _this2.props.currency + d3.format(',')(value);
+                            }
+                        },
+                        min: 0,
+                        padding: { top: 10, bottom: 0 }
+                    },
+                    x: {
+                        tick: {
+                            format: function format(value) {
+                                return _this2.props.years[value];
+                            }
+                        }
+                    }
+
+                }
+            });
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            this.breakdown_yearly.load({
+                columns: [['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Balance'].concat(_toConsumableArray(this.props.balance))]
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var id = this.props.id;
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'row' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'col s12' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: "breakdown-yearly" + id })
+                )
+            );
+        }
+    }]);
+
+    return YearlyChart;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (YearlyChart);
 
 /***/ })
 /******/ ]);

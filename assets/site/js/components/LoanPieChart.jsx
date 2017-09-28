@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 class LoanPieChart extends Component {
     componentDidMount() {
         const {id, monthly_installment, mortgage_amount, tenure_in_month, currency} = this.props;
-        const total_payable = monthly_installment * tenure_in_month;
-        const total_interest = total_payable - mortgage_amount;
+        const total_payable = (monthly_installment * tenure_in_month).toFixed(2);
+        const total_interest = (total_payable - mortgage_amount).toFixed(2);
         this.piechart = c3.generate({
             bindto: '#pie' + id,
             data: {
