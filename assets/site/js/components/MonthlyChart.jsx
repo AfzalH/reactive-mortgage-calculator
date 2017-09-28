@@ -29,13 +29,14 @@ class MonthlyChart extends Component {
                 format: {
                     value: (value, ratio, id, index) => {
                         return (this.props.currency + d3.format(',')(value));
-                    }
+                    },
+                    title: (t)=> ('Month: ' + (t + 1))
                 }
             },
             axis: {
                 y: {
                     label: {
-                        text: 'Monthly',
+                        text: 'Monthly Installment',
                         position: 'outer-middle',
                     },
                     tick: {
@@ -47,7 +48,7 @@ class MonthlyChart extends Component {
                 y2: {
                     show: true,
                     label: {
-                        text: 'Balance',
+                        text: 'Remaining Balance',
                         position: 'outer-middle'
                     },
                     tick: {
@@ -55,6 +56,15 @@ class MonthlyChart extends Component {
                     },
                     min: 0,
                     padding: {top: 10, bottom: 0}
+                },
+                x: {
+                    label: {
+                        text: 'Month No.',
+                        position: 'outer-left'
+                    },
+                    tick: {
+                        format: (value)=>(value + 1)
+                    }
                 }
 
             }

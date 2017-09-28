@@ -6037,13 +6037,16 @@ var MonthlyChart = function (_Component) {
                     format: {
                         value: function value(_value, ratio, id, index) {
                             return _this2.props.currency + d3.format(',')(_value);
+                        },
+                        title: function title(t) {
+                            return 'Month: ' + (t + 1);
                         }
                     }
                 },
                 axis: {
                     y: {
                         label: {
-                            text: 'Monthly',
+                            text: 'Monthly Installment',
                             position: 'outer-middle'
                         },
                         tick: {
@@ -6057,7 +6060,7 @@ var MonthlyChart = function (_Component) {
                     y2: {
                         show: true,
                         label: {
-                            text: 'Balance',
+                            text: 'Remaining Balance',
                             position: 'outer-middle'
                         },
                         tick: {
@@ -6067,6 +6070,17 @@ var MonthlyChart = function (_Component) {
                         },
                         min: 0,
                         padding: { top: 10, bottom: 0 }
+                    },
+                    x: {
+                        label: {
+                            text: 'Month No.',
+                            position: 'outer-left'
+                        },
+                        tick: {
+                            format: function format(value) {
+                                return value + 1;
+                            }
+                        }
                     }
 
                 }
