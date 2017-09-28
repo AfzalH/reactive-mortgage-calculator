@@ -17,7 +17,7 @@ class MonthlyChart extends Component {
                 },
                 type: 'bar',
                 types: {
-                    Balance: 'area'
+                    Balance: 'spline'
                 },
                 groups: [
                     ['Principal', 'Interest']
@@ -25,19 +25,36 @@ class MonthlyChart extends Component {
                 order: null,
 
             },
+            tooltip: {
+                format: {
+                    value: (value, ratio, id, index) => {
+                        return (this.props.currency + d3.format(',')(value));
+                    }
+                }
+            },
             axis: {
                 y: {
                     label: {
                         text: 'Monthly',
                         position: 'outer-middle',
-                    }
+                    },
+                    tick: {
+                        format: (value)=>(this.props.currency + d3.format(',')(value))
+                    },
+                    min: 0,
+                    padding: {top: 10, bottom: 0}
                 },
                 y2: {
                     show: true,
                     label: {
                         text: 'Balance',
                         position: 'outer-middle'
-                    }
+                    },
+                    tick: {
+                        format: (value)=>(this.props.currency + d3.format(',')(value))
+                    },
+                    min: 0,
+                    padding: {top: 10, bottom: 0}
                 }
 
             }

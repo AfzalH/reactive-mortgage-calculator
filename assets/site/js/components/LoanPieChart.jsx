@@ -21,12 +21,12 @@ class LoanPieChart extends Component {
                         return d3.format('.1%')(ratio);
                     }
                 },
-                title: currency + monthly_installment + '/Mo',
+                title: currency + d3.format(',')(monthly_installment) + '/Mo',
             },
             tooltip: {
                 format: {
                     value: (value, ratio, id, index) => {
-                        return (currency + value);
+                        return (currency + d3.format(',')(value));
                     }
                 }
             }
@@ -44,7 +44,7 @@ class LoanPieChart extends Component {
             ]
         });
 
-        d3.select('#pie' + id + ' .c3-chart-arcs-title').node().innerHTML = currency + monthly_installment + '/Mo';
+        d3.select('#pie' + id + ' .c3-chart-arcs-title').node().innerHTML = currency + d3.format(',')(monthly_installment) + '/Mo';
 
     }
 

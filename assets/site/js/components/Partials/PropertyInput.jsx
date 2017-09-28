@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import RangeField from '../../../../admin/js/components/form/RangeField';
+import RangeField from '../../../../admin/js/components/form/RangeFieldCommaFormat';
 import TextField from '../../../../admin/js/components/form/TextField';
 
 

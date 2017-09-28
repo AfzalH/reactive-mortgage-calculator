@@ -5551,7 +5551,7 @@ var LayoutSelector = function (_React$Component) {
                 interest = balance * monthly_interest;
                 principal = monthly_installment - interest;
                 balance = balance - principal;
-                if (balance < 0) balance = 0;
+                if (balance <= 0) balance = 1;
 
                 interest_ar.push(interest.toFixed(2));
                 principal_ar.push(principal.toFixed(2));
@@ -5601,7 +5601,7 @@ var LayoutSelector = function (_React$Component) {
                                 'strong',
                                 {
                                     className: 'red-text text-darken-2' },
-                                this.state.currency + monthly_installment
+                                this.state.currency + d3.format(',')(monthly_installment)
                             )
                         )
                     ),
@@ -5615,7 +5615,7 @@ var LayoutSelector = function (_React$Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'strong',
                                 null,
-                                this.state.currency + mortgage_amount
+                                this.state.currency + d3.format(',')(mortgage_amount)
                             )
                         )
                     ),
@@ -5629,7 +5629,7 @@ var LayoutSelector = function (_React$Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'strong',
                                 null,
-                                this.state.currency + total_payable
+                                this.state.currency + d3.format(',')(total_payable)
                             )
                         )
                     ),
@@ -5643,15 +5643,19 @@ var LayoutSelector = function (_React$Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'strong',
                                 null,
-                                this.state.currency + total_interest
+                                this.state.currency + d3.format(',')(total_interest)
                             )
                         )
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { className: 'col s12' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__MonthlyChart__["a" /* default */], { principal: principal_ar, interest: interest_ar, balance: balance_ar })
+                    { className: 'row' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'col s12' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__MonthlyChart__["a" /* default */], { principal: principal_ar, interest: interest_ar, balance: balance_ar, currency: this.state.currency })
+                    )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'pre',
@@ -5674,7 +5678,7 @@ var LayoutSelector = function (_React$Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeFieldCommaFormat__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__ = __webpack_require__(7);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -5704,7 +5708,7 @@ var PropertyInput = function (_Component) {
                 form = _props.form,
                 onch = _props.onch;
 
-            return form.property_value_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__["a" /* default */], { val: form.property_value, min: form.property_value_min,
+            return form.property_value_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeFieldCommaFormat__["a" /* default */], { val: form.property_value, min: form.property_value_min,
                 max: form.property_value_max, name: 'property_value', onch: onch,
                 label: form.property_value_text, step: 1000,
                 prefix: form.currency }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__["a" /* default */], { val: form.property_value_fixed, name: 'property_value_fixed',
@@ -5760,7 +5764,7 @@ var DownpaymentInput = function (_Component) {
                 max: form.downpayment_percent_max, name: 'downpayment_percent',
                 onch: onch,
                 label: form.downpayment_text, step: .5,
-                prefix: form.currency + this.props.getDownpaymentAmountFromPercent() + ' - ',
+                prefix: form.currency + d3.format(',')(this.props.getDownpaymentAmountFromPercent()) + ' - ',
                 suffix: '%' }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__["a" /* default */], { val: form.downpayment_amount,
                 min: Math.min(form.downpayment_amount_min, this.props.getPropertyValue()),
                 max: Math.min(form.downpayment_amount_max, this.props.getPropertyValue()),
@@ -5935,12 +5939,12 @@ var LoanPieChart = function (_Component) {
                             return d3.format('.1%')(ratio);
                         }
                     },
-                    title: currency + monthly_installment + '/Mo'
+                    title: currency + d3.format(',')(monthly_installment) + '/Mo'
                 },
                 tooltip: {
                     format: {
                         value: function value(_value, ratio, id, index) {
-                            return currency + _value;
+                            return currency + d3.format(',')(_value);
                         }
                     }
                 }
@@ -5962,7 +5966,7 @@ var LoanPieChart = function (_Component) {
                 columns: [['Principal', mortgage_amount], ['Interest', total_interest]]
             });
 
-            d3.select('#pie' + id + ' .c3-chart-arcs-title').node().innerHTML = currency + monthly_installment + '/Mo';
+            d3.select('#pie' + id + ' .c3-chart-arcs-title').node().innerHTML = currency + d3.format(',')(monthly_installment) + '/Mo';
         }
     }, {
         key: 'render',
@@ -6009,6 +6013,8 @@ var MonthlyChart = function (_Component) {
     _createClass(MonthlyChart, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
+            var _this2 = this;
+
             this.breakdown = c3.generate({
                 bindto: '#breakdown' + this.id,
                 data: {
@@ -6021,25 +6027,46 @@ var MonthlyChart = function (_Component) {
                     },
                     type: 'bar',
                     types: {
-                        Balance: 'area'
+                        Balance: 'spline'
                     },
                     groups: [['Principal', 'Interest']],
                     order: null
 
+                },
+                tooltip: {
+                    format: {
+                        value: function value(_value, ratio, id, index) {
+                            return _this2.props.currency + d3.format(',')(_value);
+                        }
+                    }
                 },
                 axis: {
                     y: {
                         label: {
                             text: 'Monthly',
                             position: 'outer-middle'
-                        }
+                        },
+                        tick: {
+                            format: function format(value) {
+                                return _this2.props.currency + d3.format(',')(value);
+                            }
+                        },
+                        min: 0,
+                        padding: { top: 10, bottom: 0 }
                     },
                     y2: {
                         show: true,
                         label: {
                             text: 'Balance',
                             position: 'outer-middle'
-                        }
+                        },
+                        tick: {
+                            format: function format(value) {
+                                return _this2.props.currency + d3.format(',')(value);
+                            }
+                        },
+                        min: 0,
+                        padding: { top: 10, bottom: 0 }
                     }
 
                 }
@@ -6065,6 +6092,65 @@ var MonthlyChart = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (MonthlyChart);
+
+/***/ }),
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+// dumb component ... only props and presentation
+var RangeField = function RangeField(_ref) {
+    var val = _ref.val,
+        onch = _ref.onch,
+        name = _ref.name,
+        label = _ref.label,
+        aclass = _ref.aclass,
+        min = _ref.min,
+        max = _ref.max,
+        _ref$step = _ref.step,
+        step = _ref$step === undefined ? 1 : _ref$step,
+        _ref$prefix = _ref.prefix,
+        prefix = _ref$prefix === undefined ? '' : _ref$prefix,
+        _ref$suffix = _ref.suffix,
+        suffix = _ref$suffix === undefined ? '' : _ref$suffix;
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: "input-field " + aclass },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'p',
+            { className: 'grey-text bottom0' },
+            label,
+            ' : ',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'span',
+                {
+                    className: 'green-text text-darken-1' },
+                ' ',
+                prefix + d3.format(',')(val) + suffix,
+                ' '
+            )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'p',
+            { className: 'range-field top0' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'range', name: name, value: val, step: step,
+                onChange: onch, id: name, min: min, max: max })
+        )
+    );
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (RangeField);
 
 /***/ })
 /******/ ]);

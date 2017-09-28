@@ -14,7 +14,7 @@ class DownpaymentInput extends Component {
                                 max={form.downpayment_percent_max} name="downpayment_percent"
                                 onch={onch}
                                 label={form.downpayment_text} step={.5}
-                                prefix={form.currency + this.props.getDownpaymentAmountFromPercent() + ' - '}
+                                prefix={form.currency + d3.format(',')(this.props.getDownpaymentAmountFromPercent()) + ' - '}
                                 suffix='%'/> :
                     <RangeField val={form.downpayment_amount}
                                 min={Math.min(form.downpayment_amount_min,this.props.getPropertyValue())}

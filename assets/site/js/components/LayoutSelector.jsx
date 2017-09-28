@@ -102,7 +102,7 @@ class LayoutSelector extends React.Component {
             interest = balance * monthly_interest;
             principal = monthly_installment - interest;
             balance = balance - principal;
-            if (balance < 0) balance = 0;
+            if (balance <= 0) balance = 1;
 
             interest_ar.push(interest.toFixed(2));
             principal_ar.push(principal.toFixed(2));
@@ -134,20 +134,22 @@ class LayoutSelector extends React.Component {
                 <div className="row info-row">
                     <div className="col s12 m6 center-align">
                             <span>Monthly Installment: <strong
-                                className="red-text text-darken-2">{this.state.currency + monthly_installment}</strong></span>
+                                className="red-text text-darken-2">{this.state.currency + d3.format(',')(monthly_installment)}</strong></span>
                     </div>
                     <div className="col s12 m6 center-align">
-                        <span>Mortgage Amount: <strong>{this.state.currency + mortgage_amount}</strong></span>
+                        <span>Mortgage Amount: <strong>{this.state.currency + d3.format(',')(mortgage_amount)}</strong></span>
                     </div>
                     <div className="col s12 m6 center-align">
-                        <span>Total Payment: <strong>{this.state.currency + total_payable}</strong></span>
+                        <span>Total Payment: <strong>{this.state.currency + d3.format(',')(total_payable)}</strong></span>
                     </div>
                     <div className="col s12 m6 center-align">
-                        <span>Interest To Be Payed: <strong>{this.state.currency + total_interest}</strong></span>
+                        <span>Interest To Be Payed: <strong>{this.state.currency + d3.format(',')(total_interest)}</strong></span>
                     </div>
                 </div>
-                <div className="col s12">
-                    <MonthlyChart principal={principal_ar} interest={interest_ar} balance={balance_ar}/>
+                <div className="row">
+                    <div className="col s12">
+                        <MonthlyChart principal={principal_ar} interest={interest_ar} balance={balance_ar} currency={this.state.currency}/>
+                    </div>
                 </div>
                 <pre>{JSON.stringify(this.state, null, 4)}</pre>
             </div>
