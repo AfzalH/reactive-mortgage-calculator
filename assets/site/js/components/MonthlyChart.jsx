@@ -84,7 +84,11 @@ class MonthlyChart extends Component {
     render() {
         const {id} = this.props;
         return (
-            <div id={"breakdown"+id}>
+            <div className="row">
+                <div className="col s12">
+                    <div id={"breakdown"+id}>
+                    </div>
+                </div>
             </div>
         );
     }

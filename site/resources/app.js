@@ -5465,6 +5465,7 @@ var PropertyInput = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers__ = __webpack_require__(262);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5472,6 +5473,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -5498,15 +5500,15 @@ var DownpaymentInput = function (_Component) {
                 max: form.downpayment_percent_max, name: 'downpayment_percent',
                 onch: onch,
                 label: form.downpayment_text, step: .5,
-                prefix: form.currency + d3.format(',')(this.props.getDownpaymentAmountFromPercent()) + ' - ',
+                prefix: form.currency + d3.format(',')(Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["b" /* getDownpaymentAmountFromPercent */])(form)) + ' - ',
                 suffix: '%' }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__["a" /* default */], { val: form.downpayment_amount,
-                min: Math.min(form.downpayment_amount_min, this.props.getPropertyValue()),
-                max: Math.min(form.downpayment_amount_max, this.props.getPropertyValue()),
+                min: Math.min(form.downpayment_amount_min, Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["g" /* getPropertyValue */])(form)),
+                max: Math.min(form.downpayment_amount_max, Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["g" /* getPropertyValue */])(form)),
                 name: 'downpayment_amount',
                 onch: onch,
                 label: form.downpayment_text, step: 1000,
                 prefix: form.currency,
-                suffix: ' - ' + this.props.getDownpaymentPercentFromAmount() + '%' }) : form.downpayment_is_percent ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__["a" /* default */], { val: form.downpayment_percent_fixed,
+                suffix: ' - ' + Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["c" /* getDownpaymentPercentFromAmount */])(form) + '%' }) : form.downpayment_is_percent ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__["a" /* default */], { val: form.downpayment_percent_fixed,
                 name: 'downpayment_percent_fixed',
                 onch: onch,
                 label: form.downpayment_text, disabled: true }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__["a" /* default */], { val: form.downpayment_amount_fixed, name: 'downpayment_amount_fixed',
@@ -5832,7 +5834,15 @@ var MonthlyChart = function (_Component) {
         value: function render() {
             var id = this.props.id;
 
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: "breakdown" + id });
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'row' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'col s12' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: "breakdown" + id })
+                )
+            );
         }
     }]);
 
@@ -5961,8 +5971,8 @@ var StartMonthInput = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Partials_StartMonthInput__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__LoanPieChart__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__MonthlyChart__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Partials_InfoRow__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__helpers__ = __webpack_require__(262);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -5985,6 +5995,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var LayoutSelector = function (_React$Component) {
     _inherits(LayoutSelector, _React$Component);
 
@@ -5993,7 +6004,6 @@ var LayoutSelector = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (LayoutSelector.__proto__ || Object.getPrototypeOf(LayoutSelector)).call(this, props));
 
-        _this.graphid = 'graph' + props.id;
         _this.state = _extends({}, _this.props.options);
         _this.onch = _this.onch.bind(_this);
         return _this;
@@ -6012,107 +6022,21 @@ var LayoutSelector = function (_React$Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             Materialize.updateTextFields();
-            this.setState({});
-        }
-    }, {
-        key: 'getPropertyValue',
-        value: function getPropertyValue() {
-            return this.state.property_value_is_changeable ? this.state.property_value : this.state.property_value_fixed;
-        }
-    }, {
-        key: 'getDownPaymentAmount',
-        value: function getDownPaymentAmount() {
-            if (this.state.downpayment_is_percent) {
-                return this.getDownpaymentAmountFromPercent();
-            }
-            var amount = this.state.downpayment_is_changeable ? this.state.downpayment_amount : this.state.downpayment_amount_fixed;
-            return amount.toFixed(0);
-        }
-    }, {
-        key: 'getMortgageAmount',
-        value: function getMortgageAmount() {
-            return this.getPropertyValue() - this.getDownPaymentAmount();
-        }
-    }, {
-        key: 'getDownpaymentAmountFromPercent',
-        value: function getDownpaymentAmountFromPercent() {
-            var propertyValue = this.getPropertyValue();
-            var percent = this.state.downpayment_is_changeable ? this.state.downpayment_percent : this.state.downpayment_percent_fixed;
-            var calc = propertyValue * (percent / 100);
-            return calc.toFixed(0);
-        }
-    }, {
-        key: 'getDownpaymentPercentFromAmount',
-        value: function getDownpaymentPercentFromAmount() {
-            var propertyValue = this.getPropertyValue();
-            var amount = this.state.downpayment_is_changeable ? this.state.downpayment_amount : this.state.downpayment_amount_fixed;
-            var calc = amount / propertyValue * 100;
-            return calc.toFixed(2);
-        }
-    }, {
-        key: 'getTenureInMonth',
-        value: function getTenureInMonth() {
-            var year = this.state.tenure_is_changeable ? this.state.tenure : this.state.tenure_fixed;
-            return year * 12;
-        }
-    }, {
-        key: 'getMonthlyInterest',
-        value: function getMonthlyInterest() {
-            return this.getInterestFraction() / 12;
-        }
-    }, {
-        key: 'getBiWeeklyInterest',
-        value: function getBiWeeklyInterest() {
-            return this.getInterestFraction() / 24;
-        }
-    }, {
-        key: 'getInterestFraction',
-        value: function getInterestFraction() {
-            var interest = this.state.interest_is_changeable ? this.state.interest : this.state.interest_fixed;
-            return interest / 100;
-        }
-    }, {
-        key: 'getMonthlyPayment',
-        value: function getMonthlyPayment(p, n, i) {
-            var monthly = p * i * Math.pow(1 + i, n) / (Math.pow(1 + i, n) - 1);
-            return monthly.toFixed(0);
         }
     }, {
         key: 'render',
         value: function render() {
-            var monthly_interest = this.getMonthlyInterest();
-            var monthly_installment = this.getMonthlyPayment(this.getMortgageAmount(), this.getTenureInMonth(), this.getMonthlyInterest());
-            var mortgage_amount = this.getMortgageAmount();
-            var tenure_in_month = this.getTenureInMonth();
+            var mortgage_amount = Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["f" /* getMortgageAmount */])(this.state);
+            var tenure_in_month = Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["h" /* getTenureInMonth */])(this.state);
+            var monthly_installment = Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["e" /* getMonthlyPayment */])(mortgage_amount, tenure_in_month, Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["d" /* getMonthlyInterest */])(this.state));
             var total_payable = monthly_installment * tenure_in_month;
             var total_interest = total_payable - mortgage_amount;
+            var breakdown = Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["a" /* getBreakDown */])(this.state);
+            var currency = this.state.currency;
 
-            var interest_ar = [];
-            var interest = 0;
-            var principal_ar = [];
-            var principal = 0;
-            var balance_ar = [];
-            var balance = mortgage_amount;
-            var month_ar = [];
-            var month = null;
-
-            var current_month = 0;
-            while (current_month < tenure_in_month) {
-                interest = balance * monthly_interest;
-                principal = monthly_installment - interest;
-                balance = balance - principal;
-                if (balance <= 0) balance = 1;
-                month = __WEBPACK_IMPORTED_MODULE_8_moment___default()().add(current_month + this.state.start_month, 'month').format('MMM-YY');
-                interest_ar.push(interest.toFixed(2));
-                principal_ar.push(principal.toFixed(2));
-                balance_ar.push(balance.toFixed(2));
-                month_ar.push(month);
-                current_month = current_month + 1;
-            }
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: this.graphid }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'row' },
@@ -6120,10 +6044,7 @@ var LayoutSelector = function (_React$Component) {
                         'div',
                         { className: 'col m6 s12' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Partials_PropertyInput__["a" /* default */], { form: this.state, onch: this.onch }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Partials_DownpaymentInput__["a" /* default */], { form: this.state, onch: this.onch,
-                            getPropertyValue: this.getPropertyValue.bind(this),
-                            getDownpaymentAmountFromPercent: this.getDownpaymentAmountFromPercent.bind(this),
-                            getDownpaymentPercentFromAmount: this.getDownpaymentPercentFromAmount.bind(this) }),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Partials_DownpaymentInput__["a" /* default */], { form: this.state, onch: this.onch }),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Partials_InterestInput__["a" /* default */], { form: this.state, onch: this.onch }),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Partials_TenureInput__["a" /* default */], { form: this.state, onch: this.onch }),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Partials_StartMonthInput__["a" /* default */], { form: this.state, onch: this.onch })
@@ -6136,81 +6057,15 @@ var LayoutSelector = function (_React$Component) {
                             monthly_installment: monthly_installment,
                             mortgage_amount: mortgage_amount,
                             tenure_in_month: tenure_in_month,
-                            currency: this.state.currency
+                            currency: currency
                         })
                     )
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'row info-row' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'col s12 m6 center-align' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'span',
-                            null,
-                            'Monthly Installment: ',
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'strong',
-                                {
-                                    className: 'red-text text-darken-2' },
-                                this.state.currency + d3.format(',')(monthly_installment)
-                            )
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'col s12 m6 center-align' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'span',
-                            null,
-                            'Mortgage Amount: ',
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'strong',
-                                null,
-                                this.state.currency + d3.format(',')(mortgage_amount)
-                            )
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'col s12 m6 center-align' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'span',
-                            null,
-                            'Total Payment: ',
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'strong',
-                                null,
-                                this.state.currency + d3.format(',')(total_payable)
-                            )
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'col s12 m6 center-align' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'span',
-                            null,
-                            'Interest To Be Payed: ',
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'strong',
-                                null,
-                                this.state.currency + d3.format(',')(total_interest)
-                            )
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'row' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'col s12' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__MonthlyChart__["a" /* default */], { principal: principal_ar, interest: interest_ar, balance: balance_ar,
-                            currency: this.state.currency, months: month_ar })
-                    )
-                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__Partials_InfoRow__["a" /* default */], { currency: currency, monthly_installment: monthly_installment, mortgage_amount: mortgage_amount,
+                    total_payable: total_payable, total_interest: total_interest }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__MonthlyChart__["a" /* default */], { principal: breakdown.principal_ar, interest: breakdown.interest_ar,
+                    balance: breakdown.balance_ar,
+                    currency: currency, months: breakdown.month_ar }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'pre',
                     null,
@@ -22026,6 +21881,220 @@ webpackContext.keys = function webpackContextKeys() {
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
 webpackContext.id = 261;
+
+/***/ }),
+/* 262 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["g"] = getPropertyValue;
+/* unused harmony export getDownPaymentAmount */
+/* harmony export (immutable) */ __webpack_exports__["f"] = getMortgageAmount;
+/* harmony export (immutable) */ __webpack_exports__["b"] = getDownpaymentAmountFromPercent;
+/* harmony export (immutable) */ __webpack_exports__["c"] = getDownpaymentPercentFromAmount;
+/* harmony export (immutable) */ __webpack_exports__["h"] = getTenureInMonth;
+/* harmony export (immutable) */ __webpack_exports__["d"] = getMonthlyInterest;
+/* unused harmony export getBiWeeklyInterest */
+/* unused harmony export getInterestFraction */
+/* harmony export (immutable) */ __webpack_exports__["e"] = getMonthlyPayment;
+/* harmony export (immutable) */ __webpack_exports__["a"] = getBreakDown;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
+
+
+function getPropertyValue(state) {
+    return state.property_value_is_changeable ? state.property_value : state.property_value_fixed;
+}
+
+function getDownPaymentAmount(state) {
+    if (state.downpayment_is_percent) {
+        return getDownpaymentAmountFromPercent(state);
+    }
+    var amount = state.downpayment_is_changeable ? state.downpayment_amount : state.downpayment_amount_fixed;
+    return amount.toFixed(0);
+}
+
+function getMortgageAmount(state) {
+    return getPropertyValue(state) - getDownPaymentAmount(state);
+}
+
+function getDownpaymentAmountFromPercent(state) {
+    var propertyValue = getPropertyValue(state);
+    var percent = state.downpayment_is_changeable ? state.downpayment_percent : state.downpayment_percent_fixed;
+    var calc = propertyValue * (percent / 100);
+    return calc.toFixed(0);
+}
+
+function getDownpaymentPercentFromAmount(state) {
+    var propertyValue = getPropertyValue(state);
+    var amount = state.downpayment_is_changeable ? state.downpayment_amount : state.downpayment_amount_fixed;
+    var calc = amount / propertyValue * 100;
+    return calc.toFixed(2);
+}
+
+function getTenureInMonth(state) {
+    var year = state.tenure_is_changeable ? state.tenure : state.tenure_fixed;
+    return year * 12;
+}
+
+function getMonthlyInterest(state) {
+    return getInterestFraction(state) / 12;
+}
+
+function getBiWeeklyInterest(state) {
+    return getInterestFraction(state) / 24;
+}
+
+function getInterestFraction(state) {
+    var interest = state.interest_is_changeable ? state.interest : state.interest_fixed;
+    return interest / 100;
+}
+
+function getMonthlyPayment(p, n, i) {
+    var monthly = p * i * Math.pow(1 + i, n) / (Math.pow(1 + i, n) - 1);
+    return monthly.toFixed(0);
+}
+
+function getBreakDown(state) {
+    var monthly_interest = getMonthlyInterest(state);
+    var monthly_installment = getMonthlyPayment(getMortgageAmount(state), getTenureInMonth(state), getMonthlyInterest(state));
+    var mortgage_amount = getMortgageAmount(state);
+    var tenure_in_month = getTenureInMonth(state);
+
+    var interest_ar = [];
+    var interest = 0;
+    var principal_ar = [];
+    var principal = 0;
+    var balance_ar = [];
+    var balance = mortgage_amount;
+    var month_ar = [];
+    var month = null;
+
+    var current_month = 0;
+    while (current_month < tenure_in_month) {
+        interest = balance * monthly_interest;
+        principal = monthly_installment - interest;
+        balance = balance - principal;
+        if (balance <= 0) balance = 1;
+        month = __WEBPACK_IMPORTED_MODULE_0_moment___default()().add(current_month + state.start_month, 'month').format('MMM-YY');
+        interest_ar.push(interest.toFixed(2));
+        principal_ar.push(principal.toFixed(2));
+        balance_ar.push(balance.toFixed(2));
+        month_ar.push(month);
+        current_month = current_month + 1;
+    }
+    return {
+        interest_ar: interest_ar,
+        principal_ar: principal_ar,
+        balance_ar: balance_ar,
+        month_ar: month_ar
+    };
+}
+
+/***/ }),
+/* 263 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var InfoRow = function (_Component) {
+    _inherits(InfoRow, _Component);
+
+    function InfoRow() {
+        _classCallCheck(this, InfoRow);
+
+        return _possibleConstructorReturn(this, (InfoRow.__proto__ || Object.getPrototypeOf(InfoRow)).apply(this, arguments));
+    }
+
+    _createClass(InfoRow, [{
+        key: "render",
+        value: function render() {
+            var _props = this.props,
+                currency = _props.currency,
+                monthly_installment = _props.monthly_installment,
+                mortgage_amount = _props.mortgage_amount,
+                total_payable = _props.total_payable,
+                total_interest = _props.total_interest;
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "row info-row" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12 m6 center-align" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "span",
+                        null,
+                        "Monthly Installment: ",
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            {
+                                className: "red-text text-darken-2" },
+                            currency + d3.format(',')(monthly_installment)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12 m6 center-align" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "span",
+                        null,
+                        "Mortgage Amount: ",
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            null,
+                            currency + d3.format(',')(mortgage_amount)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12 m6 center-align" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "span",
+                        null,
+                        "Total Payment: ",
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            null,
+                            currency + d3.format(',')(total_payable)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12 m6 center-align" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "span",
+                        null,
+                        "Interest To Be Payed: ",
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            null,
+                            currency + d3.format(',')(total_interest)
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return InfoRow;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (InfoRow);
 
 /***/ })
 /******/ ]);

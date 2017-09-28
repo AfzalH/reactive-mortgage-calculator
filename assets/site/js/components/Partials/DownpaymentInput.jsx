@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import RangeField from '../../../../admin/js/components/form/RangeField';
 import TextField from '../../../../admin/js/components/form/TextField';
+import {
+    getDownpaymentAmountFromPercent,
+    getDownpaymentPercentFromAmount,
+    getPropertyValue,
+} from '../../helpers';
 
 
 class DownpaymentInput extends Component {
@@ -14,16 +19,16 @@ class DownpaymentInput extends Component {
                                 max={form.downpayment_percent_max} name="downpayment_percent"
                                 onch={onch}
                                 label={form.downpayment_text} step={.5}
-                                prefix={form.currency + d3.format(',')(this.props.getDownpaymentAmountFromPercent()) + ' - '}
+                                prefix={form.currency + d3.format(',')(getDownpaymentAmountFromPercent(form)) + ' - '}
                                 suffix='%'/> :
                     <RangeField val={form.downpayment_amount}
-                                min={Math.min(form.downpayment_amount_min,this.props.getPropertyValue())}
-                                max={Math.min(form.downpayment_amount_max,this.props.getPropertyValue())}
+                                min={Math.min(form.downpayment_amount_min,getPropertyValue(form))}
+                                max={Math.min(form.downpayment_amount_max,getPropertyValue(form))}
                                 name="downpayment_amount"
                                 onch={onch}
                                 label={form.downpayment_text} step={1000}
                                 prefix={form.currency}
-                                suffix={' - '+ this.props.getDownpaymentPercentFromAmount() + '%'}/>
+                                suffix={' - '+ getDownpaymentPercentFromAmount(form) + '%'}/>
                 :
                 form.downpayment_is_percent ?
                     <TextField val={form.downpayment_percent_fixed}
