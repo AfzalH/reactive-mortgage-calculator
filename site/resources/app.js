@@ -5416,7 +5416,7 @@ function getAlbum(id) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Partials_InterestInput__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Partials_TenureInput__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__LoanPieChart__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MonthlyChart__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MonthlyChart__ = __webpack_require__(134);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -5934,7 +5934,8 @@ var LoanPieChart = function (_Component) {
                         format: function format(value, ratio, id) {
                             return d3.format('.1%')(ratio);
                         }
-                    }
+                    },
+                    title: currency + monthly_installment + '/Mo'
                 },
                 tooltip: {
                     format: {
@@ -5952,13 +5953,16 @@ var LoanPieChart = function (_Component) {
                 id = _props2.id,
                 monthly_installment = _props2.monthly_installment,
                 mortgage_amount = _props2.mortgage_amount,
-                tenure_in_month = _props2.tenure_in_month;
+                tenure_in_month = _props2.tenure_in_month,
+                currency = _props2.currency;
 
             var total_payable = monthly_installment * tenure_in_month;
             var total_interest = total_payable - mortgage_amount;
             this.piechart.load({
                 columns: [['Principal', mortgage_amount], ['Interest', total_interest]]
             });
+
+            d3.select('#pie' + id + ' .c3-chart-arcs-title').node().innerHTML = currency + monthly_installment + '/Mo';
         }
     }, {
         key: 'render',
@@ -5975,14 +5979,7 @@ var LoanPieChart = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (LoanPieChart);
 
 /***/ }),
-/* 134 */,
-/* 135 */,
-/* 136 */,
-/* 137 */,
-/* 138 */,
-/* 139 */,
-/* 140 */,
-/* 141 */
+/* 134 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
