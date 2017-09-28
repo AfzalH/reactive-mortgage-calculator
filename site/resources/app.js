@@ -21955,7 +21955,7 @@ function getBreakDown(state) {
     var balance_ar = [];
     var balance = mortgage_amount;
     var month_ar = [];
-    var month = null;
+    var month = __WEBPACK_IMPORTED_MODULE_0_moment___default()().add(state.start_month, 'month');
 
     var current_month = 0;
     while (current_month < tenure_in_month) {
@@ -21963,12 +21963,12 @@ function getBreakDown(state) {
         principal = monthly_installment - interest;
         balance = balance - principal;
         if (balance <= 0) balance = 1;
-        month = __WEBPACK_IMPORTED_MODULE_0_moment___default()().add(current_month + state.start_month, 'month').format('MMM-YY');
         interest_ar.push(interest.toFixed(2));
         principal_ar.push(principal.toFixed(2));
         balance_ar.push(balance.toFixed(2));
-        month_ar.push(month);
+        month_ar.push(month.format('MMM-YY'));
         current_month = current_month + 1;
+        month = month.add(1, 'month');
     }
     return {
         interest_ar: interest_ar,

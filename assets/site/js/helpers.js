@@ -66,7 +66,7 @@ export function getBreakDown(state) {
     let balance_ar = [];
     let balance = mortgage_amount;
     let month_ar = [];
-    let month = null;
+    let month = moment().add(state.start_month, 'month');
 
     let current_month = 0;
     while (current_month < tenure_in_month) {
@@ -74,12 +74,12 @@ export function getBreakDown(state) {
         principal = monthly_installment - interest;
         balance = balance - principal;
         if (balance <= 0) balance = 1;
-        month = moment().add(current_month + state.start_month, 'month').format('MMM-YY');
         interest_ar.push(interest.toFixed(2));
         principal_ar.push(principal.toFixed(2));
         balance_ar.push(balance.toFixed(2));
-        month_ar.push(month);
+        month_ar.push(month.format('MMM-YY'));
         current_month = current_month + 1;
+        month = month.add(1, 'month');
     }
     return {
         interest_ar: interest_ar,
