@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getAlbum} from '../actions/instanceAction';
-import LayoutSelector from '../components/LayoutSelector';
+import LayoutSelector from '../components/Layout';
 import CircularLoaderRow from '../../../admin/js/components/partials/CircularLoaderRow';
 
 // smart component with redux connect

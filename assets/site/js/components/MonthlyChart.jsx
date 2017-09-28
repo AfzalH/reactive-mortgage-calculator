@@ -30,7 +30,7 @@ class MonthlyChart extends Component {
                     value: (value, ratio, id, index) => {
                         return (this.props.currency + d3.format(',')(value));
                     },
-                    title: (t)=> ('Month: ' + (t + 1))
+                    title: (value)=> (this.props.months[value])
                 }
             },
             axis: {
@@ -63,7 +63,7 @@ class MonthlyChart extends Component {
                         position: 'outer-left'
                     },
                     tick: {
-                        format: (value)=>(value + 1)
+                        format: (value)=>(this.props.months[value])
                     }
                 }
 

@@ -36,5 +36,10 @@ function srizon_mortgage_global_defaults() {
 		'tenure_min'           => 1,
 		'tenure_max'           => 50,
 		'tenure_text'          => 'Amortization Period',
+
+		'start_month'      => 1,
+		'start_month_min'  => 0,
+		'start_month_max'  => 12,
+		'start_month_text' => 'Start After',
 	];
 }

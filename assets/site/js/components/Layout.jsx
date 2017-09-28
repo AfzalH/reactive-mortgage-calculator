@@ -3,8 +3,10 @@ import PropertyInput from './Partials/PropertyInput';
 import DownpaymentInput from './Partials/DownpaymentInput';
 import InterestInput from './Partials/InterestInput';
 import TenureInput from './Partials/TenureInput';
+import StartMonthInput from './Partials/StartMonthInput';
 import LoanPieChart from './LoanPieChart';
 import MonthlyChart from './MonthlyChart';
+import moment from 'moment';
 
 class LayoutSelector extends React.Component {
     constructor(props) {
@@ -96,17 +98,21 @@ class LayoutSelector extends React.Component {
         let principal = 0;
         let balance_ar = [];
         let balance = mortgage_amount;
+        let month_ar = [];
+        let month = null;
 
-        let current_month = tenure_in_month;
-        while (current_month--) {
+        let current_month = 0;
+        while (current_month < tenure_in_month) {
             interest = balance * monthly_interest;
             principal = monthly_installment - interest;
             balance = balance - principal;
             if (balance <= 0) balance = 1;
-
+            month = moment().add(current_month + this.state.start_month, 'month').format('MMM-YY');
             interest_ar.push(interest.toFixed(2));
             principal_ar.push(principal.toFixed(2));
             balance_ar.push(balance.toFixed(2));
+            month_ar.push(month);
+            current_month = current_month + 1;
         }
         return (
             <div>
@@ -120,6 +126,7 @@ class LayoutSelector extends React.Component {
                                           getDownpaymentPercentFromAmount={this.getDownpaymentPercentFromAmount.bind(this)}/>
                         <InterestInput form={this.state} onch={this.onch}/>
                         <TenureInput form={this.state} onch={this.onch}/>
+                        <StartMonthInput form={this.state} onch={this.onch}/>
                     </div>
                     <div className="col m6 s12">
                         <LoanPieChart
@@ -148,7 +155,8 @@ class LayoutSelector extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col s12">
-                        <MonthlyChart principal={principal_ar} interest={interest_ar} balance={balance_ar} currency={this.state.currency}/>
+                        <MonthlyChart principal={principal_ar} interest={interest_ar} balance={balance_ar}
+                                      currency={this.state.currency} months={month_ar}/>
                     </div>
                 </div>
                 <pre>{JSON.stringify(this.state, null, 4)}</pre>
