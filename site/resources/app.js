@@ -5964,15 +5964,11 @@ var StartMonthInput = function (_Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Partials_PropertyInput__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Partials_DownpaymentInput__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Partials_InterestInput__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Partials_TenureInput__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Partials_StartMonthInput__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__LoanPieChart__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__MonthlyChart__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Partials_InfoRow__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__helpers__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UserInputs__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LoanPieChart__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MonthlyChart__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Partials_InfoRow__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers__ = __webpack_require__(262);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -5992,10 +5988,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-
-
-
-
 var LayoutSelector = function (_React$Component) {
     _inherits(LayoutSelector, _React$Component);
 
@@ -6005,7 +5997,6 @@ var LayoutSelector = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (LayoutSelector.__proto__ || Object.getPrototypeOf(LayoutSelector)).call(this, props));
 
         _this.state = _extends({}, _this.props.options);
-        _this.onch = _this.onch.bind(_this);
         return _this;
     }
 
@@ -6026,12 +6017,12 @@ var LayoutSelector = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var mortgage_amount = Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["f" /* getMortgageAmount */])(this.state);
-            var tenure_in_month = Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["h" /* getTenureInMonth */])(this.state);
-            var monthly_installment = Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["e" /* getMonthlyPayment */])(mortgage_amount, tenure_in_month, Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["d" /* getMonthlyInterest */])(this.state));
+            var mortgage_amount = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["f" /* getMortgageAmount */])(this.state);
+            var tenure_in_month = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["h" /* getTenureInMonth */])(this.state);
+            var monthly_installment = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["e" /* getMonthlyPayment */])(mortgage_amount, tenure_in_month, Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["d" /* getMonthlyInterest */])(this.state));
             var total_payable = monthly_installment * tenure_in_month;
             var total_interest = total_payable - mortgage_amount;
-            var breakdown = Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["a" /* getBreakDown */])(this.state);
+            var breakdown = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["a" /* getBreakDown */])(this.state);
             var currency = this.state.currency;
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -6043,16 +6034,12 @@ var LayoutSelector = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'col m6 s12' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Partials_PropertyInput__["a" /* default */], { form: this.state, onch: this.onch }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Partials_DownpaymentInput__["a" /* default */], { form: this.state, onch: this.onch }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Partials_InterestInput__["a" /* default */], { form: this.state, onch: this.onch }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Partials_TenureInput__["a" /* default */], { form: this.state, onch: this.onch }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Partials_StartMonthInput__["a" /* default */], { form: this.state, onch: this.onch })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__UserInputs__["a" /* default */], { form: this.state, onch: this.onch.bind(this) })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'col m6 s12' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__LoanPieChart__["a" /* default */], {
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__LoanPieChart__["a" /* default */], {
                             id: this.props.id,
                             monthly_installment: monthly_installment,
                             mortgage_amount: mortgage_amount,
@@ -6061,9 +6048,9 @@ var LayoutSelector = function (_React$Component) {
                         })
                     )
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__Partials_InfoRow__["a" /* default */], { currency: currency, monthly_installment: monthly_installment, mortgage_amount: mortgage_amount,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Partials_InfoRow__["a" /* default */], { currency: currency, monthly_installment: monthly_installment, mortgage_amount: mortgage_amount,
                     total_payable: total_payable, total_interest: total_interest }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__MonthlyChart__["a" /* default */], { principal: breakdown.principal_ar, interest: breakdown.interest_ar,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__MonthlyChart__["a" /* default */], { principal: breakdown.principal_ar, interest: breakdown.interest_ar,
                     balance: breakdown.balance_ar,
                     currency: currency, months: breakdown.month_ar }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -22095,6 +22082,66 @@ var InfoRow = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (InfoRow);
+
+/***/ }),
+/* 264 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Partials_PropertyInput__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Partials_DownpaymentInput__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Partials_InterestInput__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Partials_TenureInput__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Partials_StartMonthInput__ = __webpack_require__(143);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+var UserInputs = function (_Component) {
+    _inherits(UserInputs, _Component);
+
+    function UserInputs() {
+        _classCallCheck(this, UserInputs);
+
+        return _possibleConstructorReturn(this, (UserInputs.__proto__ || Object.getPrototypeOf(UserInputs)).apply(this, arguments));
+    }
+
+    _createClass(UserInputs, [{
+        key: 'render',
+        value: function render() {
+            var _props = this.props,
+                form = _props.form,
+                onch = _props.onch;
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Partials_PropertyInput__["a" /* default */], { form: form, onch: onch }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Partials_DownpaymentInput__["a" /* default */], { form: form, onch: onch }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Partials_InterestInput__["a" /* default */], { form: form, onch: onch }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Partials_TenureInput__["a" /* default */], { form: form, onch: onch }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Partials_StartMonthInput__["a" /* default */], { form: form, onch: onch })
+            );
+        }
+    }]);
+
+    return UserInputs;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (UserInputs);
 
 /***/ })
 /******/ ]);

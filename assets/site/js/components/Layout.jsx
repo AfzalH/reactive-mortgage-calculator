@@ -1,9 +1,5 @@
 import React from 'react';
-import PropertyInput from './Partials/PropertyInput';
-import DownpaymentInput from './Partials/DownpaymentInput';
-import InterestInput from './Partials/InterestInput';
-import TenureInput from './Partials/TenureInput';
-import StartMonthInput from './Partials/StartMonthInput';
+import UserInputs from './UserInputs';
 import LoanPieChart from './LoanPieChart';
 import MonthlyChart from './MonthlyChart';
 import InfoRow from './Partials/InfoRow';
@@ -13,7 +9,6 @@ class LayoutSelector extends React.Component {
     constructor(props) {
         super(props);
         this.state = {...this.props.options};
-        this.onch = this.onch.bind(this);
     }
 
     onch(event) {
@@ -44,11 +39,7 @@ class LayoutSelector extends React.Component {
             <div>
                 <div className="row">
                     <div className="col m6 s12">
-                        <PropertyInput form={this.state} onch={this.onch}/>
-                        <DownpaymentInput form={this.state} onch={this.onch}/>
-                        <InterestInput form={this.state} onch={this.onch}/>
-                        <TenureInput form={this.state} onch={this.onch}/>
-                        <StartMonthInput form={this.state} onch={this.onch}/>
+                        <UserInputs form={this.state} onch={this.onch.bind(this)}/>
                     </div>
                     <div className="col m6 s12">
                         <LoanPieChart
@@ -66,7 +57,7 @@ class LayoutSelector extends React.Component {
                 <MonthlyChart principal={breakdown.principal_ar} interest={breakdown.interest_ar}
                               balance={breakdown.balance_ar}
                               currency={currency} months={breakdown.month_ar}/>
-   
+
                 <pre>{JSON.stringify(this.state, null, 4)}</pre>
             </div>
         )
