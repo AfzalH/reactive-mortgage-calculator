@@ -16,7 +16,8 @@ import {
 class LayoutSelector extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {...this.props.options};
+        this.state = {...this.props.options, autoBreakDownSwitch: true, monthlyBreakdown: true};
+
     }
 
     onch(event) {
@@ -27,6 +28,15 @@ class LayoutSelector extends React.Component {
         this.setState({
             [name]: value
         });
+
+        if (this.state.autoBreakDownSwitch && name == 'tenure') {
+            if (value <= 5) {
+                this.setState({monthlyBreakdown: true});
+            }
+            else {
+                this.setState({monthlyBreakdown: false});
+            }
+        }
     }
 
     componentDidMount() {
@@ -43,15 +53,14 @@ class LayoutSelector extends React.Component {
         const breakdown = getBreakDown(this.state);
         const breakdown_yearly = getBreakDownInYear(breakdown);
         const currency = this.state.currency;
-        console.log(breakdown_yearly);
 
         return (
             <div>
                 <div className="row">
-                    <div className="col m6 s12">
+                    <div className="col m7 s12">
                         <UserInputs form={this.state} onch={this.onch.bind(this)}/>
                     </div>
-                    <div className="col m6 s12">
+                    <div className="col m5 s12">
                         <LoanPieChart
                             id={this.props.id}
                             monthly_installment={monthly_installment.toFixed(2)}
@@ -59,20 +68,21 @@ class LayoutSelector extends React.Component {
                             tenure_in_month={tenure_in_month}
                             currency={currency}
                         />
+                        <InfoRow currency={currency} monthly_installment={monthly_installment.toFixed(2)}
+                                 mortgage_amount={mortgage_amount.toFixed(2)}
+                                 total_payable={total_payable.toFixed(2)} total_interest={total_interest.toFixed(2)}/>
                     </div>
                 </div>
-                <InfoRow currency={currency} monthly_installment={monthly_installment.toFixed(2)}
-                         mortgage_amount={mortgage_amount.toFixed(2)}
-                         total_payable={total_payable.toFixed(2)} total_interest={total_interest.toFixed(2)}/>
+                
 
-                <MonthlyChart principal={breakdown.principal_ar} interest={breakdown.interest_ar}
-                              balance={breakdown.balance_ar}
-                              currency={currency} months={breakdown.month_ar}/>
-                <YearlyChart principal={breakdown_yearly.principal_ar} interest={breakdown_yearly.interest_ar}
-                             balance={breakdown_yearly.balance_ar}
-                             currency={currency} years={breakdown_yearly.year_ar}/>
-
-                <pre>{JSON.stringify(this.state, null, 4)}</pre>
+                {(this.state.monthlyBreakdown) ?
+                    <MonthlyChart principal={breakdown.principal_ar} interest={breakdown.interest_ar}
+                                  balance={breakdown.balance_ar}
+                                  currency={currency} months={breakdown.month_ar}/> :
+                    <YearlyChart principal={breakdown_yearly.principal_ar} interest={breakdown_yearly.interest_ar}
+                                 balance={breakdown_yearly.balance_ar}
+                                 currency={currency} years={breakdown_yearly.year_ar}/>
+                }
             </div>
         )
     }

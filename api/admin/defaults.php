@@ -41,5 +41,26 @@ function srizon_mortgage_global_defaults() {
 		'start_month_min'  => 0,
 		'start_month_max'  => 12,
 		'start_month_text' => 'Start After',
+
+		'property_tax'      => 0.8,
+		'property_tax_min'  => 0,
+		'property_tax_max'  => 3,
+		'property_tax_text' => 'Annual Property Tax',
+
+		'hazard_insurance'      => 0,
+		'hazard_insurance_min'  => 0,
+		'hazard_insurance_max'  => 5000,
+		'hazard_insurance_text' => 'Annual Hazard Insurance',
+		
+		'monthly_hoa'      => 0,
+		'monthly_hoa_min'  => 0,
+		'monthly_hoa_max'  => 200,
+		'monthly_hoa_text' => 'Monthly HOA',
+
+		'mortgage_insurance'      => 0,
+		'mortgage_insurance_min'  => 0,
+		'mortgage_insurance_max'  => 2,
+		'mortgage_insurance_text' => 'MI',
+
 	];
 }

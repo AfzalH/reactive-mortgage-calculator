@@ -5651,198 +5651,246 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var SettingsForm = function (_React$Component) {
-    _inherits(SettingsForm, _React$Component);
+           _inherits(SettingsForm, _React$Component);
 
-    function SettingsForm() {
-        _classCallCheck(this, SettingsForm);
+           function SettingsForm() {
+                      _classCallCheck(this, SettingsForm);
 
-        return _possibleConstructorReturn(this, (SettingsForm.__proto__ || Object.getPrototypeOf(SettingsForm)).apply(this, arguments));
-    }
+                      return _possibleConstructorReturn(this, (SettingsForm.__proto__ || Object.getPrototypeOf(SettingsForm)).apply(this, arguments));
+           }
 
-    _createClass(SettingsForm, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            jQuery('ul.tabs').tabs();
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _props = this.props,
-                hich = _props.hich,
-                pstate = _props.pstate,
-                _props$global = _props.global,
-                global = _props$global === undefined ? false : _props$global;
+           _createClass(SettingsForm, [{
+                      key: 'componentDidMount',
+                      value: function componentDidMount() {
+                                 jQuery('ul.tabs').tabs();
+                      }
+           }, {
+                      key: 'render',
+                      value: function render() {
+                                 var _props = this.props,
+                                     hich = _props.hich,
+                                     pstate = _props.pstate,
+                                     _props$global = _props.global,
+                                     global = _props$global === undefined ? false : _props$global;
 
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'row' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'col s12' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'ul',
-                        { className: 'tabs tabs-fixed-width bottom20' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'li',
-                            { className: 'tab' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'a',
-                                { className: 'active', href: '#property-tab' },
-                                'Property Value'
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'li',
-                            { className: 'tab' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'a',
-                                { href: '#downpayment-tab' },
-                                'Down Payment'
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'li',
-                            { className: 'tab' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'a',
-                                { href: '#interest-tab' },
-                                'Interest Rate'
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'li',
-                            { className: 'tab' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'a',
-                                { href: '#tenure-tab' },
-                                'Tenure'
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'li',
-                            { className: 'tab' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'a',
-                                { href: '#other-tab' },
-                                'Other'
-                            )
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: "col s12 m6 pr50", id: 'property-tab' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.property_value_text, onch: hich, name: 'property_value_text',
-                        label: 'Property Value Text', aclass: '' }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_form_SwitchField__["a" /* default */], { name: 'property_value_is_changeable', val: pstate.property_value_is_changeable,
-                        onch: hich, offtext: 'Fixed', ontext: 'Variable',
-                        label: 'Property Value Is', aclass: 'bottom40' }),
-                    pstate.property_value_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.property_value, onch: hich, name: 'property_value',
-                        label: 'Property Value - Default', aclass: '' }) : null,
-                    pstate.property_value_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.property_value_min, onch: hich, name: 'property_value_min',
-                        label: 'Property Value - Minimum', aclass: '' }) : null,
-                    pstate.property_value_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.property_value_max, onch: hich, name: 'property_value_max',
-                        label: 'Property Value - Maximum', aclass: '' }) : null,
-                    !pstate.property_value_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.property_value_fixed, onch: hich, name: 'property_value_fixed',
-                        label: 'Property Value', aclass: '' }) : null
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: "col s12 m6 offset-m2 pr50", id: 'downpayment-tab' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_text, onch: hich, name: 'downpayment_text',
-                        label: 'Down Payment Text', aclass: '' }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_form_SwitchField__["a" /* default */], { name: 'downpayment_is_changeable', val: pstate.downpayment_is_changeable,
-                        onch: hich, offtext: 'Fixed', ontext: 'Variable',
-                        label: 'Down Payment Is', aclass: 'bottom40' }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_form_SwitchField__["a" /* default */], { name: 'downpayment_is_percent', val: pstate.downpayment_is_percent,
-                        onch: hich, offtext: 'Total Amount', ontext: 'Percent',
-                        label: 'Down Payment In', aclass: 'bottom40' }),
-                    !pstate.downpayment_is_percent && !pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_amount_fixed, onch: hich, name: 'downpayment_amount_fixed',
-                        label: 'Down-Payment Amount', aclass: '' }) : null,
-                    !pstate.downpayment_is_percent && pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_amount, onch: hich, name: 'downpayment_amount',
-                        label: 'Down-Payment Amount - Default', aclass: '' }) : null,
-                    !pstate.downpayment_is_percent && pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_amount_min, onch: hich, name: 'downpayment_amount_min',
-                        label: 'Down-Payment Amount - Minimum', aclass: '' }) : null,
-                    !pstate.downpayment_is_percent && pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_amount_max, onch: hich, name: 'downpayment_amount_max',
-                        label: 'Down-Payment Amount - Maximum', aclass: '' }) : null,
-                    pstate.downpayment_is_percent && !pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_percent_fixed, onch: hich, name: 'downpayment_percent_fixed',
-                        label: 'Down-Payment Percent', aclass: '' }) : null,
-                    pstate.downpayment_is_percent && pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_percent, onch: hich, name: 'downpayment_percent',
-                        label: 'Down-Payment Percent - Default', aclass: '' }) : null,
-                    pstate.downpayment_is_percent && pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_percent_min, onch: hich, name: 'downpayment_percent_min',
-                        label: 'Down-Payment Percent - Minimum', aclass: '' }) : null,
-                    pstate.downpayment_is_percent && pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_percent_max, onch: hich, name: 'downpayment_percent_max',
-                        label: 'Down-Payment Percent - Maximum', aclass: '' }) : null
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: "col s12 m6 offset-m4 pr50", id: 'interest-tab' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.interest_text, onch: hich, name: 'interest_text',
-                        label: 'Interest Text', aclass: '' }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_form_SwitchField__["a" /* default */], { name: 'interest_is_changeable', val: pstate.interest_is_changeable,
-                        onch: hich, offtext: 'Fixed', ontext: 'Variable',
-                        label: 'Interest Rate Is', aclass: 'bottom40' }),
-                    pstate.interest_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.interest, onch: hich, name: 'interest',
-                        label: 'Interest Rate - Default', aclass: '' }) : null,
-                    pstate.interest_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.interest_min, onch: hich, name: 'interest_min',
-                        label: 'Interest Rate - Mininum', aclass: '' }) : null,
-                    pstate.interest_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.interest_max, onch: hich, name: 'interest_max',
-                        label: 'Interest Rate - Maximum', aclass: '' }) : null,
-                    !pstate.interest_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.interest_fixed, onch: hich, name: 'interest_fixed',
-                        label: 'Interest Rate', aclass: '' }) : null
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: "col s12 m6 offset-m5 pr50", id: 'tenure-tab' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.tenure_text, onch: hich, name: 'tenure_text',
-                        label: 'Tenure Text', aclass: '' }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_form_SwitchField__["a" /* default */], { name: 'tenure_is_changeable', val: pstate.tenure_is_changeable,
-                        onch: hich, offtext: 'Fixed', ontext: 'Variable',
-                        label: 'Tenure Is', aclass: 'bottom40' }),
-                    pstate.tenure_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.tenure, onch: hich, name: 'tenure',
-                        label: 'Tenure - Default (Year)', aclass: '' }) : null,
-                    pstate.tenure_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.tenure_min, onch: hich, name: 'tenure_min',
-                        label: 'Tenure - Mininum (Year)', aclass: '' }) : null,
-                    pstate.tenure_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.tenure_max, onch: hich, name: 'tenure_max',
-                        label: 'Tenure - Maximum (Year)', aclass: '' }) : null,
-                    !pstate.tenure_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.tenure_fixed, onch: hich, name: 'tenure_fixed',
-                        label: 'Tenure (Year)', aclass: '' }) : null
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: "col s12 m6 offset-m6 pr50", id: 'other-tab' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.currency, onch: hich, name: 'currency',
-                        label: 'Currency Symbol', aclass: '' }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'p',
-                        null,
-                        'for dev reference'
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_form_RangeField__["a" /* default */], { val: pstate.total_image_carousel, onch: hich, name: 'total_image_carousel',
-                        aclass: '', label: 'Total image to load (max 33 for this layout)', min: 1,
-                        max: 33 }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'top20' },
-                            'Thumb Position'
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_form_RadioField__["a" /* default */], { val: 'bottom', label: 'Bottom', name: 'carousel_thumb_position',
-                            curval: pstate.carousel_thumb_position, onch: hich }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_form_RadioField__["a" /* default */], { val: 'top', label: 'Top', name: 'carousel_thumb_position',
-                            curval: pstate.carousel_thumb_position, onch: hich }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_form_RadioField__["a" /* default */], { val: 'left', label: 'Left', name: 'carousel_thumb_position',
-                            curval: pstate.carousel_thumb_position, onch: hich })
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: global ? "col s12 m6 top20 pr50" : "col s12 top20 plr0" })
-            );
-        }
-    }]);
+                                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                            'div',
+                                            { className: 'row' },
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                       'div',
+                                                       { className: 'col s12' },
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                  'ul',
+                                                                  { className: 'tabs tabs-fixed-width bottom20' },
+                                                                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                             'li',
+                                                                             { className: 'tab' },
+                                                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                                        'a',
+                                                                                        { className: 'active', href: '#property-tab' },
+                                                                                        'Property Value'
+                                                                             )
+                                                                  ),
+                                                                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                             'li',
+                                                                             { className: 'tab' },
+                                                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                                        'a',
+                                                                                        { href: '#downpayment-tab' },
+                                                                                        'Down Payment'
+                                                                             )
+                                                                  ),
+                                                                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                             'li',
+                                                                             { className: 'tab' },
+                                                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                                        'a',
+                                                                                        { href: '#interest-tab' },
+                                                                                        'Interest Rate'
+                                                                             )
+                                                                  ),
+                                                                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                             'li',
+                                                                             { className: 'tab' },
+                                                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                                        'a',
+                                                                                        { href: '#tenure-tab' },
+                                                                                        'Tenure'
+                                                                             )
+                                                                  ),
+                                                                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                             'li',
+                                                                             { className: 'tab' },
+                                                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                                        'a',
+                                                                                        { href: '#tax-tab' },
+                                                                                        'Taxes and Charges'
+                                                                             )
+                                                                  ),
+                                                                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                             'li',
+                                                                             { className: 'tab' },
+                                                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                                        'a',
+                                                                                        { href: '#other-tab' },
+                                                                                        'Other'
+                                                                             )
+                                                                  )
+                                                       )
+                                            ),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                       'div',
+                                                       { className: "col s12 m6", id: 'property-tab' },
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.property_value_text, onch: hich, name: 'property_value_text',
+                                                                  label: 'Property Value Text', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_form_SwitchField__["a" /* default */], { name: 'property_value_is_changeable', val: pstate.property_value_is_changeable,
+                                                                  onch: hich, offtext: 'Fixed', ontext: 'Variable',
+                                                                  label: 'Property Value Is', aclass: 'bottom40' }),
+                                                       pstate.property_value_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.property_value, onch: hich, name: 'property_value',
+                                                                  label: 'Property Value - Default', aclass: '' }) : null,
+                                                       pstate.property_value_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.property_value_min, onch: hich, name: 'property_value_min',
+                                                                  label: 'Property Value - Minimum', aclass: '' }) : null,
+                                                       pstate.property_value_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.property_value_max, onch: hich, name: 'property_value_max',
+                                                                  label: 'Property Value - Maximum', aclass: '' }) : null,
+                                                       !pstate.property_value_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.property_value_fixed, onch: hich, name: 'property_value_fixed',
+                                                                  label: 'Property Value', aclass: '' }) : null
+                                            ),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                       'div',
+                                                       { className: "col s12 m6 offset-m1", id: 'downpayment-tab' },
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_text, onch: hich, name: 'downpayment_text',
+                                                                  label: 'Down Payment Text', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_form_SwitchField__["a" /* default */], { name: 'downpayment_is_changeable', val: pstate.downpayment_is_changeable,
+                                                                  onch: hich, offtext: 'Fixed', ontext: 'Variable',
+                                                                  label: 'Down Payment Is', aclass: 'bottom40' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_form_SwitchField__["a" /* default */], { name: 'downpayment_is_percent', val: pstate.downpayment_is_percent,
+                                                                  onch: hich, offtext: 'Total Amount', ontext: 'Percent',
+                                                                  label: 'Down Payment In', aclass: 'bottom40' }),
+                                                       !pstate.downpayment_is_percent && !pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_amount_fixed, onch: hich, name: 'downpayment_amount_fixed',
+                                                                  label: 'Down-Payment Amount', aclass: '' }) : null,
+                                                       !pstate.downpayment_is_percent && pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_amount, onch: hich, name: 'downpayment_amount',
+                                                                  label: 'Down-Payment Amount - Default', aclass: '' }) : null,
+                                                       !pstate.downpayment_is_percent && pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_amount_min, onch: hich, name: 'downpayment_amount_min',
+                                                                  label: 'Down-Payment Amount - Minimum', aclass: '' }) : null,
+                                                       !pstate.downpayment_is_percent && pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_amount_max, onch: hich, name: 'downpayment_amount_max',
+                                                                  label: 'Down-Payment Amount - Maximum', aclass: '' }) : null,
+                                                       pstate.downpayment_is_percent && !pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_percent_fixed, onch: hich, name: 'downpayment_percent_fixed',
+                                                                  label: 'Down-Payment Percent', aclass: '' }) : null,
+                                                       pstate.downpayment_is_percent && pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_percent, onch: hich, name: 'downpayment_percent',
+                                                                  label: 'Down-Payment Percent - Default', aclass: '' }) : null,
+                                                       pstate.downpayment_is_percent && pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_percent_min, onch: hich, name: 'downpayment_percent_min',
+                                                                  label: 'Down-Payment Percent - Minimum', aclass: '' }) : null,
+                                                       pstate.downpayment_is_percent && pstate.downpayment_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.downpayment_percent_max, onch: hich, name: 'downpayment_percent_max',
+                                                                  label: 'Down-Payment Percent - Maximum', aclass: '' }) : null
+                                            ),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                       'div',
+                                                       { className: "col s12 m6 offset-m2", id: 'interest-tab' },
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.interest_text, onch: hich, name: 'interest_text',
+                                                                  label: 'Interest Text', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_form_SwitchField__["a" /* default */], { name: 'interest_is_changeable', val: pstate.interest_is_changeable,
+                                                                  onch: hich, offtext: 'Fixed', ontext: 'Variable',
+                                                                  label: 'Interest Rate Is', aclass: 'bottom40' }),
+                                                       pstate.interest_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.interest, onch: hich, name: 'interest',
+                                                                  label: 'Interest Rate - Default', aclass: '' }) : null,
+                                                       pstate.interest_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.interest_min, onch: hich, name: 'interest_min',
+                                                                  label: 'Interest Rate - Mininum', aclass: '' }) : null,
+                                                       pstate.interest_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.interest_max, onch: hich, name: 'interest_max',
+                                                                  label: 'Interest Rate - Maximum', aclass: '' }) : null,
+                                                       !pstate.interest_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.interest_fixed, onch: hich, name: 'interest_fixed',
+                                                                  label: 'Interest Rate', aclass: '' }) : null
+                                            ),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                       'div',
+                                                       { className: "col s12 m6 offset-m4", id: 'tenure-tab' },
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.tenure_text, onch: hich, name: 'tenure_text',
+                                                                  label: 'Tenure Text', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_form_SwitchField__["a" /* default */], { name: 'tenure_is_changeable', val: pstate.tenure_is_changeable,
+                                                                  onch: hich, offtext: 'Fixed', ontext: 'Variable',
+                                                                  label: 'Tenure Is', aclass: 'bottom40' }),
+                                                       pstate.tenure_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.tenure, onch: hich, name: 'tenure',
+                                                                  label: 'Tenure - Default (Year)', aclass: '' }) : null,
+                                                       pstate.tenure_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.tenure_min, onch: hich, name: 'tenure_min',
+                                                                  label: 'Tenure - Mininum (Year)', aclass: '' }) : null,
+                                                       pstate.tenure_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.tenure_max, onch: hich, name: 'tenure_max',
+                                                                  label: 'Tenure - Maximum (Year)', aclass: '' }) : null,
+                                                       !pstate.tenure_is_changeable ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.tenure_fixed, onch: hich, name: 'tenure_fixed',
+                                                                  label: 'Tenure (Year)', aclass: '' }) : null
+                                            ),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                       'div',
+                                                       { className: "col s12 m6 offset-m5", id: 'tax-tab' },
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.property_tax_text, onch: hich, name: 'property_tax_text',
+                                                                  label: 'Property Tax Text', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.property_tax, onch: hich, name: 'property_tax',
+                                                                  label: 'Property Tax - Default (% Per Year)', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.property_tax_min, onch: hich, name: 'property_tax_min',
+                                                                  label: 'Property Tax - Mininum', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.property_tax_max, onch: hich, name: 'property_tax_max',
+                                                                  label: 'Property Tax - Maximum', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.hazard_insurance_text, onch: hich, name: 'hazard_insurance_text',
+                                                                  label: 'Annual Hazard Insurance Text', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.hazard_insurance, onch: hich, name: 'hazard_insurance',
+                                                                  label: 'Annual Hazard Insurance- Default (Per Year)', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.hazard_insurance_min, onch: hich, name: 'hazard_insurance_min',
+                                                                  label: 'Annual Hazard Insurance - Mininum', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.hazard_insurance_max, onch: hich, name: 'hazard_insurance_max',
+                                                                  label: 'Annual Hazard Insurance - Maximum', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.monthly_hoa_text, onch: hich, name: 'monthly_hoa_text',
+                                                                  label: 'Monthly HOA Text', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.monthly_hoa, onch: hich, name: 'monthly_hoa',
+                                                                  label: 'Monthly HOA', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.monthly_hoa_min, onch: hich, name: 'monthly_hoa_min',
+                                                                  label: 'Monthly HOA - Mininum', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.monthly_hoa_max, onch: hich, name: 'monthly_hoa_max',
+                                                                  label: 'Monthly HOA - Maximum', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.mortgage_insurance_text, onch: hich, name: 'mortgage_insurance_text',
+                                                                  label: 'Mortgage Insurance Text', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.mortgage_insurance, onch: hich, name: 'mortgage_insurance',
+                                                                  label: 'Mortgage Insurance', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.mortgage_insurance_min, onch: hich, name: 'mortgage_insurance_min',
+                                                                  label: 'Mortgage Insurance - Mininum', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.mortgage_insurance_max, onch: hich, name: 'mortgage_insurance_max',
+                                                                  label: 'Mortgage Insurance - Maximum', aclass: '' })
+                                            ),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                       'div',
+                                                       { className: "col s12 m6 offset-m6", id: 'other-tab' },
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.currency, onch: hich, name: 'currency',
+                                                                  label: 'Currency Symbol', aclass: '' }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                  'p',
+                                                                  null,
+                                                                  'for dev reference'
+                                                       ),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_form_RangeField__["a" /* default */], { val: pstate.total_image_carousel, onch: hich, name: 'total_image_carousel',
+                                                                  aclass: '', label: 'Total image to load (max 33 for this layout)', min: 1,
+                                                                  max: 33 }),
+                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                  'div',
+                                                                  null,
+                                                                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                             'div',
+                                                                             { className: 'top20' },
+                                                                             'Thumb Position'
+                                                                  ),
+                                                                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_form_RadioField__["a" /* default */], { val: 'bottom', label: 'Bottom', name: 'carousel_thumb_position',
+                                                                             curval: pstate.carousel_thumb_position, onch: hich }),
+                                                                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_form_RadioField__["a" /* default */], { val: 'top', label: 'Top', name: 'carousel_thumb_position',
+                                                                             curval: pstate.carousel_thumb_position, onch: hich }),
+                                                                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_form_RadioField__["a" /* default */], { val: 'left', label: 'Left', name: 'carousel_thumb_position',
+                                                                             curval: pstate.carousel_thumb_position, onch: hich })
+                                                       )
+                                            ),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: global ? "col s12 m6 top20 pr50" : "col s12 top20 plr0" })
+                                 );
+                      }
+           }]);
 
-    return SettingsForm;
+           return SettingsForm;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["a"] = (SettingsForm);

@@ -26,7 +26,7 @@ class LoanPieChart extends Component {
             tooltip: {
                 format: {
                     value: (value, ratio, id, index) => {
-                        return (currency + d3.format(',')(value));
+                        return (currency + d3.format(',')(value.toFixed(2)));
                     }
                 }
             }

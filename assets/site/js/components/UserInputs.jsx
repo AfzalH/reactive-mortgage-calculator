@@ -4,6 +4,10 @@ import DownpaymentInput from './Partials/DownpaymentInput';
 import InterestInput from './Partials/InterestInput';
 import TenureInput from './Partials/TenureInput';
 import StartMonthInput from './Partials/StartMonthInput';
+import PropertyTaxInput from './Partials/PropertyTaxInput';
+import HazardInsuranceInput from './Partials/HazardInsuranceInput';
+import HOAInput from './Partials/HOAInput';
+import MIInput from './Partials/MIInput';
 
 class UserInputs extends Component {
     render() {
@@ -15,6 +19,10 @@ class UserInputs extends Component {
                 <InterestInput form={form} onch={onch}/>
                 <TenureInput form={form} onch={onch}/>
                 <StartMonthInput form={form} onch={onch}/>
+                <PropertyTaxInput form={form} onch={onch}/>
+                <HazardInsuranceInput form={form} onch={onch}/>
+                <HOAInput form={form} onch={onch}/>
+                <MIInput form={form} onch={onch}/>
             </div>
         );
     }
