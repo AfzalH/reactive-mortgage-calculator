@@ -5206,12 +5206,17 @@ function getBreakDown(state) {
     var monthly_installment = getMonthlyPayment(getMortgageAmount(state), getTenureInMonth(state), getMonthlyInterest(state));
     var mortgage_amount = getMortgageAmount(state);
     var tenure_in_month = getTenureInMonth(state);
-
+    var monthly_property_tax = getPropertyTax(state);
+    var monthly_hoa = parseFloat(state.monthly_hoa);
+    var monthly_hazard = parseFloat(state.hazard_insurance) / 12;
     var interest_ar = [];
     var interest = 0;
     var principal_ar = [];
     var principal = 0;
     var balance_ar = [];
+    var property_tax_ar = [];
+    var hoa_ar = [];
+    var hazard_ar = [];
     var balance = mortgage_amount;
     var month_ar = [];
     var month = __WEBPACK_IMPORTED_MODULE_0_moment___default()().add(state.start_month, 'month');
@@ -5226,12 +5231,25 @@ function getBreakDown(state) {
         interest_ar.push(interest);
         principal_ar.push(principal);
         balance_ar.push(balance);
+        property_tax_ar.push(monthly_property_tax);
+        hoa_ar.push(monthly_hoa);
+        hazard_ar.push(monthly_hazard);
         month_ar.push(month.format('MMM-YY'));
         year_ar.push(month.format('YYYY'));
         current_month = current_month + 1;
         month = month.add(1, 'month');
     }
-    return { interest_ar: interest_ar, principal_ar: principal_ar, balance_ar: balance_ar, month_ar: month_ar, year_ar: year_ar, mortgage_amount: mortgage_amount };
+    return {
+        interest_ar: interest_ar,
+        principal_ar: principal_ar,
+        balance_ar: balance_ar,
+        month_ar: month_ar,
+        year_ar: year_ar,
+        mortgage_amount: mortgage_amount,
+        property_tax_ar: property_tax_ar,
+        hoa_ar: hoa_ar,
+        hazard_ar: hazard_ar
+    };
 }
 
 function getBreakDownInYear(breakdown) {
@@ -5243,6 +5261,12 @@ function getBreakDownInYear(breakdown) {
     var balance = parseFloat(breakdown.mortgage_amount);
     var year_ar = [];
     var year = parseInt(breakdown.year_ar[0]);
+    var property_tax_ar = [];
+    var property_tax = 0;
+    var hoa_ar = [];
+    var hoa = 0;
+    var hazard_ar = [];
+    var hazard = 0;
     var i = 0;
     var total = breakdown.month_ar.length;
     // console.log(breakdown.interest_ar);
@@ -5251,14 +5275,23 @@ function getBreakDownInYear(breakdown) {
             interest = interest + parseFloat(breakdown.interest_ar[i]);
             principal = principal + parseFloat(breakdown.principal_ar[i]);
             balance = balance - parseFloat(breakdown.principal_ar[i]);
+            property_tax = property_tax + parseFloat(breakdown.property_tax_ar[i]);
+            hoa = hoa + parseFloat(breakdown.hoa_ar[i]);
+            hazard = hazard + parseFloat(breakdown.hazard_ar[i]);
         } else {
             year_ar.push(year);
             interest_ar.push(interest);
             principal_ar.push(principal);
             balance_ar.push(balance);
+            property_tax_ar.push(property_tax);
+            hoa_ar.push(hoa);
+            hazard_ar.push(hazard);
 
             interest = parseFloat(breakdown.interest_ar[i]);
             principal = parseFloat(breakdown.principal_ar[i]);
+            property_tax = parseFloat(breakdown.property_tax_ar[i]);
+            hoa = parseFloat(breakdown.hoa_ar[i]);
+            hazard = parseFloat(breakdown.hazard_ar[i]);
             balance = balance - parseFloat(breakdown.principal_ar[i]);
             year = parseInt(breakdown.year_ar[i]);
         }
@@ -5268,7 +5301,10 @@ function getBreakDownInYear(breakdown) {
     interest_ar.push(interest);
     principal_ar.push(principal);
     balance_ar.push(balance);
-    return { interest_ar: interest_ar, principal_ar: principal_ar, balance_ar: balance_ar, year_ar: year_ar };
+    property_tax_ar.push(property_tax);
+    hoa_ar.push(hoa);
+    hazard_ar.push(hazard);
+    return { interest_ar: interest_ar, principal_ar: principal_ar, balance_ar: balance_ar, year_ar: year_ar, property_tax_ar: property_tax_ar, hoa_ar: hoa_ar, hazard_ar: hazard_ar };
 }
 
 /***/ }),
@@ -5562,11 +5598,13 @@ function getAlbum(id) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UserInputs__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LoanPieChart__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MonthlyChart__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__YearlyChart__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Partials_InfoRow__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__helpers__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LoanPieChartMonthly__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LoanPieChartTotal__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MonthlyChart__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__YearlyChart__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Partials_InfoRowTotal__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Partials_InfoRowMonthly__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__helpers__ = __webpack_require__(88);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -5587,6 +5625,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
+
 var LayoutSelector = function (_React$Component) {
     _inherits(LayoutSelector, _React$Component);
 
@@ -5597,9 +5637,11 @@ var LayoutSelector = function (_React$Component) {
 
         _this.state = _extends({}, _this.props.options, {
             autoBreakDownSwitch: true,
+            pieChartMonthly: true,
             monthlyBreakdown: _this.props.options.tenure < 6
         });
-
+        _this.togglePie = _this.togglePie.bind(_this);
+        _this.toggleBar = _this.toggleBar.bind(_this);
         return _this;
     }
 
@@ -5626,23 +5668,45 @@ var LayoutSelector = function (_React$Component) {
             Materialize.updateTextFields();
         }
     }, {
+        key: 'togglePie',
+        value: function togglePie() {
+            this.setState(function (pState) {
+                return { pieChartMonthly: !pState.pieChartMonthly };
+            });
+        }
+    }, {
+        key: 'toggleBar',
+        value: function toggleBar() {
+            this.setState(function (pState) {
+                return { monthlyBreakdown: !pState.monthlyBreakdown, autoBreakDownSwitch: false };
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var mortgage_amount = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["g" /* getMortgageAmount */])(this.state);
-            var tenure_in_month = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["j" /* getTenureInMonth */])(this.state);
-            var monthly_principal_and_interest = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["f" /* getMonthlyPayment */])(mortgage_amount, tenure_in_month, Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["e" /* getMonthlyInterest */])(this.state));
+            var mortgage_amount = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["g" /* getMortgageAmount */])(this.state);
+            var tenure_in_month = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["j" /* getTenureInMonth */])(this.state);
+            var monthly_principal_and_interest = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["f" /* getMonthlyPayment */])(mortgage_amount, tenure_in_month, Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["e" /* getMonthlyInterest */])(this.state));
             var total_principal_and_interest = monthly_principal_and_interest * tenure_in_month;
             var total_interest = total_principal_and_interest - mortgage_amount;
 
-            var monthly_property_tax = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["h" /* getPropertyTax */])(this.state);
+            var monthly_property_tax = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["h" /* getPropertyTax */])(this.state);
             var total_property_tax = monthly_property_tax * tenure_in_month;
 
-            var monthly_installment = monthly_principal_and_interest + monthly_property_tax;
+            var monthly_hoa = parseFloat(this.state.monthly_hoa);
+            var total_hoa = monthly_hoa * tenure_in_month;
+
+            var monthly_hazard = parseFloat(this.state.hazard_insurance) / 12;
+            var total_hazard = monthly_hazard * tenure_in_month;
+
+            var monthly_installment = monthly_principal_and_interest + monthly_property_tax + monthly_hoa + monthly_hazard;
             var total_payable = monthly_installment * tenure_in_month;
 
-            var breakdown = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["a" /* getBreakDown */])(this.state);
-            var breakdown_yearly = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["b" /* getBreakDownInYear */])(breakdown);
+            var breakdown = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["a" /* getBreakDown */])(this.state);
+            var breakdown_yearly = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["b" /* getBreakDownInYear */])(breakdown);
             var currency = this.state.currency;
+
+            console.log(monthly_installment);
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
@@ -5652,34 +5716,92 @@ var LayoutSelector = function (_React$Component) {
                     { className: 'row' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
-                        { className: 'col m7 s12' },
+                        { className: 'col m6 s12' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'info-point' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'small',
+                                null,
+                                'Adjust values by moving the sliders'
+                            )
+                        ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__UserInputs__["a" /* default */], { form: this.state, onch: this.onch.bind(this) })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
-                        { className: 'col m5 s12' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__LoanPieChart__["a" /* default */], {
+                        { className: 'col m6 s12' },
+                        this.state.pieChartMonthly ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'info-point center' },
+                            'Monthly Breakdown (',
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'a',
+                                { onClick: this.togglePie },
+                                'Show Total'
+                            ),
+                            ')'
+                        ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'info-point center' },
+                            'Total Breakdown (',
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'a',
+                                { onClick: this.togglePie },
+                                'Show Monthly'
+                            ),
+                            ')'
+                        ),
+                        this.state.pieChartMonthly ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__LoanPieChartMonthly__["a" /* default */], {
                             id: this.props.id,
                             monthly_installment: monthly_installment,
+                            monthly_principal_and_interest: monthly_principal_and_interest,
+                            monthly_property_tax: monthly_property_tax,
+                            monthly_hoa: monthly_hoa,
+                            monthly_hazard: monthly_hazard,
+                            currency: currency
+                        }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__LoanPieChartTotal__["a" /* default */], {
+                            id: this.props.id,
                             mortgage_amount: mortgage_amount,
                             tenure_in_month: tenure_in_month,
                             total_interest: total_interest,
                             total_property_tax: total_property_tax,
+                            total_hoa: total_hoa,
+                            total_hazard: total_hazard,
                             currency: currency,
                             total_payable: total_payable
                         }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Partials_InfoRow__["a" /* default */], { currency: currency, monthly_installment: monthly_installment,
+                        this.state.pieChartMonthly ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__Partials_InfoRowMonthly__["a" /* default */], { currency: currency,
+                            monthly_installment: monthly_installment,
+                            monthly_principal_and_interest: monthly_principal_and_interest,
+                            monthly_property_tax: monthly_property_tax,
+                            monthly_hoa: monthly_hoa,
+                            monthly_hazard: monthly_hazard }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__Partials_InfoRowTotal__["a" /* default */], { currency: currency,
                             mortgage_amount: mortgage_amount,
                             total_property_tax: total_property_tax,
+                            total_hoa: total_hoa,
+                            total_hazard: total_hazard,
                             total_payable: total_payable,
                             total_interest: total_interest })
                     )
                 ),
-                this.state.monthlyBreakdown ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__MonthlyChart__["a" /* default */], { principal: breakdown.principal_ar, interest: breakdown.interest_ar,
+                this.state.monthlyBreakdown ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__MonthlyChart__["a" /* default */], { principal: breakdown.principal_ar,
+                    interest: breakdown.interest_ar,
                     balance: breakdown.balance_ar,
-                    currency: currency, months: breakdown.month_ar }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__YearlyChart__["a" /* default */], { principal: breakdown_yearly.principal_ar, interest: breakdown_yearly.interest_ar,
+                    property_tax_ar: breakdown.property_tax_ar,
+                    hoa_ar: breakdown.hoa_ar,
+                    hazard_ar: breakdown.hazard_ar,
+                    currency: currency,
+                    toggleBar: this.toggleBar,
+                    months: breakdown.month_ar }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__YearlyChart__["a" /* default */], { principal: breakdown_yearly.principal_ar,
+                    interest: breakdown_yearly.interest_ar,
                     balance: breakdown_yearly.balance_ar,
-                    currency: currency, years: breakdown_yearly.year_ar })
+                    currency: currency,
+                    property_tax_ar: breakdown_yearly.property_tax_ar,
+                    hoa_ar: breakdown_yearly.hoa_ar,
+                    hazard_ar: breakdown_yearly.hazard_ar,
+                    toggleBar: this.toggleBar,
+                    years: breakdown_yearly.year_ar })
             );
         }
     }]);
@@ -6290,30 +6412,31 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var LoanPieChart = function (_Component) {
-    _inherits(LoanPieChart, _Component);
+var LoanPieChartMonthly = function (_Component) {
+    _inherits(LoanPieChartMonthly, _Component);
 
-    function LoanPieChart() {
-        _classCallCheck(this, LoanPieChart);
+    function LoanPieChartMonthly() {
+        _classCallCheck(this, LoanPieChartMonthly);
 
-        return _possibleConstructorReturn(this, (LoanPieChart.__proto__ || Object.getPrototypeOf(LoanPieChart)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (LoanPieChartMonthly.__proto__ || Object.getPrototypeOf(LoanPieChartMonthly)).apply(this, arguments));
     }
 
-    _createClass(LoanPieChart, [{
+    _createClass(LoanPieChartMonthly, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
             var _props = this.props,
                 id = _props.id,
                 monthly_installment = _props.monthly_installment,
-                mortgage_amount = _props.mortgage_amount,
+                monthly_principal_and_interest = _props.monthly_principal_and_interest,
                 currency = _props.currency,
-                total_property_tax = _props.total_property_tax,
-                total_interest = _props.total_interest;
+                monthly_property_tax = _props.monthly_property_tax,
+                monthly_hoa = _props.monthly_hoa,
+                monthly_hazard = _props.monthly_hazard;
 
             this.piechart = c3.generate({
                 bindto: '#pie' + id,
                 data: {
-                    columns: [['Principal', mortgage_amount], ['Interest', total_interest], ['Property Tax', total_property_tax]],
+                    columns: [['Principal & Interest', monthly_principal_and_interest], ['Property Tax', monthly_property_tax], ['HOA', monthly_hoa], ['HI', monthly_hazard]],
                     type: 'donut'
                 },
                 donut: {
@@ -6339,13 +6462,14 @@ var LoanPieChart = function (_Component) {
             var _props2 = this.props,
                 id = _props2.id,
                 monthly_installment = _props2.monthly_installment,
-                mortgage_amount = _props2.mortgage_amount,
+                monthly_principal_and_interest = _props2.monthly_principal_and_interest,
                 currency = _props2.currency,
-                total_property_tax = _props2.total_property_tax,
-                total_interest = _props2.total_interest;
+                monthly_property_tax = _props2.monthly_property_tax,
+                monthly_hoa = _props2.monthly_hoa,
+                monthly_hazard = _props2.monthly_hazard;
 
             this.piechart.load({
-                columns: [['Principal', mortgage_amount], ['Interest', total_interest], ['Property Tax', total_property_tax]]
+                columns: [['Principal & Interest', monthly_principal_and_interest], ['Property Tax', monthly_property_tax], ['HOA', monthly_hoa], ['HI', monthly_hazard]]
             });
 
             d3.select('#pie' + id + ' .c3-chart-arcs-title').node().innerHTML = currency + d3.format(',.2f')(monthly_installment) + '/Mo';
@@ -6359,13 +6483,108 @@ var LoanPieChart = function (_Component) {
         }
     }]);
 
-    return LoanPieChart;
+    return LoanPieChartMonthly;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["a"] = (LoanPieChart);
+/* harmony default export */ __webpack_exports__["a"] = (LoanPieChartMonthly);
 
 /***/ }),
 /* 143 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var LoanPieChartTotal = function (_Component) {
+    _inherits(LoanPieChartTotal, _Component);
+
+    function LoanPieChartTotal() {
+        _classCallCheck(this, LoanPieChartTotal);
+
+        return _possibleConstructorReturn(this, (LoanPieChartTotal.__proto__ || Object.getPrototypeOf(LoanPieChartTotal)).apply(this, arguments));
+    }
+
+    _createClass(LoanPieChartTotal, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _props = this.props,
+                id = _props.id,
+                mortgage_amount = _props.mortgage_amount,
+                currency = _props.currency,
+                total_property_tax = _props.total_property_tax,
+                total_interest = _props.total_interest,
+                total_hoa = _props.total_hoa,
+                total_hazard = _props.total_hazard,
+                total_payable = _props.total_payable;
+
+            this.piechart = c3.generate({
+                bindto: '#pie' + id,
+                data: {
+                    columns: [['Principal', mortgage_amount], ['Interest', total_interest], ['Property Tax', total_property_tax], ['HOA', total_hoa], ['HI', total_hazard]],
+                    type: 'donut'
+                },
+                donut: {
+                    label: {
+                        format: function format(value, ratio, id) {
+                            return d3.format('.1%')(ratio);
+                        }
+                    },
+                    title: currency + d3.format(',.0f')(total_payable)
+                },
+                tooltip: {
+                    format: {
+                        value: function value(_value, ratio, id, index) {
+                            return currency + d3.format(',')(_value.toFixed(2));
+                        }
+                    }
+                }
+            });
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            var _props2 = this.props,
+                id = _props2.id,
+                mortgage_amount = _props2.mortgage_amount,
+                currency = _props2.currency,
+                total_property_tax = _props2.total_property_tax,
+                total_interest = _props2.total_interest,
+                total_hoa = _props2.total_hoa,
+                total_hazard = _props2.total_hazard,
+                total_payable = _props2.total_payable;
+
+            this.piechart.load({
+                columns: [['Principal', mortgage_amount], ['Interest', total_interest], ['Property Tax', total_property_tax], ['HOA', total_hoa], ['HI', total_hazard]]
+            });
+
+            d3.select('#pie' + id + ' .c3-chart-arcs-title').node().innerHTML = currency + d3.format(',.0f')(total_payable);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var id = this.props.id;
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: "pie" + id });
+        }
+    }]);
+
+    return LoanPieChartTotal;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (LoanPieChartTotal);
+
+/***/ }),
+/* 144 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6403,7 +6622,7 @@ var MonthlyChart = function (_Component) {
                     // x: 'x',
                     columns: [
                     // ['x', 2001, 2002, 2003, 2004, 2005, 2006, 2007],
-                    ['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Balance'].concat(_toConsumableArray(this.props.balance))],
+                    ['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Property Tax'].concat(_toConsumableArray(this.props.property_tax_ar)), ['HOA'].concat(_toConsumableArray(this.props.hoa_ar)), ['HI'].concat(_toConsumableArray(this.props.hazard_ar)), ['Balance'].concat(_toConsumableArray(this.props.balance))],
                     axes: {
                         Balance: 'y2'
                     },
@@ -6411,7 +6630,7 @@ var MonthlyChart = function (_Component) {
                     types: {
                         Balance: 'spline'
                     },
-                    groups: [['Principal', 'Interest']],
+                    groups: [['Principal', 'Interest', 'Property Tax', 'HOA', 'HI']],
                     order: null
 
                 },
@@ -6468,13 +6687,15 @@ var MonthlyChart = function (_Component) {
         key: 'componentDidUpdate',
         value: function componentDidUpdate() {
             this.breakdown.load({
-                columns: [['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Balance'].concat(_toConsumableArray(this.props.balance))]
+                columns: [['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Balance'].concat(_toConsumableArray(this.props.balance)), ['Property Tax'].concat(_toConsumableArray(this.props.property_tax_ar)), ['HOA'].concat(_toConsumableArray(this.props.hoa_ar)), ['HI'].concat(_toConsumableArray(this.props.hazard_ar))]
             });
         }
     }, {
         key: 'render',
         value: function render() {
-            var id = this.props.id;
+            var _props = this.props,
+                id = _props.id,
+                toggleBar = _props.toggleBar;
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
@@ -6482,6 +6703,17 @@ var MonthlyChart = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'col s12' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'info-point center' },
+                        'Monthly Breakdown (',
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { onClick: toggleBar },
+                            'Show Yearly'
+                        ),
+                        ')'
+                    ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: "breakdown" + id })
                 )
             );
@@ -6494,7 +6726,7 @@ var MonthlyChart = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (MonthlyChart);
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6532,7 +6764,7 @@ var YearlyChart = function (_Component) {
                     // x: 'x',
                     columns: [
                     // ['x', 2001, 2002, 2003, 2004, 2005, 2006, 2007],
-                    ['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Balance'].concat(_toConsumableArray(this.props.balance))],
+                    ['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Property Tax'].concat(_toConsumableArray(this.props.property_tax_ar)), ['HOA'].concat(_toConsumableArray(this.props.hoa_ar)), ['HI'].concat(_toConsumableArray(this.props.hazard_ar)), ['Balance'].concat(_toConsumableArray(this.props.balance))],
                     axes: {
                         Balance: 'y2'
                     },
@@ -6540,7 +6772,7 @@ var YearlyChart = function (_Component) {
                     types: {
                         Balance: 'spline'
                     },
-                    groups: [['Principal', 'Interest']],
+                    groups: [['Principal', 'Interest', 'Property Tax', 'HOA', 'HI']],
                     order: null
 
                 },
@@ -6597,13 +6829,15 @@ var YearlyChart = function (_Component) {
         key: 'componentDidUpdate',
         value: function componentDidUpdate() {
             this.breakdown_yearly.load({
-                columns: [['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Balance'].concat(_toConsumableArray(this.props.balance))]
+                columns: [['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Property Tax'].concat(_toConsumableArray(this.props.property_tax_ar)), ['HOA'].concat(_toConsumableArray(this.props.hoa_ar)), ['HI'].concat(_toConsumableArray(this.props.hazard_ar)), ['Balance'].concat(_toConsumableArray(this.props.balance))]
             });
         }
     }, {
         key: 'render',
         value: function render() {
-            var id = this.props.id;
+            var _props = this.props,
+                id = _props.id,
+                toggleBar = _props.toggleBar;
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
@@ -6611,6 +6845,17 @@ var YearlyChart = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'col s12' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'info-point center' },
+                        'Yearly Breakdown (',
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { onClick: toggleBar },
+                            'Show Monthly'
+                        ),
+                        ')'
+                    ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: "breakdown-yearly" + id })
                 )
             );
@@ -6623,7 +6868,15 @@ var YearlyChart = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (YearlyChart);
 
 /***/ }),
-/* 145 */
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6639,48 +6892,171 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var InfoRow = function (_Component) {
-    _inherits(InfoRow, _Component);
+var InfoRowMonthly = function (_Component) {
+    _inherits(InfoRowMonthly, _Component);
 
-    function InfoRow() {
-        _classCallCheck(this, InfoRow);
+    function InfoRowMonthly() {
+        _classCallCheck(this, InfoRowMonthly);
 
-        return _possibleConstructorReturn(this, (InfoRow.__proto__ || Object.getPrototypeOf(InfoRow)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (InfoRowMonthly.__proto__ || Object.getPrototypeOf(InfoRowMonthly)).apply(this, arguments));
     }
 
-    _createClass(InfoRow, [{
+    _createClass(InfoRowMonthly, [{
         key: "render",
         value: function render() {
             var _props = this.props,
                 currency = _props.currency,
                 monthly_installment = _props.monthly_installment,
-                mortgage_amount = _props.mortgage_amount,
-                total_payable = _props.total_payable,
-                total_interest = _props.total_interest,
-                total_property_tax = _props.total_property_tax;
+                monthly_principal_and_interest = _props.monthly_principal_and_interest,
+                monthly_property_tax = _props.monthly_property_tax,
+                monthly_hoa = _props.monthly_hoa,
+                monthly_hazard = _props.monthly_hazard;
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
                 { className: "row info-row" },
-                false ? React.createElement(
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "div",
                     { className: "col s12" },
-                    React.createElement(
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         "div",
                         null,
-                        React.createElement(
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "Principal & Interest:"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            {
+                                className: "right" },
+                            currency + d3.format(',.0f')(monthly_principal_and_interest)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "Property Tax:"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            { className: "right" },
+                            currency + d3.format(',.0f')(monthly_property_tax)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "HOA:"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            { className: "right" },
+                            currency + d3.format(',.0f')(monthly_hoa)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "HI:"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            { className: "right" },
+                            currency + d3.format(',.0f')(monthly_hazard)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             "span",
                             { className: "left" },
                             "Monthly Installment: "
                         ),
-                        React.createElement(
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             "strong",
                             {
-                                className: "red-text text-darken-2" },
-                            currency + d3.format(',.2f')(monthly_installment)
+                                className: "red-text text-darken-2 right" },
+                            currency + d3.format(',.0f')(monthly_installment)
                         )
                     )
-                ) : false,
+                )
+            );
+        }
+    }]);
+
+    return InfoRowMonthly;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (InfoRowMonthly);
+
+/***/ }),
+/* 155 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var InfoRowTotal = function (_Component) {
+    _inherits(InfoRowTotal, _Component);
+
+    function InfoRowTotal() {
+        _classCallCheck(this, InfoRowTotal);
+
+        return _possibleConstructorReturn(this, (InfoRowTotal.__proto__ || Object.getPrototypeOf(InfoRowTotal)).apply(this, arguments));
+    }
+
+    _createClass(InfoRowTotal, [{
+        key: "render",
+        value: function render() {
+            var _props = this.props,
+                currency = _props.currency,
+                mortgage_amount = _props.mortgage_amount,
+                total_payable = _props.total_payable,
+                total_interest = _props.total_interest,
+                total_property_tax = _props.total_property_tax,
+                total_hoa = _props.total_hoa,
+                total_hazard = _props.total_hazard;
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "row info-row" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "div",
                     { className: "col s12" },
@@ -6695,7 +7071,7 @@ var InfoRow = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             "strong",
                             { className: "right" },
-                            currency + d3.format(',.2f')(mortgage_amount)
+                            currency + d3.format(',.0f')(mortgage_amount)
                         )
                     )
                 ),
@@ -6713,7 +7089,7 @@ var InfoRow = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             "strong",
                             { className: "right" },
-                            currency + d3.format(',.2f')(total_interest)
+                            currency + d3.format(',.0f')(total_interest)
                         )
                     )
                 ),
@@ -6731,7 +7107,43 @@ var InfoRow = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             "strong",
                             { className: "right" },
-                            currency + d3.format(',.2f')(total_property_tax)
+                            currency + d3.format(',.0f')(total_property_tax)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "Total HOA:"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            { className: "right" },
+                            currency + d3.format(',.0f')(total_hoa)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "Total HI:"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            { className: "right" },
+                            currency + d3.format(',.0f')(total_hazard)
                         )
                     )
                 ),
@@ -6748,8 +7160,8 @@ var InfoRow = function (_Component) {
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             "strong",
-                            { className: "right" },
-                            currency + d3.format(',.2f')(total_payable)
+                            { className: "right red-text text-darken-2" },
+                            currency + d3.format(',.0f')(total_payable)
                         )
                     )
                 )
@@ -6757,10 +7169,10 @@ var InfoRow = function (_Component) {
         }
     }]);
 
-    return InfoRow;
+    return InfoRowTotal;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["a"] = (InfoRow);
+/* harmony default export */ __webpack_exports__["a"] = (InfoRowTotal);
 
 /***/ })
 /******/ ]);

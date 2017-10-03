@@ -3,8 +3,17 @@
 
 .srizon {
   margin-top: 10px !important;
-  .info-row {
+  .info-point {
     font-size: 18px;
+    font-weight: 200;
+  }
+  .info-row {
+    margin-top: 20px;
+    .col {
+      padding: 5px 2px;
+      border-bottom: 2px solid color('grey', 'lighten-2');
+    }
+    font-size: 15px;
     span {
       padding-right: 20px;
       font-weight: 200;

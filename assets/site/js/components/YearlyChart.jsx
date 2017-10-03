@@ -10,6 +10,9 @@ class YearlyChart extends Component {
                     // ['x', 2001, 2002, 2003, 2004, 2005, 2006, 2007],
                     ['Principal', ...this.props.principal],
                     ['Interest', ...this.props.interest],
+                    ['Property Tax', ...this.props.property_tax_ar],
+                    ['HOA', ...this.props.hoa_ar],
+                    ['HI', ...this.props.hazard_ar],
                     ['Balance', ...this.props.balance],
                 ],
                 axes: {
@@ -20,7 +23,7 @@ class YearlyChart extends Component {
                     Balance: 'spline'
                 },
                 groups: [
-                    ['Principal', 'Interest']
+                    ['Principal', 'Interest', 'Property Tax', 'HOA', 'HI']
                 ],
                 order: null,
 
@@ -72,16 +75,22 @@ class YearlyChart extends Component {
             columns: [
                 ['Principal', ...this.props.principal],
                 ['Interest', ...this.props.interest],
+                ['Property Tax', ...this.props.property_tax_ar],
+                ['HOA', ...this.props.hoa_ar],
+                ['HI', ...this.props.hazard_ar],
                 ['Balance', ...this.props.balance],
             ]
         });
     }
 
     render() {
-        const {id} = this.props;
+        const {id,toggleBar} = this.props;
         return (
             <div className="row">
                 <div className="col s12">
+                    <div className="info-point center">Yearly Breakdown (<a onClick={toggleBar}>Show
+                        Monthly</a>)
+                    </div>
                     <div id={"breakdown-yearly"+id}>
                     </div>
                 </div>

@@ -1,15 +1,23 @@
 import React, {Component} from 'react';
 
-class LoanPieChart extends Component {
+class LoanPieChartMonthly extends Component {
     componentDidMount() {
-        const {id, monthly_installment, mortgage_amount, currency, total_property_tax, total_interest} = this.props;
+        const {
+            id,
+            monthly_installment,
+            monthly_principal_and_interest,
+            currency, monthly_property_tax,
+            monthly_hoa,
+            monthly_hazard
+        } = this.props;
         this.piechart = c3.generate({
             bindto: '#pie' + id,
             data: {
                 columns: [
-                    ['Principal', mortgage_amount],
-                    ['Interest', total_interest],
-                    ['Property Tax', total_property_tax]
+                    ['Principal & Interest', monthly_principal_and_interest],
+                    ['Property Tax', monthly_property_tax],
+                    ['HOA', monthly_hoa],
+                    ['HI', monthly_hazard]
                 ],
                 type: 'donut'
             },
@@ -32,12 +40,22 @@ class LoanPieChart extends Component {
     }
 
     componentDidUpdate() {
-        const {id, monthly_installment, mortgage_amount, currency, total_property_tax, total_interest} = this.props;
+        const {
+            id,
+            monthly_installment,
+            monthly_principal_and_interest,
+            currency,
+            monthly_property_tax,
+            monthly_hoa,
+            monthly_hazard
+        } = this.props;
         this.piechart.load({
             columns: [
-                ['Principal', mortgage_amount],
-                ['Interest', total_interest],
-                ['Property Tax', total_property_tax]
+                ['Principal & Interest', monthly_principal_and_interest],
+                ['Property Tax', monthly_property_tax],
+                ['HOA', monthly_hoa],
+                ['HI', monthly_hazard]
+
             ]
         });
 
@@ -54,4 +72,4 @@ class LoanPieChart extends Component {
     }
 }
 
-export default LoanPieChart;
+export default LoanPieChartMonthly;

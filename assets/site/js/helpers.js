@@ -63,12 +63,17 @@ export function getBreakDown(state) {
     const monthly_installment = getMonthlyPayment(getMortgageAmount(state), getTenureInMonth(state), getMonthlyInterest(state));
     const mortgage_amount = getMortgageAmount(state);
     const tenure_in_month = getTenureInMonth(state);
-
+    const monthly_property_tax = getPropertyTax(state);
+    const monthly_hoa = parseFloat(state.monthly_hoa);
+    const monthly_hazard = parseFloat(state.hazard_insurance) / 12;
     let interest_ar = [];
     let interest = 0;
     let principal_ar = [];
     let principal = 0;
     let balance_ar = [];
+    let property_tax_ar = [];
+    let hoa_ar = [];
+    let hazard_ar = [];
     let balance = mortgage_amount;
     let month_ar = [];
     let month = moment().add(state.start_month, 'month');
@@ -83,12 +88,25 @@ export function getBreakDown(state) {
         interest_ar.push(interest);
         principal_ar.push(principal);
         balance_ar.push(balance);
+        property_tax_ar.push(monthly_property_tax);
+        hoa_ar.push(monthly_hoa);
+        hazard_ar.push(monthly_hazard);
         month_ar.push(month.format('MMM-YY'));
         year_ar.push(month.format('YYYY'));
         current_month = current_month + 1;
         month = month.add(1, 'month');
     }
-    return {interest_ar, principal_ar, balance_ar, month_ar, year_ar, mortgage_amount}
+    return {
+        interest_ar,
+        principal_ar,
+        balance_ar,
+        month_ar,
+        year_ar,
+        mortgage_amount,
+        property_tax_ar,
+        hoa_ar,
+        hazard_ar
+    }
 }
 
 export function getBreakDownInYear(breakdown) {
@@ -100,6 +118,12 @@ export function getBreakDownInYear(breakdown) {
     let balance = parseFloat(breakdown.mortgage_amount);
     let year_ar = [];
     let year = parseInt(breakdown.year_ar[0]);
+    let property_tax_ar = [];
+    let property_tax = 0;
+    let hoa_ar = [];
+    let hoa = 0;
+    let hazard_ar = [];
+    let hazard = 0;
     let i = 0;
     const total = breakdown.month_ar.length;
     // console.log(breakdown.interest_ar);
@@ -108,15 +132,24 @@ export function getBreakDownInYear(breakdown) {
             interest = interest + parseFloat(breakdown.interest_ar[i]);
             principal = principal + parseFloat(breakdown.principal_ar[i]);
             balance = balance - parseFloat(breakdown.principal_ar[i]);
+            property_tax = property_tax + parseFloat(breakdown.property_tax_ar[i]);
+            hoa = hoa + parseFloat(breakdown.hoa_ar[i]);
+            hazard = hazard + parseFloat(breakdown.hazard_ar[i]);
         }
         else {
             year_ar.push(year);
             interest_ar.push(interest);
             principal_ar.push(principal);
             balance_ar.push(balance);
+            property_tax_ar.push(property_tax);
+            hoa_ar.push(hoa);
+            hazard_ar.push(hazard);
 
             interest = parseFloat(breakdown.interest_ar[i]);
             principal = parseFloat(breakdown.principal_ar[i]);
+            property_tax = parseFloat(breakdown.property_tax_ar[i]);
+            hoa = parseFloat(breakdown.hoa_ar[i]);
+            hazard = parseFloat(breakdown.hazard_ar[i]);
             balance = balance - parseFloat(breakdown.principal_ar[i]);
             year = parseInt(breakdown.year_ar[i]);
         }
@@ -126,5 +159,8 @@ export function getBreakDownInYear(breakdown) {
     interest_ar.push(interest);
     principal_ar.push(principal);
     balance_ar.push(balance);
-    return {interest_ar, principal_ar, balance_ar, year_ar}
+    property_tax_ar.push(property_tax);
+    hoa_ar.push(hoa);
+    hazard_ar.push(hazard);
+    return {interest_ar, principal_ar, balance_ar, year_ar, property_tax_ar, hoa_ar, hazard_ar}
 }

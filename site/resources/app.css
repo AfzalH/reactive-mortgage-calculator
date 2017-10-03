@@ -128,8 +128,19 @@
   margin-top: 10px !important;
 }
 
-.srizon .info-row {
+.srizon .info-point {
   font-size: 18px;
+  font-weight: 200;
+}
+
+.srizon .info-row {
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.srizon .info-row .col {
+  padding: 5px 2px;
+  border-bottom: 2px solid #e0e0e0;
 }
 
 .srizon .info-row span {
