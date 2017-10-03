@@ -5861,32 +5861,8 @@ var SettingsForm = function (_React$Component) {
                                                        'div',
                                                        { className: "col s12 m6 offset-m6", id: 'other-tab' },
                                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_form_TextField__["a" /* default */], { val: pstate.currency, onch: hich, name: 'currency',
-                                                                  label: 'Currency Symbol', aclass: '' }),
-                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                                  'p',
-                                                                  null,
-                                                                  'for dev reference'
-                                                       ),
-                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_form_RangeField__["a" /* default */], { val: pstate.total_image_carousel, onch: hich, name: 'total_image_carousel',
-                                                                  aclass: '', label: 'Total image to load (max 33 for this layout)', min: 1,
-                                                                  max: 33 }),
-                                                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                                  'div',
-                                                                  null,
-                                                                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                                             'div',
-                                                                             { className: 'top20' },
-                                                                             'Thumb Position'
-                                                                  ),
-                                                                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_form_RadioField__["a" /* default */], { val: 'bottom', label: 'Bottom', name: 'carousel_thumb_position',
-                                                                             curval: pstate.carousel_thumb_position, onch: hich }),
-                                                                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_form_RadioField__["a" /* default */], { val: 'top', label: 'Top', name: 'carousel_thumb_position',
-                                                                             curval: pstate.carousel_thumb_position, onch: hich }),
-                                                                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_form_RadioField__["a" /* default */], { val: 'left', label: 'Left', name: 'carousel_thumb_position',
-                                                                             curval: pstate.carousel_thumb_position, onch: hich })
-                                                       )
-                                            ),
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: global ? "col s12 m6 top20 pr50" : "col s12 top20 plr0" })
+                                                                  label: 'Currency Symbol', aclass: '' })
+                                            )
                                  );
                       }
            }]);
@@ -8384,7 +8360,7 @@ var RadioField = function RadioField(_ref) {
     );
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (RadioField);
+/* unused harmony default export */ var _unused_webpack_default_export = (RadioField);
 
 /***/ }),
 /* 110 */

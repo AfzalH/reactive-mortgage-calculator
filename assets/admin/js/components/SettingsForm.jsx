@@ -176,21 +176,6 @@ class SettingsForm extends React.Component {
                 <div className={"col s12 m6 offset-m6"} id="other-tab">
                     <TextField val={pstate.currency} onch={hich} name="currency"
                                label="Currency Symbol" aclass=""/>
-                    <p>for dev reference</p>
-                    <RangeField val={pstate.total_image_carousel} onch={hich} name="total_image_carousel"
-                                aclass="" label="Total image to load (max 33 for this layout)" min={1}
-                                max={33}/>
-                    <div>
-                        <div className="top20">Thumb Position</div>
-                        <RadioField val="bottom" label="Bottom" name="carousel_thumb_position"
-                                    curval={pstate.carousel_thumb_position} onch={hich}/>
-                        <RadioField val="top" label="Top" name="carousel_thumb_position"
-                                    curval={pstate.carousel_thumb_position} onch={hich}/>
-                        <RadioField val="left" label="Left" name="carousel_thumb_position"
-                                    curval={pstate.carousel_thumb_position} onch={hich}/>
-                    </div>
-                </div>
-                <div className={global ? "col s12 m6 top20 pr50" : "col s12 top20 plr0"}>
                 </div>
             </div>
         );
