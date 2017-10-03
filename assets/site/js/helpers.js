@@ -9,7 +9,7 @@ export function getDownPaymentAmount(state) {
         return getDownpaymentAmountFromPercent(state);
     }
     const amount = state.downpayment_is_changeable ? state.downpayment_amount : state.downpayment_amount_fixed;
-    return amount.toFixed(0);
+    return amount;
 }
 
 export function getMortgageAmount(state) {
@@ -20,14 +20,14 @@ export function getDownpaymentAmountFromPercent(state) {
     const propertyValue = getPropertyValue(state);
     const percent = state.downpayment_is_changeable ? state.downpayment_percent : state.downpayment_percent_fixed;
     const calc = propertyValue * (percent / 100);
-    return calc.toFixed(0);
+    return calc;
 }
 
 export function getDownpaymentPercentFromAmount(state) {
     const propertyValue = getPropertyValue(state);
     const amount = state.downpayment_is_changeable ? state.downpayment_amount : state.downpayment_amount_fixed;
     const calc = (amount / propertyValue) * 100;
-    return calc.toFixed(2);
+    return calc;
 }
 
 export function getTenureInMonth(state) {
@@ -52,6 +52,12 @@ export function getMonthlyPayment(p, n, i) {
     return p * i * (Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1);
 }
 
+export function getPropertyTax(state) {
+    const monthly_tax = state.property_tax / 1200;
+    const property_value = getPropertyValue(state);
+    return property_value * monthly_tax;
+}
+
 export function getBreakDown(state) {
     const monthly_interest = getMonthlyInterest(state);
     const monthly_installment = getMonthlyPayment(getMortgageAmount(state), getTenureInMonth(state), getMonthlyInterest(state));
@@ -74,9 +80,9 @@ export function getBreakDown(state) {
         principal = monthly_installment - interest;
         balance = balance - principal;
         if (balance < 0) balance = 0;
-        interest_ar.push(interest.toFixed(2));
-        principal_ar.push(principal.toFixed(2));
-        balance_ar.push(balance.toFixed(2));
+        interest_ar.push(interest);
+        principal_ar.push(principal);
+        balance_ar.push(balance);
         month_ar.push(month.format('MMM-YY'));
         year_ar.push(month.format('YYYY'));
         current_month = current_month + 1;
@@ -96,7 +102,7 @@ export function getBreakDownInYear(breakdown) {
     let year = parseInt(breakdown.year_ar[0]);
     let i = 0;
     const total = breakdown.month_ar.length;
-    console.log(breakdown.interest_ar);
+    // console.log(breakdown.interest_ar);
     while (i < total) {
         if (year == parseInt(breakdown.year_ar[i])) {
             interest = interest + parseFloat(breakdown.interest_ar[i]);
@@ -105,9 +111,9 @@ export function getBreakDownInYear(breakdown) {
         }
         else {
             year_ar.push(year);
-            interest_ar.push(interest.toFixed(2));
-            principal_ar.push(principal.toFixed(2));
-            balance_ar.push(balance.toFixed(2));
+            interest_ar.push(interest);
+            principal_ar.push(principal);
+            balance_ar.push(balance);
 
             interest = parseFloat(breakdown.interest_ar[i]);
             principal = parseFloat(breakdown.principal_ar[i]);
@@ -117,8 +123,8 @@ export function getBreakDownInYear(breakdown) {
         i = i + 1;
     }
     year_ar.push(year);
-    interest_ar.push(interest.toFixed(2));
-    principal_ar.push(principal.toFixed(2));
-    balance_ar.push(balance.toFixed(0));
+    interest_ar.push(interest);
+    principal_ar.push(principal);
+    balance_ar.push(balance);
     return {interest_ar, principal_ar, balance_ar, year_ar}
 }

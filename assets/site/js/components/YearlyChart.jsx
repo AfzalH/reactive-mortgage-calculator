@@ -28,7 +28,7 @@ class YearlyChart extends Component {
             tooltip: {
                 format: {
                     value: (value, ratio, id, index) => {
-                        return (this.props.currency + d3.format(',')(value));
+                        return (this.props.currency + d3.format(',.2f')(value));
                     },
                     title: (value)=> (this.props.years[value])
                 }

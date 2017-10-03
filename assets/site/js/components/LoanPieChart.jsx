@@ -2,16 +2,14 @@ import React, {Component} from 'react';
 
 class LoanPieChart extends Component {
     componentDidMount() {
-        const {id, monthly_installment, mortgage_amount, tenure_in_month, currency} = this.props;
-        const total_payable = (monthly_installment * tenure_in_month).toFixed(2);
-        const total_interest = (total_payable - mortgage_amount).toFixed(2);
+        const {id, monthly_installment, mortgage_amount, currency, total_property_tax, total_interest} = this.props;
         this.piechart = c3.generate({
             bindto: '#pie' + id,
             data: {
-                // iris data from R
                 columns: [
                     ['Principal', mortgage_amount],
                     ['Interest', total_interest],
+                    ['Property Tax', total_property_tax]
                 ],
                 type: 'donut'
             },
@@ -21,7 +19,7 @@ class LoanPieChart extends Component {
                         return d3.format('.1%')(ratio);
                     }
                 },
-                title: currency + d3.format(',')(monthly_installment) + '/Mo',
+                title: currency + d3.format(',.2f')(monthly_installment) + '/Mo',
             },
             tooltip: {
                 format: {
@@ -34,17 +32,16 @@ class LoanPieChart extends Component {
     }
 
     componentDidUpdate() {
-        const {id, monthly_installment, mortgage_amount, tenure_in_month, currency} = this.props;
-        const total_payable = monthly_installment * tenure_in_month;
-        const total_interest = total_payable - mortgage_amount;
+        const {id, monthly_installment, mortgage_amount, currency, total_property_tax, total_interest} = this.props;
         this.piechart.load({
             columns: [
                 ['Principal', mortgage_amount],
                 ['Interest', total_interest],
+                ['Property Tax', total_property_tax]
             ]
         });
 
-        d3.select('#pie' + id + ' .c3-chart-arcs-title').node().innerHTML = currency + d3.format(',')(monthly_installment) + '/Mo';
+        d3.select('#pie' + id + ' .c3-chart-arcs-title').node().innerHTML = currency + d3.format(',.2f')(monthly_installment) + '/Mo';
 
     }
 

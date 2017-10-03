@@ -402,6 +402,58 @@ module.exports = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+// dumb component ... only props and presentation
+var RangeField = function RangeField(_ref) {
+    var val = _ref.val,
+        onch = _ref.onch,
+        name = _ref.name,
+        label = _ref.label,
+        aclass = _ref.aclass,
+        min = _ref.min,
+        max = _ref.max,
+        _ref$step = _ref.step,
+        step = _ref$step === undefined ? 1 : _ref$step,
+        _ref$prefix = _ref.prefix,
+        prefix = _ref$prefix === undefined ? '' : _ref$prefix,
+        _ref$suffix = _ref.suffix,
+        suffix = _ref$suffix === undefined ? '' : _ref$suffix;
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: "input-field " + aclass },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'p',
+            { className: 'grey-text bottom0' },
+            label,
+            ' : ',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'span',
+                {
+                    className: 'green-text text-darken-1' },
+                ' ',
+                prefix + val + suffix,
+                ' '
+            )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'p',
+            { className: 'range-field top0' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'range', name: name, value: val, step: step,
+                onChange: onch, id: name, min: min, max: max })
+        )
+    );
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (RangeField);
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(43);
@@ -434,7 +486,7 @@ if ("development" !== 'production' && typeof isCrushed.name === 'string' && isCr
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -506,7 +558,7 @@ function isPlainObject(value) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 var g;
@@ -533,7 +585,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -561,7 +613,7 @@ function warning(message) {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -593,7 +645,7 @@ var TextField = function TextField(_ref) {
 /* harmony default export */ __webpack_exports__["a"] = (TextField);
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -693,65 +745,13 @@ module.exports = defaults;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(70)))
 
 /***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-
-
-// dumb component ... only props and presentation
-var RangeField = function RangeField(_ref) {
-    var val = _ref.val,
-        onch = _ref.onch,
-        name = _ref.name,
-        label = _ref.label,
-        aclass = _ref.aclass,
-        min = _ref.min,
-        max = _ref.max,
-        _ref$step = _ref.step,
-        step = _ref$step === undefined ? 1 : _ref$step,
-        _ref$prefix = _ref.prefix,
-        prefix = _ref$prefix === undefined ? '' : _ref$prefix,
-        _ref$suffix = _ref.suffix,
-        suffix = _ref$suffix === undefined ? '' : _ref$suffix;
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: "input-field " + aclass },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            { className: 'grey-text bottom0' },
-            label,
-            ' : ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'span',
-                {
-                    className: 'green-text text-darken-1' },
-                ' ',
-                prefix + val + suffix,
-                ' '
-            )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            { className: 'range-field top0' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'range', name: name, value: val, step: step,
-                onChange: onch, id: name, min: min, max: max })
-        )
-    );
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (RangeField);
-
-/***/ }),
 /* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActionTypes; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = createStore;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_symbol_observable__);
 
@@ -1727,8 +1727,8 @@ function wrapMapToPropsFunc(mapToProps, methodName) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = verifyPlainObject;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__warning__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__warning__ = __webpack_require__(7);
 
 
 
@@ -2180,7 +2180,7 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 
 /* harmony default export */ __webpack_exports__["a"] = (freeGlobal);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(6)))
 
 /***/ }),
 /* 34 */
@@ -2378,7 +2378,7 @@ if (typeof self !== 'undefined') {
 
 var result = (0, _ponyfill2['default'])(root);
 exports['default'] = result;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(41)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(41)(module)))
 
 /***/ }),
 /* 41 */
@@ -2444,7 +2444,7 @@ function symbolObservablePonyfill(root) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = combineReducers;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(12);
 
 
@@ -2722,7 +2722,7 @@ exports['default'] = thunk;
 
 /* WEBPACK VAR INJECTION */(function(global) {!function(e,t){ true?t(exports):"function"==typeof define&&define.amd?define(["exports"],t):t(e.reduxLogger=e.reduxLogger||{})}(this,function(e){"use strict";function t(e,t){e.super_=t,e.prototype=Object.create(t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}})}function r(e,t){Object.defineProperty(this,"kind",{value:e,enumerable:!0}),t&&t.length&&Object.defineProperty(this,"path",{value:t,enumerable:!0})}function n(e,t,r){n.super_.call(this,"E",e),Object.defineProperty(this,"lhs",{value:t,enumerable:!0}),Object.defineProperty(this,"rhs",{value:r,enumerable:!0})}function o(e,t){o.super_.call(this,"N",e),Object.defineProperty(this,"rhs",{value:t,enumerable:!0})}function i(e,t){i.super_.call(this,"D",e),Object.defineProperty(this,"lhs",{value:t,enumerable:!0})}function a(e,t,r){a.super_.call(this,"A",e),Object.defineProperty(this,"index",{value:t,enumerable:!0}),Object.defineProperty(this,"item",{value:r,enumerable:!0})}function f(e,t,r){var n=e.slice((r||t)+1||e.length);return e.length=t<0?e.length+t:t,e.push.apply(e,n),e}function u(e){var t="undefined"==typeof e?"undefined":N(e);return"object"!==t?t:e===Math?"math":null===e?"null":Array.isArray(e)?"array":"[object Date]"===Object.prototype.toString.call(e)?"date":"function"==typeof e.toString&&/^\/.*\//.test(e.toString())?"regexp":"object"}function l(e,t,r,c,s,d,p){s=s||[],p=p||[];var g=s.slice(0);if("undefined"!=typeof d){if(c){if("function"==typeof c&&c(g,d))return;if("object"===("undefined"==typeof c?"undefined":N(c))){if(c.prefilter&&c.prefilter(g,d))return;if(c.normalize){var h=c.normalize(g,d,e,t);h&&(e=h[0],t=h[1])}}}g.push(d)}"regexp"===u(e)&&"regexp"===u(t)&&(e=e.toString(),t=t.toString());var y="undefined"==typeof e?"undefined":N(e),v="undefined"==typeof t?"undefined":N(t),b="undefined"!==y||p&&p[p.length-1].lhs&&p[p.length-1].lhs.hasOwnProperty(d),m="undefined"!==v||p&&p[p.length-1].rhs&&p[p.length-1].rhs.hasOwnProperty(d);if(!b&&m)r(new o(g,t));else if(!m&&b)r(new i(g,e));else if(u(e)!==u(t))r(new n(g,e,t));else if("date"===u(e)&&e-t!==0)r(new n(g,e,t));else if("object"===y&&null!==e&&null!==t)if(p.filter(function(t){return t.lhs===e}).length)e!==t&&r(new n(g,e,t));else{if(p.push({lhs:e,rhs:t}),Array.isArray(e)){var w;e.length;for(w=0;w<e.length;w++)w>=t.length?r(new a(g,w,new i(void 0,e[w]))):l(e[w],t[w],r,c,g,w,p);for(;w<t.length;)r(new a(g,w,new o(void 0,t[w++])))}else{var x=Object.keys(e),S=Object.keys(t);x.forEach(function(n,o){var i=S.indexOf(n);i>=0?(l(e[n],t[n],r,c,g,n,p),S=f(S,i)):l(e[n],void 0,r,c,g,n,p)}),S.forEach(function(e){l(void 0,t[e],r,c,g,e,p)})}p.length=p.length-1}else e!==t&&("number"===y&&isNaN(e)&&isNaN(t)||r(new n(g,e,t)))}function c(e,t,r,n){return n=n||[],l(e,t,function(e){e&&n.push(e)},r),n.length?n:void 0}function s(e,t,r){if(r.path&&r.path.length){var n,o=e[t],i=r.path.length-1;for(n=0;n<i;n++)o=o[r.path[n]];switch(r.kind){case"A":s(o[r.path[n]],r.index,r.item);break;case"D":delete o[r.path[n]];break;case"E":case"N":o[r.path[n]]=r.rhs}}else switch(r.kind){case"A":s(e[t],r.index,r.item);break;case"D":e=f(e,t);break;case"E":case"N":e[t]=r.rhs}return e}function d(e,t,r){if(e&&t&&r&&r.kind){for(var n=e,o=-1,i=r.path?r.path.length-1:0;++o<i;)"undefined"==typeof n[r.path[o]]&&(n[r.path[o]]="number"==typeof r.path[o]?[]:{}),n=n[r.path[o]];switch(r.kind){case"A":s(r.path?n[r.path[o]]:n,r.index,r.item);break;case"D":delete n[r.path[o]];break;case"E":case"N":n[r.path[o]]=r.rhs}}}function p(e,t,r){if(r.path&&r.path.length){var n,o=e[t],i=r.path.length-1;for(n=0;n<i;n++)o=o[r.path[n]];switch(r.kind){case"A":p(o[r.path[n]],r.index,r.item);break;case"D":o[r.path[n]]=r.lhs;break;case"E":o[r.path[n]]=r.lhs;break;case"N":delete o[r.path[n]]}}else switch(r.kind){case"A":p(e[t],r.index,r.item);break;case"D":e[t]=r.lhs;break;case"E":e[t]=r.lhs;break;case"N":e=f(e,t)}return e}function g(e,t,r){if(e&&t&&r&&r.kind){var n,o,i=e;for(o=r.path.length-1,n=0;n<o;n++)"undefined"==typeof i[r.path[n]]&&(i[r.path[n]]={}),i=i[r.path[n]];switch(r.kind){case"A":p(i[r.path[n]],r.index,r.item);break;case"D":i[r.path[n]]=r.lhs;break;case"E":i[r.path[n]]=r.lhs;break;case"N":delete i[r.path[n]]}}}function h(e,t,r){if(e&&t){var n=function(n){r&&!r(e,t,n)||d(e,t,n)};l(e,t,n)}}function y(e){return"color: "+F[e].color+"; font-weight: bold"}function v(e){var t=e.kind,r=e.path,n=e.lhs,o=e.rhs,i=e.index,a=e.item;switch(t){case"E":return[r.join("."),n,"→",o];case"N":return[r.join("."),o];case"D":return[r.join(".")];case"A":return[r.join(".")+"["+i+"]",a];default:return[]}}function b(e,t,r,n){var o=c(e,t);try{n?r.groupCollapsed("diff"):r.group("diff")}catch(e){r.log("diff")}o?o.forEach(function(e){var t=e.kind,n=v(e);r.log.apply(r,["%c "+F[t].text,y(t)].concat(P(n)))}):r.log("—— no diff ——");try{r.groupEnd()}catch(e){r.log("—— diff end —— ")}}function m(e,t,r,n){switch("undefined"==typeof e?"undefined":N(e)){case"object":return"function"==typeof e[n]?e[n].apply(e,P(r)):e[n];case"function":return e(t);default:return e}}function w(e){var t=e.timestamp,r=e.duration;return function(e,n,o){var i=["action"];return i.push("%c"+String(e.type)),t&&i.push("%c@ "+n),r&&i.push("%c(in "+o.toFixed(2)+" ms)"),i.join(" ")}}function x(e,t){var r=t.logger,n=t.actionTransformer,o=t.titleFormatter,i=void 0===o?w(t):o,a=t.collapsed,f=t.colors,u=t.level,l=t.diff,c="undefined"==typeof t.titleFormatter;e.forEach(function(o,s){var d=o.started,p=o.startedTime,g=o.action,h=o.prevState,y=o.error,v=o.took,w=o.nextState,x=e[s+1];x&&(w=x.prevState,v=x.started-d);var S=n(g),k="function"==typeof a?a(function(){return w},g,o):a,j=D(p),E=f.title?"color: "+f.title(S)+";":"",A=["color: gray; font-weight: lighter;"];A.push(E),t.timestamp&&A.push("color: gray; font-weight: lighter;"),t.duration&&A.push("color: gray; font-weight: lighter;");var O=i(S,j,v);try{k?f.title&&c?r.groupCollapsed.apply(r,["%c "+O].concat(A)):r.groupCollapsed(O):f.title&&c?r.group.apply(r,["%c "+O].concat(A)):r.group(O)}catch(e){r.log(O)}var N=m(u,S,[h],"prevState"),P=m(u,S,[S],"action"),C=m(u,S,[y,h],"error"),F=m(u,S,[w],"nextState");if(N)if(f.prevState){var L="color: "+f.prevState(h)+"; font-weight: bold";r[N]("%c prev state",L,h)}else r[N]("prev state",h);if(P)if(f.action){var T="color: "+f.action(S)+"; font-weight: bold";r[P]("%c action    ",T,S)}else r[P]("action    ",S);if(y&&C)if(f.error){var M="color: "+f.error(y,h)+"; font-weight: bold;";r[C]("%c error     ",M,y)}else r[C]("error     ",y);if(F)if(f.nextState){var _="color: "+f.nextState(w)+"; font-weight: bold";r[F]("%c next state",_,w)}else r[F]("next state",w);l&&b(h,w,r,k);try{r.groupEnd()}catch(e){r.log("—— log end ——")}})}function S(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=Object.assign({},L,e),r=t.logger,n=t.stateTransformer,o=t.errorTransformer,i=t.predicate,a=t.logErrors,f=t.diffPredicate;if("undefined"==typeof r)return function(){return function(e){return function(t){return e(t)}}};if(e.getState&&e.dispatch)return console.error("[redux-logger] redux-logger not installed. Make sure to pass logger instance as middleware:\n// Logger with default options\nimport { logger } from 'redux-logger'\nconst store = createStore(\n  reducer,\n  applyMiddleware(logger)\n)\n// Or you can create your own logger with custom options http://bit.ly/redux-logger-options\nimport createLogger from 'redux-logger'\nconst logger = createLogger({\n  // ...options\n});\nconst store = createStore(\n  reducer,\n  applyMiddleware(logger)\n)\n"),function(){return function(e){return function(t){return e(t)}}};var u=[];return function(e){var r=e.getState;return function(e){return function(l){if("function"==typeof i&&!i(r,l))return e(l);var c={};u.push(c),c.started=O.now(),c.startedTime=new Date,c.prevState=n(r()),c.action=l;var s=void 0;if(a)try{s=e(l)}catch(e){c.error=o(e)}else s=e(l);c.took=O.now()-c.started,c.nextState=n(r());var d=t.diff&&"function"==typeof f?f(r,l):t.diff;if(x(u,Object.assign({},t,{diff:d})),u.length=0,c.error)throw c.error;return s}}}}var k,j,E=function(e,t){return new Array(t+1).join(e)},A=function(e,t){return E("0",t-e.toString().length)+e},D=function(e){return A(e.getHours(),2)+":"+A(e.getMinutes(),2)+":"+A(e.getSeconds(),2)+"."+A(e.getMilliseconds(),3)},O="undefined"!=typeof performance&&null!==performance&&"function"==typeof performance.now?performance:Date,N="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},P=function(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)},C=[];k="object"===("undefined"==typeof global?"undefined":N(global))&&global?global:"undefined"!=typeof window?window:{},j=k.DeepDiff,j&&C.push(function(){"undefined"!=typeof j&&k.DeepDiff===c&&(k.DeepDiff=j,j=void 0)}),t(n,r),t(o,r),t(i,r),t(a,r),Object.defineProperties(c,{diff:{value:c,enumerable:!0},observableDiff:{value:l,enumerable:!0},applyDiff:{value:h,enumerable:!0},applyChange:{value:d,enumerable:!0},revertChange:{value:g,enumerable:!0},isConflict:{value:function(){return"undefined"!=typeof j},enumerable:!0},noConflict:{value:function(){return C&&(C.forEach(function(e){e()}),C=null),c},enumerable:!0}});var F={E:{color:"#2196F3",text:"CHANGED:"},N:{color:"#4CAF50",text:"ADDED:"},D:{color:"#F44336",text:"DELETED:"},A:{color:"#2196F3",text:"ARRAY:"}},L={level:"log",logger:console,logErrors:!0,collapsed:void 0,predicate:void 0,duration:!1,timestamp:!0,stateTransformer:function(e){return e},actionTransformer:function(e){return e},errorTransformer:function(e){return e},colors:{title:function(){return"inherit"},prevState:function(){return"#9E9E9E"},action:function(){return"#03A9F4"},nextState:function(){return"#4CAF50"},error:function(){return"#F20404"}},diff:!1,diffPredicate:void 0,transformer:void 0},T=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.dispatch,r=e.getState;return"function"==typeof t||"function"==typeof r?S()({dispatch:t,getState:r}):void console.error("\n[redux-logger v3] BREAKING CHANGE\n[redux-logger v3] Since 3.0.0 redux-logger exports by default logger with default settings.\n[redux-logger v3] Change\n[redux-logger v3] import createLogger from 'redux-logger'\n[redux-logger v3] to\n[redux-logger v3] import { createLogger } from 'redux-logger'\n")};e.defaults=L,e.createLogger=S,e.logger=T,e.default=T,Object.defineProperty(e,"__esModule",{value:!0})});
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
 /* 48 */
@@ -2731,7 +2731,7 @@ exports['default'] = thunk;
 "use strict";
 
 
-var compose = __webpack_require__(3).compose;
+var compose = __webpack_require__(4).compose;
 
 exports.__esModule = true;
 exports.composeWithDevTools = (
@@ -2762,7 +2762,7 @@ exports.devToolsEnhancer = (
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_PropTypes__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_warning__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_warning__ = __webpack_require__(7);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -3813,7 +3813,7 @@ function shallowEqual(objA, objB) {
 /* unused harmony export whenMapDispatchToPropsIsFunction */
 /* unused harmony export whenMapDispatchToPropsIsMissing */
 /* unused harmony export whenMapDispatchToPropsIsObject */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wrapMapToProps__ = __webpack_require__(21);
 
 
@@ -4032,7 +4032,7 @@ function finalPropsSelectorFactory(dispatch, _ref2) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = verifySubselectors;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warning__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warning__ = __webpack_require__(7);
 
 
 function verify(selector, methodName, displayName) {
@@ -4071,7 +4071,7 @@ module.exports = __webpack_require__(67);
 var utils = __webpack_require__(1);
 var bind = __webpack_require__(23);
 var Axios = __webpack_require__(69);
-var defaults = __webpack_require__(8);
+var defaults = __webpack_require__(9);
 
 /**
  * Create an instance of Axios
@@ -4154,7 +4154,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(8);
+var defaults = __webpack_require__(9);
 var utils = __webpack_require__(1);
 var InterceptorManager = __webpack_require__(79);
 var dispatchRequest = __webpack_require__(80);
@@ -4876,7 +4876,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(1);
 var transformData = __webpack_require__(81);
 var isCancel = __webpack_require__(26);
-var defaults = __webpack_require__(8);
+var defaults = __webpack_require__(9);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -5126,16 +5126,17 @@ module.exports = function spread(callback) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["h"] = getPropertyValue;
+/* harmony export (immutable) */ __webpack_exports__["i"] = getPropertyValue;
 /* unused harmony export getDownPaymentAmount */
 /* harmony export (immutable) */ __webpack_exports__["g"] = getMortgageAmount;
 /* harmony export (immutable) */ __webpack_exports__["c"] = getDownpaymentAmountFromPercent;
 /* harmony export (immutable) */ __webpack_exports__["d"] = getDownpaymentPercentFromAmount;
-/* harmony export (immutable) */ __webpack_exports__["i"] = getTenureInMonth;
+/* harmony export (immutable) */ __webpack_exports__["j"] = getTenureInMonth;
 /* harmony export (immutable) */ __webpack_exports__["e"] = getMonthlyInterest;
 /* unused harmony export getBiWeeklyInterest */
 /* unused harmony export getInterestFraction */
 /* harmony export (immutable) */ __webpack_exports__["f"] = getMonthlyPayment;
+/* harmony export (immutable) */ __webpack_exports__["h"] = getPropertyTax;
 /* harmony export (immutable) */ __webpack_exports__["a"] = getBreakDown;
 /* harmony export (immutable) */ __webpack_exports__["b"] = getBreakDownInYear;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(134);
@@ -5151,7 +5152,7 @@ function getDownPaymentAmount(state) {
         return getDownpaymentAmountFromPercent(state);
     }
     var amount = state.downpayment_is_changeable ? state.downpayment_amount : state.downpayment_amount_fixed;
-    return amount.toFixed(0);
+    return amount;
 }
 
 function getMortgageAmount(state) {
@@ -5162,14 +5163,14 @@ function getDownpaymentAmountFromPercent(state) {
     var propertyValue = getPropertyValue(state);
     var percent = state.downpayment_is_changeable ? state.downpayment_percent : state.downpayment_percent_fixed;
     var calc = propertyValue * (percent / 100);
-    return calc.toFixed(0);
+    return calc;
 }
 
 function getDownpaymentPercentFromAmount(state) {
     var propertyValue = getPropertyValue(state);
     var amount = state.downpayment_is_changeable ? state.downpayment_amount : state.downpayment_amount_fixed;
     var calc = amount / propertyValue * 100;
-    return calc.toFixed(2);
+    return calc;
 }
 
 function getTenureInMonth(state) {
@@ -5194,6 +5195,12 @@ function getMonthlyPayment(p, n, i) {
     return p * i * Math.pow(1 + i, n) / (Math.pow(1 + i, n) - 1);
 }
 
+function getPropertyTax(state) {
+    var monthly_tax = state.property_tax / 1200;
+    var property_value = getPropertyValue(state);
+    return property_value * monthly_tax;
+}
+
 function getBreakDown(state) {
     var monthly_interest = getMonthlyInterest(state);
     var monthly_installment = getMonthlyPayment(getMortgageAmount(state), getTenureInMonth(state), getMonthlyInterest(state));
@@ -5216,9 +5223,9 @@ function getBreakDown(state) {
         principal = monthly_installment - interest;
         balance = balance - principal;
         if (balance < 0) balance = 0;
-        interest_ar.push(interest.toFixed(2));
-        principal_ar.push(principal.toFixed(2));
-        balance_ar.push(balance.toFixed(2));
+        interest_ar.push(interest);
+        principal_ar.push(principal);
+        balance_ar.push(balance);
         month_ar.push(month.format('MMM-YY'));
         year_ar.push(month.format('YYYY'));
         current_month = current_month + 1;
@@ -5238,7 +5245,7 @@ function getBreakDownInYear(breakdown) {
     var year = parseInt(breakdown.year_ar[0]);
     var i = 0;
     var total = breakdown.month_ar.length;
-    console.log(breakdown.interest_ar);
+    // console.log(breakdown.interest_ar);
     while (i < total) {
         if (year == parseInt(breakdown.year_ar[i])) {
             interest = interest + parseFloat(breakdown.interest_ar[i]);
@@ -5246,9 +5253,9 @@ function getBreakDownInYear(breakdown) {
             balance = balance - parseFloat(breakdown.principal_ar[i]);
         } else {
             year_ar.push(year);
-            interest_ar.push(interest.toFixed(2));
-            principal_ar.push(principal.toFixed(2));
-            balance_ar.push(balance.toFixed(2));
+            interest_ar.push(interest);
+            principal_ar.push(principal);
+            balance_ar.push(balance);
 
             interest = parseFloat(breakdown.interest_ar[i]);
             principal = parseFloat(breakdown.principal_ar[i]);
@@ -5258,9 +5265,9 @@ function getBreakDownInYear(breakdown) {
         i = i + 1;
     }
     year_ar.push(year);
-    interest_ar.push(interest.toFixed(2));
-    principal_ar.push(principal.toFixed(2));
-    balance_ar.push(balance.toFixed(0));
+    interest_ar.push(interest);
+    principal_ar.push(principal);
+    balance_ar.push(balance);
     return { interest_ar: interest_ar, principal_ar: principal_ar, balance_ar: balance_ar, year_ar: year_ar };
 }
 
@@ -5374,7 +5381,7 @@ render();
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__reducers_instanceReducer__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_redux_thunk__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_redux_thunk___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_redux_thunk__);
@@ -5555,10 +5562,10 @@ function getAlbum(id) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UserInputs__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LoanPieChart__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MonthlyChart__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__YearlyChart__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Partials_InfoRow__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LoanPieChart__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MonthlyChart__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__YearlyChart__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Partials_InfoRow__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__helpers__ = __webpack_require__(88);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -5588,7 +5595,10 @@ var LayoutSelector = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (LayoutSelector.__proto__ || Object.getPrototypeOf(LayoutSelector)).call(this, props));
 
-        _this.state = _extends({}, _this.props.options, { autoBreakDownSwitch: true, monthlyBreakdown: true });
+        _this.state = _extends({}, _this.props.options, {
+            autoBreakDownSwitch: true,
+            monthlyBreakdown: _this.props.options.tenure < 6
+        });
 
         return _this;
     }
@@ -5619,10 +5629,17 @@ var LayoutSelector = function (_React$Component) {
         key: 'render',
         value: function render() {
             var mortgage_amount = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["g" /* getMortgageAmount */])(this.state);
-            var tenure_in_month = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["i" /* getTenureInMonth */])(this.state);
-            var monthly_installment = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["f" /* getMonthlyPayment */])(mortgage_amount, tenure_in_month, Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["e" /* getMonthlyInterest */])(this.state));
+            var tenure_in_month = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["j" /* getTenureInMonth */])(this.state);
+            var monthly_principal_and_interest = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["f" /* getMonthlyPayment */])(mortgage_amount, tenure_in_month, Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["e" /* getMonthlyInterest */])(this.state));
+            var total_principal_and_interest = monthly_principal_and_interest * tenure_in_month;
+            var total_interest = total_principal_and_interest - mortgage_amount;
+
+            var monthly_property_tax = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["h" /* getPropertyTax */])(this.state);
+            var total_property_tax = monthly_property_tax * tenure_in_month;
+
+            var monthly_installment = monthly_principal_and_interest + monthly_property_tax;
             var total_payable = monthly_installment * tenure_in_month;
-            var total_interest = total_payable - mortgage_amount;
+
             var breakdown = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["a" /* getBreakDown */])(this.state);
             var breakdown_yearly = Object(__WEBPACK_IMPORTED_MODULE_6__helpers__["b" /* getBreakDownInYear */])(breakdown);
             var currency = this.state.currency;
@@ -5643,14 +5660,19 @@ var LayoutSelector = function (_React$Component) {
                         { className: 'col m5 s12' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__LoanPieChart__["a" /* default */], {
                             id: this.props.id,
-                            monthly_installment: monthly_installment.toFixed(2),
-                            mortgage_amount: mortgage_amount.toFixed(2),
+                            monthly_installment: monthly_installment,
+                            mortgage_amount: mortgage_amount,
                             tenure_in_month: tenure_in_month,
-                            currency: currency
+                            total_interest: total_interest,
+                            total_property_tax: total_property_tax,
+                            currency: currency,
+                            total_payable: total_payable
                         }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Partials_InfoRow__["a" /* default */], { currency: currency, monthly_installment: monthly_installment.toFixed(2),
-                            mortgage_amount: mortgage_amount.toFixed(2),
-                            total_payable: total_payable.toFixed(2), total_interest: total_interest.toFixed(2) })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Partials_InfoRow__["a" /* default */], { currency: currency, monthly_installment: monthly_installment,
+                            mortgage_amount: mortgage_amount,
+                            total_property_tax: total_property_tax,
+                            total_payable: total_payable,
+                            total_interest: total_interest })
                     )
                 ),
                 this.state.monthlyBreakdown ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__MonthlyChart__["a" /* default */], { principal: breakdown.principal_ar, interest: breakdown.interest_ar,
@@ -5679,10 +5701,10 @@ var LayoutSelector = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Partials_InterestInput__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Partials_TenureInput__ = __webpack_require__(136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Partials_StartMonthInput__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Partials_PropertyTaxInput__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Partials_HazardInsuranceInput__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Partials_HOAInput__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Partials_MIInput__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Partials_PropertyTaxInput__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Partials_HazardInsuranceInput__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Partials_HOAInput__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Partials_MIInput__ = __webpack_require__(141);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5747,7 +5769,7 @@ var UserInputs = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeFieldCommaFormat__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__ = __webpack_require__(8);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5849,8 +5871,8 @@ var RangeField = function RangeField(_ref) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers__ = __webpack_require__(88);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -5888,8 +5910,8 @@ var DownpaymentInput = function (_Component) {
                 label: form.downpayment_text, step: .5,
                 prefix: form.currency + d3.format(',')(Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["c" /* getDownpaymentAmountFromPercent */])(form)) + ' - ',
                 suffix: '%' }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__["a" /* default */], { val: form.downpayment_amount,
-                min: Math.min(form.downpayment_amount_min, Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["h" /* getPropertyValue */])(form)),
-                max: Math.min(form.downpayment_amount_max, Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["h" /* getPropertyValue */])(form)),
+                min: Math.min(form.downpayment_amount_min, Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["i" /* getPropertyValue */])(form)),
+                max: Math.min(form.downpayment_amount_max, Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["i" /* getPropertyValue */])(form)),
                 name: 'downpayment_amount',
                 onch: onch,
                 label: form.downpayment_text, step: 1000,
@@ -5921,8 +5943,8 @@ module.exports = moment;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__ = __webpack_require__(8);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5972,8 +5994,8 @@ var InterestInput = function (_Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__admin_js_components_form_TextField__ = __webpack_require__(8);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -6023,7 +6045,7 @@ var TenureInput = function (_Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(3);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -6070,6 +6092,194 @@ var StartMonthInput = function (_Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(3);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var PropertyTaxInput = function (_Component) {
+    _inherits(PropertyTaxInput, _Component);
+
+    function PropertyTaxInput() {
+        _classCallCheck(this, PropertyTaxInput);
+
+        return _possibleConstructorReturn(this, (PropertyTaxInput.__proto__ || Object.getPrototypeOf(PropertyTaxInput)).apply(this, arguments));
+    }
+
+    _createClass(PropertyTaxInput, [{
+        key: 'render',
+        value: function render() {
+            var _props = this.props,
+                form = _props.form,
+                onch = _props.onch;
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__["a" /* default */], { val: form.property_tax, min: form.property_tax_min,
+                max: form.property_tax_max, name: 'property_tax', onch: onch,
+                label: form.property_tax_text, step: .05,
+                suffix: '%' });
+        }
+    }]);
+
+    return PropertyTaxInput;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (PropertyTaxInput);
+
+/***/ }),
+/* 139 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(3);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var HazardInsuranceInput = function (_Component) {
+    _inherits(HazardInsuranceInput, _Component);
+
+    function HazardInsuranceInput() {
+        _classCallCheck(this, HazardInsuranceInput);
+
+        return _possibleConstructorReturn(this, (HazardInsuranceInput.__proto__ || Object.getPrototypeOf(HazardInsuranceInput)).apply(this, arguments));
+    }
+
+    _createClass(HazardInsuranceInput, [{
+        key: 'render',
+        value: function render() {
+            var _props = this.props,
+                form = _props.form,
+                onch = _props.onch;
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__["a" /* default */], { val: form.hazard_insurance, min: form.hazard_insurance_min,
+                max: form.hazard_insurance_max, name: 'hazard_insurance', onch: onch,
+                label: form.hazard_insurance_text, step: 1,
+                prefix: form.currency });
+        }
+    }]);
+
+    return HazardInsuranceInput;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (HazardInsuranceInput);
+
+/***/ }),
+/* 140 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(3);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var HOAInput = function (_Component) {
+    _inherits(HOAInput, _Component);
+
+    function HOAInput() {
+        _classCallCheck(this, HOAInput);
+
+        return _possibleConstructorReturn(this, (HOAInput.__proto__ || Object.getPrototypeOf(HOAInput)).apply(this, arguments));
+    }
+
+    _createClass(HOAInput, [{
+        key: 'render',
+        value: function render() {
+            var _props = this.props,
+                form = _props.form,
+                onch = _props.onch;
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__["a" /* default */], { val: form.monthly_hoa, min: form.monthly_hoa_min,
+                max: form.monthly_hoa_max, name: 'monthly_hoa', onch: onch,
+                label: form.monthly_hoa_text, step: 1,
+                prefix: form.currency });
+        }
+    }]);
+
+    return HOAInput;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (HOAInput);
+
+/***/ }),
+/* 141 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(3);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var MIInput = function (_Component) {
+    _inherits(MIInput, _Component);
+
+    function MIInput() {
+        _classCallCheck(this, MIInput);
+
+        return _possibleConstructorReturn(this, (MIInput.__proto__ || Object.getPrototypeOf(MIInput)).apply(this, arguments));
+    }
+
+    _createClass(MIInput, [{
+        key: 'render',
+        value: function render() {
+            var _props = this.props,
+                form = _props.form,
+                onch = _props.onch;
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__["a" /* default */], { val: form.mortgage_insurance, min: form.mortgage_insurance_min,
+                max: form.mortgage_insurance_max, name: 'mortgage_insurance', onch: onch,
+                label: form.mortgage_insurance_text, step: .01,
+                suffix: '%' });
+        }
+    }]);
+
+    return MIInput;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (MIInput);
+
+/***/ }),
+/* 142 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -6096,16 +6306,14 @@ var LoanPieChart = function (_Component) {
                 id = _props.id,
                 monthly_installment = _props.monthly_installment,
                 mortgage_amount = _props.mortgage_amount,
-                tenure_in_month = _props.tenure_in_month,
-                currency = _props.currency;
+                currency = _props.currency,
+                total_property_tax = _props.total_property_tax,
+                total_interest = _props.total_interest;
 
-            var total_payable = (monthly_installment * tenure_in_month).toFixed(2);
-            var total_interest = (total_payable - mortgage_amount).toFixed(2);
             this.piechart = c3.generate({
                 bindto: '#pie' + id,
                 data: {
-                    // iris data from R
-                    columns: [['Principal', mortgage_amount], ['Interest', total_interest]],
+                    columns: [['Principal', mortgage_amount], ['Interest', total_interest], ['Property Tax', total_property_tax]],
                     type: 'donut'
                 },
                 donut: {
@@ -6114,7 +6322,7 @@ var LoanPieChart = function (_Component) {
                             return d3.format('.1%')(ratio);
                         }
                     },
-                    title: currency + d3.format(',')(monthly_installment) + '/Mo'
+                    title: currency + d3.format(',.2f')(monthly_installment) + '/Mo'
                 },
                 tooltip: {
                     format: {
@@ -6132,16 +6340,15 @@ var LoanPieChart = function (_Component) {
                 id = _props2.id,
                 monthly_installment = _props2.monthly_installment,
                 mortgage_amount = _props2.mortgage_amount,
-                tenure_in_month = _props2.tenure_in_month,
-                currency = _props2.currency;
+                currency = _props2.currency,
+                total_property_tax = _props2.total_property_tax,
+                total_interest = _props2.total_interest;
 
-            var total_payable = monthly_installment * tenure_in_month;
-            var total_interest = total_payable - mortgage_amount;
             this.piechart.load({
-                columns: [['Principal', mortgage_amount], ['Interest', total_interest]]
+                columns: [['Principal', mortgage_amount], ['Interest', total_interest], ['Property Tax', total_property_tax]]
             });
 
-            d3.select('#pie' + id + ' .c3-chart-arcs-title').node().innerHTML = currency + d3.format(',')(monthly_installment) + '/Mo';
+            d3.select('#pie' + id + ' .c3-chart-arcs-title').node().innerHTML = currency + d3.format(',.2f')(monthly_installment) + '/Mo';
         }
     }, {
         key: 'render',
@@ -6158,7 +6365,7 @@ var LoanPieChart = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (LoanPieChart);
 
 /***/ }),
-/* 139 */
+/* 143 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6211,7 +6418,7 @@ var MonthlyChart = function (_Component) {
                 tooltip: {
                     format: {
                         value: function value(_value, ratio, id, index) {
-                            return _this2.props.currency + d3.format(',')(_value);
+                            return _this2.props.currency + d3.format(',.2f')(_value);
                         },
                         title: function title(value) {
                             return _this2.props.months[value];
@@ -6287,7 +6494,7 @@ var MonthlyChart = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (MonthlyChart);
 
 /***/ }),
-/* 140 */
+/* 144 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6340,7 +6547,7 @@ var YearlyChart = function (_Component) {
                 tooltip: {
                     format: {
                         value: function value(_value, ratio, id, index) {
-                            return _this2.props.currency + d3.format(',')(_value);
+                            return _this2.props.currency + d3.format(',.2f')(_value);
                         },
                         title: function title(value) {
                             return _this2.props.years[value];
@@ -6416,7 +6623,7 @@ var YearlyChart = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (YearlyChart);
 
 /***/ }),
-/* 141 */
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6449,65 +6656,100 @@ var InfoRow = function (_Component) {
                 monthly_installment = _props.monthly_installment,
                 mortgage_amount = _props.mortgage_amount,
                 total_payable = _props.total_payable,
-                total_interest = _props.total_interest;
+                total_interest = _props.total_interest,
+                total_property_tax = _props.total_property_tax;
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
                 { className: "row info-row" },
                 false ? React.createElement(
                     "div",
-                    { className: "col s12 center-align" },
+                    { className: "col s12" },
                     React.createElement(
-                        "span",
+                        "div",
                         null,
-                        "Monthly Installment: ",
+                        React.createElement(
+                            "span",
+                            { className: "left" },
+                            "Monthly Installment: "
+                        ),
                         React.createElement(
                             "strong",
                             {
                                 className: "red-text text-darken-2" },
-                            currency + d3.format(',')(monthly_installment)
+                            currency + d3.format(',.2f')(monthly_installment)
                         )
                     )
                 ) : false,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "div",
-                    { className: "col s12 center-align" },
+                    { className: "col s12" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "span",
+                        "div",
                         null,
-                        "Mortgage Amount: ",
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "Mortgage Amount:"
+                        ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             "strong",
-                            null,
-                            currency + d3.format(',')(mortgage_amount)
+                            { className: "right" },
+                            currency + d3.format(',.2f')(mortgage_amount)
                         )
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "div",
-                    { className: "col s12 center-align" },
+                    { className: "col s12" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "span",
+                        "div",
                         null,
-                        "Total Payment: ",
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "Total Interest:"
+                        ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             "strong",
-                            null,
-                            currency + d3.format(',')(total_payable)
+                            { className: "right" },
+                            currency + d3.format(',.2f')(total_interest)
                         )
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "div",
-                    { className: "col s12 center-align" },
+                    { className: "col s12" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "span",
+                        "div",
                         null,
-                        "Interest To Be Payed: ",
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "Total Property Tax:"
+                        ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             "strong",
-                            null,
-                            currency + d3.format(',')(total_interest)
+                            { className: "right" },
+                            currency + d3.format(',.2f')(total_property_tax)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "Total Payment:"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            { className: "right" },
+                            currency + d3.format(',.2f')(total_payable)
                         )
                     )
                 )
@@ -6519,201 +6761,6 @@ var InfoRow = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (InfoRow);
-
-/***/ }),
-/* 142 */,
-/* 143 */,
-/* 144 */,
-/* 145 */,
-/* 146 */,
-/* 147 */,
-/* 148 */,
-/* 149 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(9);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-var PropertyTaxInput = function (_Component) {
-    _inherits(PropertyTaxInput, _Component);
-
-    function PropertyTaxInput() {
-        _classCallCheck(this, PropertyTaxInput);
-
-        return _possibleConstructorReturn(this, (PropertyTaxInput.__proto__ || Object.getPrototypeOf(PropertyTaxInput)).apply(this, arguments));
-    }
-
-    _createClass(PropertyTaxInput, [{
-        key: 'render',
-        value: function render() {
-            var _props = this.props,
-                form = _props.form,
-                onch = _props.onch;
-
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__["a" /* default */], { val: form.property_tax, min: form.property_tax_min,
-                max: form.property_tax_max, name: 'property_tax', onch: onch,
-                label: form.property_tax_text, step: .05,
-                suffix: '%' });
-        }
-    }]);
-
-    return PropertyTaxInput;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-/* harmony default export */ __webpack_exports__["a"] = (PropertyTaxInput);
-
-/***/ }),
-/* 150 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(9);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-var HazardInsuranceInput = function (_Component) {
-    _inherits(HazardInsuranceInput, _Component);
-
-    function HazardInsuranceInput() {
-        _classCallCheck(this, HazardInsuranceInput);
-
-        return _possibleConstructorReturn(this, (HazardInsuranceInput.__proto__ || Object.getPrototypeOf(HazardInsuranceInput)).apply(this, arguments));
-    }
-
-    _createClass(HazardInsuranceInput, [{
-        key: 'render',
-        value: function render() {
-            var _props = this.props,
-                form = _props.form,
-                onch = _props.onch;
-
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__["a" /* default */], { val: form.hazard_insurance, min: form.hazard_insurance_min,
-                max: form.hazard_insurance_max, name: 'hazard_insurance', onch: onch,
-                label: form.hazard_insurance_text, step: 1,
-                prefix: form.currency });
-        }
-    }]);
-
-    return HazardInsuranceInput;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-/* harmony default export */ __webpack_exports__["a"] = (HazardInsuranceInput);
-
-/***/ }),
-/* 151 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(9);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-var HOAInput = function (_Component) {
-    _inherits(HOAInput, _Component);
-
-    function HOAInput() {
-        _classCallCheck(this, HOAInput);
-
-        return _possibleConstructorReturn(this, (HOAInput.__proto__ || Object.getPrototypeOf(HOAInput)).apply(this, arguments));
-    }
-
-    _createClass(HOAInput, [{
-        key: 'render',
-        value: function render() {
-            var _props = this.props,
-                form = _props.form,
-                onch = _props.onch;
-
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__["a" /* default */], { val: form.monthly_hoa, min: form.monthly_hoa_min,
-                max: form.monthly_hoa_max, name: 'monthly_hoa', onch: onch,
-                label: form.monthly_hoa_text, step: 1,
-                prefix: form.currency });
-        }
-    }]);
-
-    return HOAInput;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-/* harmony default export */ __webpack_exports__["a"] = (HOAInput);
-
-/***/ }),
-/* 152 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__ = __webpack_require__(9);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-var MIInput = function (_Component) {
-    _inherits(MIInput, _Component);
-
-    function MIInput() {
-        _classCallCheck(this, MIInput);
-
-        return _possibleConstructorReturn(this, (MIInput.__proto__ || Object.getPrototypeOf(MIInput)).apply(this, arguments));
-    }
-
-    _createClass(MIInput, [{
-        key: 'render',
-        value: function render() {
-            var _props = this.props,
-                form = _props.form,
-                onch = _props.onch;
-
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__["a" /* default */], { val: form.mortgage_insurance, min: form.mortgage_insurance_min,
-                max: form.mortgage_insurance_max, name: 'mortgage_insurance', onch: onch,
-                label: form.mortgage_insurance_text, step: .01,
-                suffix: '%' });
-        }
-    }]);
-
-    return MIInput;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-/* harmony default export */ __webpack_exports__["a"] = (MIInput);
 
 /***/ })
 /******/ ]);
