@@ -5,12 +5,11 @@ class MonthlyChart extends Component {
         this.breakdown = c3.generate({
             bindto: '#breakdown' + this.id,
             data: {
-                // x: 'x',
                 columns: [
-                    // ['x', 2001, 2002, 2003, 2004, 2005, 2006, 2007],
                     ['Principal', ...this.props.principal],
                     ['Interest', ...this.props.interest],
                     ['Property Tax', ...this.props.property_tax_ar],
+                    ['MI', ...this.props.mi_ar],
                     ['HOA', ...this.props.hoa_ar],
                     ['HI', ...this.props.hazard_ar],
                     ['Balance', ...this.props.balance],
@@ -23,7 +22,7 @@ class MonthlyChart extends Component {
                     Balance: 'spline'
                 },
                 groups: [
-                    ['Principal', 'Interest', 'Property Tax', 'HOA', 'HI']
+                    ['Principal', 'Interest', 'Property Tax', 'HOA', 'HI', 'MI']
                 ],
                 order: null,
 
@@ -77,6 +76,7 @@ class MonthlyChart extends Component {
                 ['Interest', ...this.props.interest],
                 ['Balance', ...this.props.balance],
                 ['Property Tax', ...this.props.property_tax_ar],
+                ['MI', ...this.props.mi_ar],
                 ['HOA', ...this.props.hoa_ar],
                 ['HI', ...this.props.hazard_ar]
             ]

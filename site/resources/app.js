@@ -5127,17 +5127,18 @@ module.exports = function spread(callback) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["i"] = getPropertyValue;
+/* harmony export (immutable) */ __webpack_exports__["j"] = getPropertyValue;
 /* unused harmony export getDownPaymentAmount */
-/* harmony export (immutable) */ __webpack_exports__["g"] = getMortgageAmount;
+/* harmony export (immutable) */ __webpack_exports__["h"] = getMortgageAmount;
 /* harmony export (immutable) */ __webpack_exports__["c"] = getDownpaymentAmountFromPercent;
 /* harmony export (immutable) */ __webpack_exports__["d"] = getDownpaymentPercentFromAmount;
-/* harmony export (immutable) */ __webpack_exports__["j"] = getTenureInMonth;
-/* harmony export (immutable) */ __webpack_exports__["e"] = getMonthlyInterest;
+/* harmony export (immutable) */ __webpack_exports__["k"] = getTenureInMonth;
+/* harmony export (immutable) */ __webpack_exports__["f"] = getMonthlyInterest;
 /* unused harmony export getBiWeeklyInterest */
 /* unused harmony export getInterestFraction */
-/* harmony export (immutable) */ __webpack_exports__["f"] = getMonthlyPayment;
-/* harmony export (immutable) */ __webpack_exports__["h"] = getPropertyTax;
+/* harmony export (immutable) */ __webpack_exports__["g"] = getMonthlyPayment;
+/* harmony export (immutable) */ __webpack_exports__["i"] = getPropertyTax;
+/* harmony export (immutable) */ __webpack_exports__["e"] = getMI;
 /* harmony export (immutable) */ __webpack_exports__["a"] = getBreakDown;
 /* harmony export (immutable) */ __webpack_exports__["b"] = getBreakDownInYear;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(134);
@@ -5201,6 +5202,11 @@ function getPropertyTax(state) {
     var property_value = getPropertyValue(state);
     return property_value * monthly_tax;
 }
+function getMI(state) {
+    var monthly = state.mortgage_insurance / 1200;
+    var mortgage_amount = getMortgageAmount(state);
+    return mortgage_amount * monthly;
+}
 
 function getBreakDown(state) {
     var monthly_interest = getMonthlyInterest(state);
@@ -5208,6 +5214,7 @@ function getBreakDown(state) {
     var mortgage_amount = getMortgageAmount(state);
     var tenure_in_month = getTenureInMonth(state);
     var monthly_property_tax = getPropertyTax(state);
+    var monthly_mi = getMI(state);
     var monthly_hoa = parseFloat(state.monthly_hoa);
     var monthly_hazard = parseFloat(state.hazard_insurance) / 12;
     var interest_ar = [];
@@ -5216,6 +5223,7 @@ function getBreakDown(state) {
     var principal = 0;
     var balance_ar = [];
     var property_tax_ar = [];
+    var mi_ar = [];
     var hoa_ar = [];
     var hazard_ar = [];
     var balance = mortgage_amount;
@@ -5233,6 +5241,7 @@ function getBreakDown(state) {
         principal_ar.push(principal);
         balance_ar.push(balance);
         property_tax_ar.push(monthly_property_tax);
+        mi_ar.push(monthly_mi);
         hoa_ar.push(monthly_hoa);
         hazard_ar.push(monthly_hazard);
         month_ar.push(month.format('MMM-YY'));
@@ -5248,6 +5257,7 @@ function getBreakDown(state) {
         year_ar: year_ar,
         mortgage_amount: mortgage_amount,
         property_tax_ar: property_tax_ar,
+        mi_ar: mi_ar,
         hoa_ar: hoa_ar,
         hazard_ar: hazard_ar
     };
@@ -5264,19 +5274,21 @@ function getBreakDownInYear(breakdown) {
     var year = parseInt(breakdown.year_ar[0]);
     var property_tax_ar = [];
     var property_tax = 0;
+    var mi_ar = [];
+    var mi = 0;
     var hoa_ar = [];
     var hoa = 0;
     var hazard_ar = [];
     var hazard = 0;
     var i = 0;
     var total = breakdown.month_ar.length;
-    // console.log(breakdown.interest_ar);
     while (i < total) {
         if (year == parseInt(breakdown.year_ar[i])) {
             interest = interest + parseFloat(breakdown.interest_ar[i]);
             principal = principal + parseFloat(breakdown.principal_ar[i]);
             balance = balance - parseFloat(breakdown.principal_ar[i]);
             property_tax = property_tax + parseFloat(breakdown.property_tax_ar[i]);
+            mi = mi + parseFloat(breakdown.mi_ar[i]);
             hoa = hoa + parseFloat(breakdown.hoa_ar[i]);
             hazard = hazard + parseFloat(breakdown.hazard_ar[i]);
         } else {
@@ -5285,12 +5297,14 @@ function getBreakDownInYear(breakdown) {
             principal_ar.push(principal);
             balance_ar.push(balance);
             property_tax_ar.push(property_tax);
+            mi_ar.push(mi);
             hoa_ar.push(hoa);
             hazard_ar.push(hazard);
 
             interest = parseFloat(breakdown.interest_ar[i]);
             principal = parseFloat(breakdown.principal_ar[i]);
             property_tax = parseFloat(breakdown.property_tax_ar[i]);
+            mi = parseFloat(breakdown.mi_ar[i]);
             hoa = parseFloat(breakdown.hoa_ar[i]);
             hazard = parseFloat(breakdown.hazard_ar[i]);
             balance = balance - parseFloat(breakdown.principal_ar[i]);
@@ -5303,9 +5317,10 @@ function getBreakDownInYear(breakdown) {
     principal_ar.push(principal);
     balance_ar.push(balance);
     property_tax_ar.push(property_tax);
+    mi_ar.push(mi);
     hoa_ar.push(hoa);
     hazard_ar.push(hazard);
-    return { interest_ar: interest_ar, principal_ar: principal_ar, balance_ar: balance_ar, year_ar: year_ar, property_tax_ar: property_tax_ar, hoa_ar: hoa_ar, hazard_ar: hazard_ar };
+    return { interest_ar: interest_ar, principal_ar: principal_ar, balance_ar: balance_ar, year_ar: year_ar, property_tax_ar: property_tax_ar, mi_ar: mi_ar, hoa_ar: hoa_ar, hazard_ar: hazard_ar };
 }
 
 /***/ }),
@@ -5685,14 +5700,16 @@ var LayoutSelector = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var mortgage_amount = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["g" /* getMortgageAmount */])(this.state);
-            var tenure_in_month = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["j" /* getTenureInMonth */])(this.state);
-            var monthly_principal_and_interest = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["f" /* getMonthlyPayment */])(mortgage_amount, tenure_in_month, Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["e" /* getMonthlyInterest */])(this.state));
+            var mortgage_amount = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["h" /* getMortgageAmount */])(this.state);
+            var tenure_in_month = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["k" /* getTenureInMonth */])(this.state);
+            var monthly_principal_and_interest = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["g" /* getMonthlyPayment */])(mortgage_amount, tenure_in_month, Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["f" /* getMonthlyInterest */])(this.state));
             var total_principal_and_interest = monthly_principal_and_interest * tenure_in_month;
             var total_interest = total_principal_and_interest - mortgage_amount;
 
-            var monthly_property_tax = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["h" /* getPropertyTax */])(this.state);
+            var monthly_property_tax = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["i" /* getPropertyTax */])(this.state);
+            var monthly_mi = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["e" /* getMI */])(this.state);
             var total_property_tax = monthly_property_tax * tenure_in_month;
+            var total_mi = monthly_mi * tenure_in_month;
 
             var monthly_hoa = parseFloat(this.state.monthly_hoa);
             var total_hoa = monthly_hoa * tenure_in_month;
@@ -5700,14 +5717,12 @@ var LayoutSelector = function (_React$Component) {
             var monthly_hazard = parseFloat(this.state.hazard_insurance) / 12;
             var total_hazard = monthly_hazard * tenure_in_month;
 
-            var monthly_installment = monthly_principal_and_interest + monthly_property_tax + monthly_hoa + monthly_hazard;
+            var monthly_installment = monthly_principal_and_interest + monthly_property_tax + monthly_hoa + monthly_hazard + monthly_mi;
             var total_payable = monthly_installment * tenure_in_month;
 
             var breakdown = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["a" /* getBreakDown */])(this.state);
             var breakdown_yearly = Object(__WEBPACK_IMPORTED_MODULE_8__helpers__["b" /* getBreakDownInYear */])(breakdown);
             var currency = this.state.currency;
-
-            console.log(monthly_installment);
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
@@ -5758,6 +5773,7 @@ var LayoutSelector = function (_React$Component) {
                             monthly_installment: monthly_installment,
                             monthly_principal_and_interest: monthly_principal_and_interest,
                             monthly_property_tax: monthly_property_tax,
+                            monthly_mi: monthly_mi,
                             monthly_hoa: monthly_hoa,
                             monthly_hazard: monthly_hazard,
                             currency: currency
@@ -5767,6 +5783,7 @@ var LayoutSelector = function (_React$Component) {
                             tenure_in_month: tenure_in_month,
                             total_interest: total_interest,
                             total_property_tax: total_property_tax,
+                            total_mi: total_mi,
                             total_hoa: total_hoa,
                             total_hazard: total_hazard,
                             currency: currency,
@@ -5776,10 +5793,12 @@ var LayoutSelector = function (_React$Component) {
                             monthly_installment: monthly_installment,
                             monthly_principal_and_interest: monthly_principal_and_interest,
                             monthly_property_tax: monthly_property_tax,
+                            monthly_mi: monthly_mi,
                             monthly_hoa: monthly_hoa,
                             monthly_hazard: monthly_hazard }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__Partials_InfoRowTotal__["a" /* default */], { currency: currency,
                             mortgage_amount: mortgage_amount,
                             total_property_tax: total_property_tax,
+                            total_mi: total_mi,
                             total_hoa: total_hoa,
                             total_hazard: total_hazard,
                             total_payable: total_payable,
@@ -5790,6 +5809,7 @@ var LayoutSelector = function (_React$Component) {
                     interest: breakdown.interest_ar,
                     balance: breakdown.balance_ar,
                     property_tax_ar: breakdown.property_tax_ar,
+                    mi_ar: breakdown.mi_ar,
                     hoa_ar: breakdown.hoa_ar,
                     hazard_ar: breakdown.hazard_ar,
                     currency: currency,
@@ -5799,6 +5819,7 @@ var LayoutSelector = function (_React$Component) {
                     balance: breakdown_yearly.balance_ar,
                     currency: currency,
                     property_tax_ar: breakdown_yearly.property_tax_ar,
+                    mi_ar: breakdown_yearly.mi_ar,
                     hoa_ar: breakdown_yearly.hoa_ar,
                     hazard_ar: breakdown_yearly.hazard_ar,
                     toggleBar: this.toggleBar,
@@ -6034,8 +6055,8 @@ var DownpaymentInput = function (_Component) {
                 label: form.downpayment_text, step: .5,
                 prefix: form.currency + d3.format(',')(Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["c" /* getDownpaymentAmountFromPercent */])(form)) + ' - ',
                 suffix: '%' }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__admin_js_components_form_RangeField__["a" /* default */], { val: form.downpayment_amount,
-                min: Math.min(form.downpayment_amount_min, Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["i" /* getPropertyValue */])(form)),
-                max: Math.min(form.downpayment_amount_max, Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["i" /* getPropertyValue */])(form)),
+                min: Math.min(form.downpayment_amount_min, Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["j" /* getPropertyValue */])(form)),
+                max: Math.min(form.downpayment_amount_max, Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["j" /* getPropertyValue */])(form)),
                 name: 'downpayment_amount',
                 onch: onch,
                 label: form.downpayment_text, step: 1000,
@@ -6432,13 +6453,14 @@ var LoanPieChartMonthly = function (_Component) {
                 monthly_principal_and_interest = _props.monthly_principal_and_interest,
                 currency = _props.currency,
                 monthly_property_tax = _props.monthly_property_tax,
+                monthly_mi = _props.monthly_mi,
                 monthly_hoa = _props.monthly_hoa,
                 monthly_hazard = _props.monthly_hazard;
 
             this.piechart = c3.generate({
                 bindto: '#pie' + id,
                 data: {
-                    columns: [['Principal & Interest', monthly_principal_and_interest], ['Property Tax', monthly_property_tax], ['HOA', monthly_hoa], ['HI', monthly_hazard]],
+                    columns: [['Principal & Interest', monthly_principal_and_interest], ['Property Tax', monthly_property_tax], ['MI', monthly_mi], ['HOA', monthly_hoa], ['HI', monthly_hazard]],
                     type: 'donut'
                 },
                 donut: {
@@ -6467,11 +6489,12 @@ var LoanPieChartMonthly = function (_Component) {
                 monthly_principal_and_interest = _props2.monthly_principal_and_interest,
                 currency = _props2.currency,
                 monthly_property_tax = _props2.monthly_property_tax,
+                monthly_mi = _props2.monthly_mi,
                 monthly_hoa = _props2.monthly_hoa,
                 monthly_hazard = _props2.monthly_hazard;
 
             this.piechart.load({
-                columns: [['Principal & Interest', monthly_principal_and_interest], ['Property Tax', monthly_property_tax], ['HOA', monthly_hoa], ['HI', monthly_hazard]]
+                columns: [['Principal & Interest', monthly_principal_and_interest], ['Property Tax', monthly_property_tax], ['MI', monthly_mi], ['HOA', monthly_hoa], ['HI', monthly_hazard]]
             });
 
             d3.select('#pie' + id + ' .c3-chart-arcs-title').node().innerHTML = currency + d3.format(',.2f')(monthly_installment) + '/Mo';
@@ -6524,6 +6547,7 @@ var LoanPieChartTotal = function (_Component) {
                 mortgage_amount = _props.mortgage_amount,
                 currency = _props.currency,
                 total_property_tax = _props.total_property_tax,
+                total_mi = _props.total_mi,
                 total_interest = _props.total_interest,
                 total_hoa = _props.total_hoa,
                 total_hazard = _props.total_hazard,
@@ -6532,7 +6556,7 @@ var LoanPieChartTotal = function (_Component) {
             this.piechart = c3.generate({
                 bindto: '#pie' + id,
                 data: {
-                    columns: [['Principal', mortgage_amount], ['Interest', total_interest], ['Property Tax', total_property_tax], ['HOA', total_hoa], ['HI', total_hazard]],
+                    columns: [['Principal', mortgage_amount], ['Interest', total_interest], ['Property Tax', total_property_tax], ['MI', total_mi], ['HOA', total_hoa], ['HI', total_hazard]],
                     type: 'donut'
                 },
                 donut: {
@@ -6560,13 +6584,14 @@ var LoanPieChartTotal = function (_Component) {
                 mortgage_amount = _props2.mortgage_amount,
                 currency = _props2.currency,
                 total_property_tax = _props2.total_property_tax,
+                total_mi = _props2.total_mi,
                 total_interest = _props2.total_interest,
                 total_hoa = _props2.total_hoa,
                 total_hazard = _props2.total_hazard,
                 total_payable = _props2.total_payable;
 
             this.piechart.load({
-                columns: [['Principal', mortgage_amount], ['Interest', total_interest], ['Property Tax', total_property_tax], ['HOA', total_hoa], ['HI', total_hazard]]
+                columns: [['Principal', mortgage_amount], ['Interest', total_interest], ['Property Tax', total_property_tax], ['MI', total_mi], ['HOA', total_hoa], ['HI', total_hazard]]
             });
 
             d3.select('#pie' + id + ' .c3-chart-arcs-title').node().innerHTML = currency + d3.format(',.0f')(total_payable);
@@ -6621,10 +6646,7 @@ var MonthlyChart = function (_Component) {
             this.breakdown = c3.generate({
                 bindto: '#breakdown' + this.id,
                 data: {
-                    // x: 'x',
-                    columns: [
-                    // ['x', 2001, 2002, 2003, 2004, 2005, 2006, 2007],
-                    ['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Property Tax'].concat(_toConsumableArray(this.props.property_tax_ar)), ['HOA'].concat(_toConsumableArray(this.props.hoa_ar)), ['HI'].concat(_toConsumableArray(this.props.hazard_ar)), ['Balance'].concat(_toConsumableArray(this.props.balance))],
+                    columns: [['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Property Tax'].concat(_toConsumableArray(this.props.property_tax_ar)), ['MI'].concat(_toConsumableArray(this.props.mi_ar)), ['HOA'].concat(_toConsumableArray(this.props.hoa_ar)), ['HI'].concat(_toConsumableArray(this.props.hazard_ar)), ['Balance'].concat(_toConsumableArray(this.props.balance))],
                     axes: {
                         Balance: 'y2'
                     },
@@ -6632,7 +6654,7 @@ var MonthlyChart = function (_Component) {
                     types: {
                         Balance: 'spline'
                     },
-                    groups: [['Principal', 'Interest', 'Property Tax', 'HOA', 'HI']],
+                    groups: [['Principal', 'Interest', 'Property Tax', 'HOA', 'HI', 'MI']],
                     order: null
 
                 },
@@ -6689,7 +6711,7 @@ var MonthlyChart = function (_Component) {
         key: 'componentDidUpdate',
         value: function componentDidUpdate() {
             this.breakdown.load({
-                columns: [['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Balance'].concat(_toConsumableArray(this.props.balance)), ['Property Tax'].concat(_toConsumableArray(this.props.property_tax_ar)), ['HOA'].concat(_toConsumableArray(this.props.hoa_ar)), ['HI'].concat(_toConsumableArray(this.props.hazard_ar))]
+                columns: [['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Balance'].concat(_toConsumableArray(this.props.balance)), ['Property Tax'].concat(_toConsumableArray(this.props.property_tax_ar)), ['MI'].concat(_toConsumableArray(this.props.mi_ar)), ['HOA'].concat(_toConsumableArray(this.props.hoa_ar)), ['HI'].concat(_toConsumableArray(this.props.hazard_ar))]
             });
         }
     }, {
@@ -6766,7 +6788,7 @@ var YearlyChart = function (_Component) {
                     // x: 'x',
                     columns: [
                     // ['x', 2001, 2002, 2003, 2004, 2005, 2006, 2007],
-                    ['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Property Tax'].concat(_toConsumableArray(this.props.property_tax_ar)), ['HOA'].concat(_toConsumableArray(this.props.hoa_ar)), ['HI'].concat(_toConsumableArray(this.props.hazard_ar)), ['Balance'].concat(_toConsumableArray(this.props.balance))],
+                    ['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Property Tax'].concat(_toConsumableArray(this.props.property_tax_ar)), ['MI'].concat(_toConsumableArray(this.props.mi_ar)), ['HOA'].concat(_toConsumableArray(this.props.hoa_ar)), ['HI'].concat(_toConsumableArray(this.props.hazard_ar)), ['Balance'].concat(_toConsumableArray(this.props.balance))],
                     axes: {
                         Balance: 'y2'
                     },
@@ -6774,7 +6796,7 @@ var YearlyChart = function (_Component) {
                     types: {
                         Balance: 'spline'
                     },
-                    groups: [['Principal', 'Interest', 'Property Tax', 'HOA', 'HI']],
+                    groups: [['Principal', 'Interest', 'Property Tax', 'HOA', 'HI', 'MI']],
                     order: null
 
                 },
@@ -6831,7 +6853,7 @@ var YearlyChart = function (_Component) {
         key: 'componentDidUpdate',
         value: function componentDidUpdate() {
             this.breakdown_yearly.load({
-                columns: [['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Property Tax'].concat(_toConsumableArray(this.props.property_tax_ar)), ['HOA'].concat(_toConsumableArray(this.props.hoa_ar)), ['HI'].concat(_toConsumableArray(this.props.hazard_ar)), ['Balance'].concat(_toConsumableArray(this.props.balance))]
+                columns: [['Principal'].concat(_toConsumableArray(this.props.principal)), ['Interest'].concat(_toConsumableArray(this.props.interest)), ['Property Tax'].concat(_toConsumableArray(this.props.property_tax_ar)), ['HOA'].concat(_toConsumableArray(this.props.hoa_ar)), ['MI'].concat(_toConsumableArray(this.props.mi_ar)), ['HI'].concat(_toConsumableArray(this.props.hazard_ar)), ['Balance'].concat(_toConsumableArray(this.props.balance))]
             });
         }
     }, {
@@ -6904,6 +6926,7 @@ var InfoRowTotal = function (_Component) {
                 total_payable = _props.total_payable,
                 total_interest = _props.total_interest,
                 total_property_tax = _props.total_property_tax,
+                total_mi = _props.total_mi,
                 total_hoa = _props.total_hoa,
                 total_hazard = _props.total_hazard;
 
@@ -6961,6 +6984,24 @@ var InfoRowTotal = function (_Component) {
                             "strong",
                             { className: "right" },
                             currency + d3.format(',.0f')(total_property_tax)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "Total MI:"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            { className: "right" },
+                            currency + d3.format(',.0f')(total_mi)
                         )
                     )
                 ),
@@ -7061,6 +7102,7 @@ var InfoRowMonthly = function (_Component) {
                 monthly_installment = _props.monthly_installment,
                 monthly_principal_and_interest = _props.monthly_principal_and_interest,
                 monthly_property_tax = _props.monthly_property_tax,
+                monthly_mi = _props.monthly_mi,
                 monthly_hoa = _props.monthly_hoa,
                 monthly_hazard = _props.monthly_hazard;
 
@@ -7101,6 +7143,24 @@ var InfoRowMonthly = function (_Component) {
                             "strong",
                             { className: "right" },
                             currency + d3.format(',.0f')(monthly_property_tax)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "MI:"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            { className: "right" },
+                            currency + d3.format(',.0f')(monthly_mi)
                         )
                     )
                 ),

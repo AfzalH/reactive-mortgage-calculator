@@ -11,6 +11,7 @@ class YearlyChart extends Component {
                     ['Principal', ...this.props.principal],
                     ['Interest', ...this.props.interest],
                     ['Property Tax', ...this.props.property_tax_ar],
+                    ['MI', ...this.props.mi_ar],
                     ['HOA', ...this.props.hoa_ar],
                     ['HI', ...this.props.hazard_ar],
                     ['Balance', ...this.props.balance],
@@ -23,7 +24,7 @@ class YearlyChart extends Component {
                     Balance: 'spline'
                 },
                 groups: [
-                    ['Principal', 'Interest', 'Property Tax', 'HOA', 'HI']
+                    ['Principal', 'Interest', 'Property Tax', 'HOA', 'HI','MI']
                 ],
                 order: null,
 
@@ -77,6 +78,7 @@ class YearlyChart extends Component {
                 ['Interest', ...this.props.interest],
                 ['Property Tax', ...this.props.property_tax_ar],
                 ['HOA', ...this.props.hoa_ar],
+                ['MI', ...this.props.mi_ar],
                 ['HI', ...this.props.hazard_ar],
                 ['Balance', ...this.props.balance],
             ]

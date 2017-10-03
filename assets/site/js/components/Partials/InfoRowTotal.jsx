@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 class InfoRowTotal extends Component {
     render() {
-        const {currency, mortgage_amount, total_payable, total_interest, total_property_tax, total_hoa, total_hazard} = this.props;
+        const {currency, mortgage_amount, total_payable, total_interest, total_property_tax, total_mi, total_hoa, total_hazard} = this.props;
         return (
             <div className="row info-row">
                 <div className="col s12">
@@ -21,6 +21,12 @@ class InfoRowTotal extends Component {
                     <div>
                         <span className="left">Total Property Tax:</span>
                         <strong className="right">{currency + d3.format(',.0f')(total_property_tax)}</strong>
+                    </div>
+                </div>
+                <div className="col s12">
+                    <div>
+                        <span className="left">Total MI:</span>
+                        <strong className="right">{currency + d3.format(',.0f')(total_mi)}</strong>
                     </div>
                 </div>
                 <div className="col s12">

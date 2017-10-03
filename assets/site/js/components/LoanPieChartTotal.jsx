@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 class LoanPieChartTotal extends Component {
     componentDidMount() {
-        const {id, mortgage_amount, currency, total_property_tax, total_interest, total_hoa, total_hazard, total_payable} = this.props;
+        const {id, mortgage_amount, currency, total_property_tax,total_mi, total_interest, total_hoa, total_hazard, total_payable} = this.props;
         this.piechart = c3.generate({
             bindto: '#pie' + id,
             data: {
@@ -10,6 +10,7 @@ class LoanPieChartTotal extends Component {
                     ['Principal', mortgage_amount],
                     ['Interest', total_interest],
                     ['Property Tax', total_property_tax],
+                    ['MI', total_mi],
                     ['HOA', total_hoa],
                     ['HI', total_hazard]
                 ],
@@ -34,12 +35,13 @@ class LoanPieChartTotal extends Component {
     }
 
     componentDidUpdate() {
-        const {id, mortgage_amount, currency, total_property_tax, total_interest, total_hoa, total_hazard, total_payable} = this.props;
+        const {id, mortgage_amount, currency, total_property_tax, total_mi, total_interest, total_hoa, total_hazard, total_payable} = this.props;
         this.piechart.load({
             columns: [
                 ['Principal', mortgage_amount],
                 ['Interest', total_interest],
                 ['Property Tax', total_property_tax],
+                ['MI', total_mi],
                 ['HOA', total_hoa],
                 ['HI', total_hazard]
 

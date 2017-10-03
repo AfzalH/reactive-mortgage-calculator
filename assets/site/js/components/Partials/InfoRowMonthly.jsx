@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 class InfoRowMonthly extends Component {
     render() {
-        const {currency, monthly_installment, monthly_principal_and_interest, monthly_property_tax, monthly_hoa, monthly_hazard} = this.props;
+        const {currency, monthly_installment, monthly_principal_and_interest, monthly_property_tax, monthly_mi, monthly_hoa, monthly_hazard} = this.props;
         return (
             <div className="row info-row">
                 <div className="col s12">
@@ -16,6 +16,12 @@ class InfoRowMonthly extends Component {
                     <div>
                         <span className="left">Property Tax:</span>
                         <strong className="right">{currency + d3.format(',.0f')(monthly_property_tax)}</strong>
+                    </div>
+                </div>
+                <div className="col s12">
+                    <div>
+                        <span className="left">MI:</span>
+                        <strong className="right">{currency + d3.format(',.0f')(monthly_mi)}</strong>
                     </div>
                 </div>
                 <div className="col s12">

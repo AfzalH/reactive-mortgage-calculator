@@ -6,7 +6,7 @@ class LoanPieChartMonthly extends Component {
             id,
             monthly_installment,
             monthly_principal_and_interest,
-            currency, monthly_property_tax,
+            currency, monthly_property_tax, monthly_mi,
             monthly_hoa,
             monthly_hazard
         } = this.props;
@@ -16,6 +16,7 @@ class LoanPieChartMonthly extends Component {
                 columns: [
                     ['Principal & Interest', monthly_principal_and_interest],
                     ['Property Tax', monthly_property_tax],
+                    ['MI', monthly_mi],
                     ['HOA', monthly_hoa],
                     ['HI', monthly_hazard]
                 ],
@@ -46,6 +47,7 @@ class LoanPieChartMonthly extends Component {
             monthly_principal_and_interest,
             currency,
             monthly_property_tax,
+            monthly_mi,
             monthly_hoa,
             monthly_hazard
         } = this.props;
@@ -53,6 +55,7 @@ class LoanPieChartMonthly extends Component {
             columns: [
                 ['Principal & Interest', monthly_principal_and_interest],
                 ['Property Tax', monthly_property_tax],
+                ['MI', monthly_mi],
                 ['HOA', monthly_hoa],
                 ['HI', monthly_hazard]
 

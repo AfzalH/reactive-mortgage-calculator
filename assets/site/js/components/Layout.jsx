@@ -13,6 +13,7 @@ import {
     getTenureInMonth,
     getBreakDown,
     getPropertyTax,
+    getMI,
     getBreakDownInYear
 } from '../helpers';
 
@@ -69,7 +70,9 @@ class LayoutSelector extends React.Component {
         const total_interest = total_principal_and_interest - mortgage_amount;
 
         const monthly_property_tax = getPropertyTax(this.state);
+        const monthly_mi = getMI(this.state);
         const total_property_tax = monthly_property_tax * tenure_in_month;
+        const total_mi = monthly_mi * tenure_in_month;
 
         const monthly_hoa = parseFloat(this.state.monthly_hoa);
         const total_hoa = monthly_hoa * tenure_in_month;
@@ -78,15 +81,13 @@ class LayoutSelector extends React.Component {
         const monthly_hazard = parseFloat(this.state.hazard_insurance) / 12;
         const total_hazard = monthly_hazard * tenure_in_month;
 
-        const monthly_installment = monthly_principal_and_interest + monthly_property_tax + monthly_hoa + monthly_hazard;
+        const monthly_installment = monthly_principal_and_interest + monthly_property_tax + monthly_hoa + monthly_hazard + monthly_mi;
         const total_payable = monthly_installment * tenure_in_month;
 
         const breakdown = getBreakDown(this.state);
         const breakdown_yearly = getBreakDownInYear(breakdown);
         const currency = this.state.currency;
-
-        console.log(monthly_installment);
-
+        
         return (
             <div>
                 <div className="row">
@@ -111,6 +112,7 @@ class LayoutSelector extends React.Component {
                                 monthly_installment={monthly_installment}
                                 monthly_principal_and_interest={monthly_principal_and_interest}
                                 monthly_property_tax={monthly_property_tax}
+                                monthly_mi={monthly_mi}
                                 monthly_hoa={monthly_hoa}
                                 monthly_hazard={monthly_hazard}
                                 currency={currency}
@@ -121,6 +123,7 @@ class LayoutSelector extends React.Component {
                                 tenure_in_month={tenure_in_month}
                                 total_interest={total_interest}
                                 total_property_tax={total_property_tax}
+                                total_mi={total_mi}
                                 total_hoa={total_hoa}
                                 total_hazard={total_hazard}
                                 currency={currency}
@@ -131,11 +134,13 @@ class LayoutSelector extends React.Component {
                                             monthly_installment={monthly_installment}
                                             monthly_principal_and_interest={monthly_principal_and_interest}
                                             monthly_property_tax={monthly_property_tax}
+                                            monthly_mi={monthly_mi}
                                             monthly_hoa={monthly_hoa}
                                             monthly_hazard={monthly_hazard}/> :
                             <InfoRowTotal currency={currency}
                                           mortgage_amount={mortgage_amount}
                                           total_property_tax={total_property_tax}
+                                          total_mi={total_mi}
                                           total_hoa={total_hoa}
                                           total_hazard={total_hazard}
                                           total_payable={total_payable}
@@ -149,6 +154,7 @@ class LayoutSelector extends React.Component {
                                   interest={breakdown.interest_ar}
                                   balance={breakdown.balance_ar}
                                   property_tax_ar={breakdown.property_tax_ar}
+                                  mi_ar={breakdown.mi_ar}
                                   hoa_ar={breakdown.hoa_ar}
                                   hazard_ar={breakdown.hazard_ar}
                                   currency={currency}
@@ -159,6 +165,7 @@ class LayoutSelector extends React.Component {
                                  balance={breakdown_yearly.balance_ar}
                                  currency={currency}
                                  property_tax_ar={breakdown_yearly.property_tax_ar}
+                                 mi_ar={breakdown_yearly.mi_ar}
                                  hoa_ar={breakdown_yearly.hoa_ar}
                                  hazard_ar={breakdown_yearly.hazard_ar}
                                  toggleBar={this.toggleBar}
