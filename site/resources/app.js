@@ -412,7 +412,8 @@ var RangeField = function RangeField(_ref) {
         onch = _ref.onch,
         name = _ref.name,
         label = _ref.label,
-        aclass = _ref.aclass,
+        _ref$aclass = _ref.aclass,
+        aclass = _ref$aclass === undefined ? '' : _ref$aclass,
         min = _ref.min,
         max = _ref.max,
         _ref$step = _ref.step,
@@ -5602,8 +5603,8 @@ function getAlbum(id) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LoanPieChartTotal__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MonthlyChart__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__YearlyChart__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Partials_InfoRowTotal__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Partials_InfoRowMonthly__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Partials_InfoRowTotal__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Partials_InfoRowMonthly__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__helpers__ = __webpack_require__(88);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -5949,7 +5950,8 @@ var RangeField = function RangeField(_ref) {
         onch = _ref.onch,
         name = _ref.name,
         label = _ref.label,
-        aclass = _ref.aclass,
+        _ref$aclass = _ref.aclass,
+        aclass = _ref$aclass === undefined ? '' : _ref$aclass,
         min = _ref.min,
         max = _ref.max,
         _ref$step = _ref.step,
@@ -6868,156 +6870,7 @@ var YearlyChart = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (YearlyChart);
 
 /***/ }),
-/* 146 */,
-/* 147 */,
-/* 148 */,
-/* 149 */,
-/* 150 */,
-/* 151 */,
-/* 152 */,
-/* 153 */,
-/* 154 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-var InfoRowMonthly = function (_Component) {
-    _inherits(InfoRowMonthly, _Component);
-
-    function InfoRowMonthly() {
-        _classCallCheck(this, InfoRowMonthly);
-
-        return _possibleConstructorReturn(this, (InfoRowMonthly.__proto__ || Object.getPrototypeOf(InfoRowMonthly)).apply(this, arguments));
-    }
-
-    _createClass(InfoRowMonthly, [{
-        key: "render",
-        value: function render() {
-            var _props = this.props,
-                currency = _props.currency,
-                monthly_installment = _props.monthly_installment,
-                monthly_principal_and_interest = _props.monthly_principal_and_interest,
-                monthly_property_tax = _props.monthly_property_tax,
-                monthly_hoa = _props.monthly_hoa,
-                monthly_hazard = _props.monthly_hazard;
-
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "row info-row" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "div",
-                    { className: "col s12" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "div",
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "span",
-                            { className: "left" },
-                            "Principal & Interest:"
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "strong",
-                            {
-                                className: "right" },
-                            currency + d3.format(',.0f')(monthly_principal_and_interest)
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "div",
-                    { className: "col s12" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "div",
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "span",
-                            { className: "left" },
-                            "Property Tax:"
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "strong",
-                            { className: "right" },
-                            currency + d3.format(',.0f')(monthly_property_tax)
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "div",
-                    { className: "col s12" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "div",
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "span",
-                            { className: "left" },
-                            "HOA:"
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "strong",
-                            { className: "right" },
-                            currency + d3.format(',.0f')(monthly_hoa)
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "div",
-                    { className: "col s12" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "div",
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "span",
-                            { className: "left" },
-                            "HI:"
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "strong",
-                            { className: "right" },
-                            currency + d3.format(',.0f')(monthly_hazard)
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "div",
-                    { className: "col s12" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "div",
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "span",
-                            { className: "left" },
-                            "Monthly Installment: "
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "strong",
-                            {
-                                className: "red-text text-darken-2 right" },
-                            currency + d3.format(',.0f')(monthly_installment)
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return InfoRowMonthly;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-/* harmony default export */ __webpack_exports__["a"] = (InfoRowMonthly);
-
-/***/ }),
-/* 155 */
+/* 146 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7173,6 +7026,147 @@ var InfoRowTotal = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (InfoRowTotal);
+
+/***/ }),
+/* 147 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var InfoRowMonthly = function (_Component) {
+    _inherits(InfoRowMonthly, _Component);
+
+    function InfoRowMonthly() {
+        _classCallCheck(this, InfoRowMonthly);
+
+        return _possibleConstructorReturn(this, (InfoRowMonthly.__proto__ || Object.getPrototypeOf(InfoRowMonthly)).apply(this, arguments));
+    }
+
+    _createClass(InfoRowMonthly, [{
+        key: "render",
+        value: function render() {
+            var _props = this.props,
+                currency = _props.currency,
+                monthly_installment = _props.monthly_installment,
+                monthly_principal_and_interest = _props.monthly_principal_and_interest,
+                monthly_property_tax = _props.monthly_property_tax,
+                monthly_hoa = _props.monthly_hoa,
+                monthly_hazard = _props.monthly_hazard;
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "row info-row" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "Principal & Interest:"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            {
+                                className: "right" },
+                            currency + d3.format(',.0f')(monthly_principal_and_interest)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "Property Tax:"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            { className: "right" },
+                            currency + d3.format(',.0f')(monthly_property_tax)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "HOA:"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            { className: "right" },
+                            currency + d3.format(',.0f')(monthly_hoa)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "HI:"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            { className: "right" },
+                            currency + d3.format(',.0f')(monthly_hazard)
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "col s12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "span",
+                            { className: "left" },
+                            "Monthly Installment: "
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "strong",
+                            {
+                                className: "red-text text-darken-2 right" },
+                            currency + d3.format(',.0f')(monthly_installment)
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return InfoRowMonthly;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (InfoRowMonthly);
 
 /***/ })
 /******/ ]);

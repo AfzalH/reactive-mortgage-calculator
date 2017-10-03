@@ -3,6 +3,16 @@
 
 .srizon {
   margin-top: 10px !important;
+  .input-field {
+    p {
+      margin: 0;
+    }
+    .range-field {
+      input {
+        margin: 5px 0;
+      }
+    }
+  }
   .info-point {
     font-size: 18px;
     font-weight: 200;
