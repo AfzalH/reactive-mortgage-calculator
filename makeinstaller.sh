@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 npm run prod
-mkdir srizon-mortgage-calculator
-cp -R ./admin ./srizon-mortgage-calculator/
-cp -R ./api ./srizon-mortgage-calculator/
-cp -R ./languages ./srizon-mortgage-calculator/
-cp -R ./lib ./srizon-mortgage-calculator/
-cp -R ./site ./srizon-mortgage-calculator/
+mkdir reactive-mortgage-calculator
+cp -R ./admin ./reactive-mortgage-calculator/
+cp -R ./api ./reactive-mortgage-calculator/
+cp -R ./languages ./reactive-mortgage-calculator/
+cp -R ./lib ./reactive-mortgage-calculator/
+cp -R ./site ./reactive-mortgage-calculator/
 
-cp ./readme.txt ./srizon-mortgage-calculator/
-cp ./srizon-mortgage-calculator.php ./srizon-mortgage-calculator/
+cp ./readme.txt ./reactive-mortgage-calculator/
+cp ./reactive-mortgage-calculator.php ./reactive-mortgage-calculator/
 
-zip -r srizon-mortgage-calculator.1.0.zip srizon-mortgage-calculator
+zip -r reactive-mortgage-calculator.1.0.zip reactive-mortgage-calculator
 
-rm -R srizon-mortgage-calculator
+rm -R reactive-mortgage-calculator
