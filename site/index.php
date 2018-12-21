@@ -26,7 +26,7 @@ function srizon_mortgage_load_site_head_resources() {
 
 function srizon_mortgage_load_site_footer_resources() {
 	wp_enqueue_script( 'wp-api' );
-	//wp_enqueue_script( 'srizon-materialize', srizon_mortgage_get_resource_url( 'site/resources/materialize.js' ), [ 'jquery' ], '1.0', true );
+	wp_enqueue_script( 'srizon-materialize', srizon_mortgage_get_resource_url( 'site/resources/materialize.js' ), [ 'jquery' ], '1.0', true );
 	wp_enqueue_script( 'react', srizon_mortgage_get_resource_url( 'site/resources/react.min.js' ), null, '15.6.1', true );
 	wp_enqueue_script( 'react-dom', srizon_mortgage_get_resource_url( 'site/resources/react-dom.min.js' ), null, '15.6.1', true );
 	wp_enqueue_script( 'srizon-mortgage-site', srizon_mortgage_get_resource_url( 'site/resources/app.js' ), [ 'jquery' ], '1.0', true );

@@ -3,8 +3,8 @@ Contributors: afzal_du
 Donate link: https://srizon.com/
 Tags: Mortgage Calculator, Loan Calculator
 Requires at least: 4.1
-Tested up to: 4.8.1
-Stable tag: 1.0
+Tested up to: 5.0.2
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

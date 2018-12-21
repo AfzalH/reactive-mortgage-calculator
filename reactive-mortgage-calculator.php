@@ -5,7 +5,7 @@ Plugin URI: https://srizon.com/product/reactive-mortgage-calculator
 Description: Responsive and Reactive mortgage calculator that you can customize
 Text Domain: reactive-mortgage-calculator
 Domain Path: /languages
-Version: 1.0
+Version: 1.1
 Author: Afzal
 Author URI: https://srizon.com/contact
 */
